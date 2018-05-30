@@ -1,24 +1,10 @@
 {
   "/": {
-    "src/components/my-app.js": {
+    "src/pages/app-shell.js": {
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view1.js": {
-      "type": "script",
-      "weight": 1
-    },
-    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
-      "type": "script",
-      "weight": 1
-    }
-  },
-  "/view1": {
-    "src/components/my-app.js": {
-      "type": "script",
-      "weight": 1
-    },
-    "src/components/my-view1.js": {
+    "src/pages/overview-page.js": {
       "type": "script",
       "weight": 1
     },
@@ -27,12 +13,12 @@
       "weight": 1
     }
   },
-  "/view2": {
-    "src/components/my-app.js": {
+  "/overview": {
+    "src/pages/app-shell.js": {
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view2.js": {
+    "src/pages/overview-page.js": {
       "type": "script",
       "weight": 1
     },
@@ -41,12 +27,12 @@
       "weight": 1
     }
   },
-  "/view3": {
-    "src/components/my-app.js": {
+  "/tablet": {
+    "src/pages/app-shell.js": {
       "type": "script",
       "weight": 1
     },
-    "src/components/my-view3.js": {
+    "src/pages/tablet-page.js": {
       "type": "script",
       "weight": 1
     },
@@ -54,5 +40,75 @@
       "type": "script",
       "weight": 1
     }
-  }
+  },
+  "/tablet-library": {
+    "src/pages/app-shell.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "src/pages/tablet-library-page.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/coating": {
+    "src/pages/app-shell.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "src/pages/coating-page.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/coating-library": {
+    "src/pages/app-shell.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "src/pages/coating-library-page.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/pan": {
+    "src/pages/app-shell.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "src/pages/pan-page.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
+  "/pan-library": {
+    "src/pages/app-shell.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "src/pages/pan-library-page.js": {
+      "type": "script",
+      "weight": 1
+    },
+    "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js": {
+      "type": "script",
+      "weight": 1
+    }
+  },
 }

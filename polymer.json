@@ -1,13 +1,26 @@
 {
   "entrypoint": "index.html",
-  "shell": "src/components/my-app.js",
+  "shell": "src/pages/app-shell.js",
+  "fragments": [
+      "src/pages/overview-page.js",
+      "src/pages/tablet-overview-page.js",
+      "src/pages/tablet-designer-page.js",
+      "src/pages/tablet-library-page.js",
+      "src/pages/pan-overview-page.js",
+      "src/pages/pan-designer-page.js",
+      "src/pages/pan-library-page.js",
+      "src/pages/coating-overview-page.js",
+      "src/pages/coating-designer-page.js",
+      "src/pages/coating-library-page.js"
+  ],
   "sources": [
     "images/**/*"
   ],
   "extraDependencies": [
     "manifest.json",
     "node_modules/@webcomponents/webcomponentsjs/**",
-    "push-manifest.json"
+    "push-manifest.json",
+    "node_modules/d3/dist/d3.js"
   ],
   "builds": [
     {
@@ -18,41 +31,6 @@
       ],
       "js": {
         "minify": true
-      },
-      "css": {
-        "minify": true
-      },
-      "html": {
-        "minify": true
-      },
-      "bundle": true,
-      "addServiceWorker": true
-    },
-    {
-      "name": "es6-bundled",
-      "browserCapabilities": [
-        "es2015"
-      ],
-      "js": {
-        "compile": "es2015",
-        "minify": true,
-        "transformModulesToAmd": true
-      },
-      "css": {
-        "minify": true
-      },
-      "html": {
-        "minify": true
-      },
-      "bundle": true,
-      "addServiceWorker": true
-    },
-    {
-      "name": "es5-bundled",
-      "js": {
-        "compile": "es5",
-        "minify": true,
-        "transformModulesToAmd": true
       },
       "css": {
         "minify": true
