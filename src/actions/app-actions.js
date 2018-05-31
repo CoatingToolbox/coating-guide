@@ -13,14 +13,19 @@ export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 
 export const navigate = (path) => (dispatch) => {
   // Extract the page name from path.
-  const page = path === '/' ? 'overview' : path.slice(1);
-
-  // Any other info you might want to extract from the path (like page type),
-  // you can do here
+  let page;
+  switch(path) {
+    case '/':
+    case '/overview':
+      page = 'overview';
+      dispatch(updateDrawerState(false));
+      break;
+    default:
+      page = path.slice(1);
+      dispatch(updateDrawerState(true));
+  }
+  // dynamically load page
   dispatch(loadPage(page));
-
-  // Close the drawer - in case the *path* change came from a link in the drawer.
-  dispatch(updateDrawerState(false));
 };
 
 const loadPage = (page) => async (dispatch) => {
@@ -29,33 +34,30 @@ const loadPage = (page) => async (dispatch) => {
     case "overview":
         await import('../pages/overview-page.js');
         break;
-    case "tablet-overview":
-        await import('../pages/tablet-overview-page.js');
+    case "tablet":
+        await import('../pages/tablet-page.js');
         break;
-    case "tablet-library":
-        await import('../pages/tablet-library-page.js');
-        break;
-    case "tablet-designer":
-        await import('../pages/tablet-designer-page.js');
-        break;
-    case "pan-overview":
-        await import('../pages/pan-overview-page.js');
-        break;
-    case "pan-library":
-        await import('../pages/pan-library-page.js');
-        break;
-    case "pan-designer":
-        await import('../pages/pan-designer-page.js');
-        break;
-    case "coating-overview":
-        await import('../pages/coating-overview-page.js');
-        break;
-    case "coating-library":
-        await import('../pages/coating-library-page.js');
-        break;
-    case "coating-designer":
-        await import('../pages/coating-designer-page.js');
-        break;
+    // case "tablet-library":
+    //     await import('../pages/tablet-library-page.js');
+    //     break;
+    // case "pan-overview":
+    //     await import('../pages/pan-overview-page.js');
+    //     break;
+    // case "pan-library":
+    //     await import('../pages/pan-library-page.js');
+    //     break;
+    // case "pan-designer":
+    //     await import('../pages/pan-designer-page.js');
+    //     break;
+    // case "coating-overview":
+    //     await import('../pages/coating-overview-page.js');
+    //     break;
+    // case "coating-library":
+    //     await import('../pages/coating-library-page.js');
+    //     break;
+    // case "coating-designer":
+    //     await import('../pages/coating-designer-page.js');
+    //     break;
     default:
       page = 404;
       await import('../pages/page-404.js');

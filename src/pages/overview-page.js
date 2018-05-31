@@ -1,83 +1,77 @@
-
 import { LitElement, html } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 import '../components/page-elements/page-header.js';
-import '../components/card/card-with-toolbar.js';
-import '../components/card/card-button.js';
+import '../components/page-elements/page-section.js';
+import '../components/cards/basic-card.js';
+import '../components/buttons/large-button.js';
 
 
 class OverviewPage extends connect(store)(LitElement) {
-  static get properties () {
-    return {
-      _tabletName: String,
-      _coatingName: String,
-      _panName: String,
-    };
-  }
+    static get properties() {
+        return {
+            _tabletName: String,
+            _coatingName: String,
+            _panName: String,
+        };
+    }
 
-  // _displayAsPercent(value) {
-  //   let percent = (value * 100).toFixed(1);
-  //   return `${percent}%`;
-  // }
-  // _displayAsKilo(value) {
-  //   let kg = (value / 1000).toFixed(1);
-  //   return `${kg} kg`;
-  // }
-  
-  _render ({_tabletName, _coatingName, _panName}) {
-    // Template getter must return an instance of HTMLTemplateElement.
-    // The html helper function makes this easy.
-    return html`
+    // _displayAsPercent(value) {
+    //   let percent = (value * 100).toFixed(1);
+    //   return `${percent}%`;
+    // }
+    // _displayAsKilo(value) {
+    //   let kg = (value / 1000).toFixed(1);
+    //   return `${kg} kg`;
+    // }
+
+    _render({ _tabletName, _coatingName, _panName }) {
+        // Template getter must return an instance of HTMLTemplateElement.
+        // The html helper function makes this easy.
+        return html `
       <style>
         :host {
           display: block;
-          max-width: var(--page-width);
+          max-width: 900px;
           margin: auto;
         }
-        #materials-section .material-layout {
+        .material-layout {
           display: grid;
           grid-template-rows: auto auto;
           grid-template-columns: 1fr auto auto auto;
           grid-gap: 0px 16px;
           min-height: 96px;
         }
-        #materials-section .material-layout:first-of-type {
-          margin-top: 24px;
-        }
-        #materials-section .material-layout + .material-layout {
+        .material-layout + .material-layout {
           border-top: var(--border-line);
         }
-        #materials-section .material-layout .material-label {
+        .material-layout .material-label {
           font-size: 18px;
           align-self: end;
           grid-row: 1 / 2;
           grid-column: 1 / 2;
         }
-        #materials-section .material-layout .material-title {
+        .material-layout .material-title {
           font-size: 24px;
           color: var(--app-primary-color);
           align-self: start;
           grid-row: 2 / 3;
           grid-column: 1 / 2;
         }
-        #materials-section .material-layout card-button,
-        #materials-section .material-layout a {
+        .material-layout large-button,
+        .material-layout a {
           grid-row: 1 / 3;
           align-self: center;
         }
         
-        #parameters-section {
-          
-        }
-        #parameters-section #parameters-layout {
+        #parameters-layout {
           display: grid;
           grid-template-columns: 1fr 1fr;
           grid-auto-rows: 1fr;
           padding-top: 16px;
         }
-        #parameters-section .parameter {
+        .parameter {
           display: flex;
           align-items: center;
           height: 48px;
@@ -85,14 +79,14 @@ class OverviewPage extends connect(store)(LitElement) {
           padding: 0px 24px;
           font-size: 16px;
         }
-        #parameters-section .parameter-dot {
+        .parameter-dot {
           width: 12px;
           height: 12px;
           margin: 0px 12px;
           border-radius: 50%;
           background-color: var(--app-primary-color);
         }
-        #parameters-section .parameter-label {
+        .parameter-label {
           flex-grow: 1;
         }
         
@@ -106,66 +100,63 @@ class OverviewPage extends connect(store)(LitElement) {
           </p>
         </page-header>
         
-        <section id='materials-section'>
+        <page-section>
+          <div slot='title'>Materials & Equipment</div>
+          <p slot='description'>
+            To get started choose a tablet, coating pan and coating formula
+            from the library or design your own.
+          </p>
+        </page-section>
       
-          <card-with-toolbar title='Materials & Equipment'>
-            <p slot='card-description'>
-              To get started choose a tablet, coating pan and coating formula
-              from the library or design your own.
-            </p>
-            
-            <div class='material-layout'>
-              <div class='material-label'>Coating Substrate</div>
-              <div class='material-title'>${_tabletName}</div>
-              <a href='#/tablet-overview'>
-                <card-button label='Info'></card-button>
-              </a>
-              <a href='#/tablet-designer'>
-                <card-button label='Edit'></card-button>
-              </a>
-              <a href='#/tablet-library'>
-                <card-button label='Load'></card-button>
-              </a>
-            </div>
-            
-            <div class='material-layout'>
-              <div class='material-label'>Coating Pan</div>
-              <div class='material-title'>${_panName}</div>
-              <a href='#/pan-overview'>
-                <card-button label='Info'></card-button>
-              </a>
-              <a href='#/pan-designer'>
-                <card-button label='Edit'></card-button>
-              </a>
-              <a href='#/pan-library'>
-                <card-button label='Load'></card-button>
-              </a>
-            </div>
-            
-            <div class='material-layout'>
-              <div class='material-label'>Coating Formula</div>
-              <div class='material-title'>${_coatingName}</div>
-              <a href='#/coating-overview'>
-                <card-button label='Info'></card-button>
-              </a>
-              <a href='#/coating-designer'>
-                <card-button label='Edit'></card-button>
-              </a>
-              <a href='#/coating-library'>
-                <card-button label='Load'></card-button>
-              </a>
-            </div>
-          </card-with-toolbar>
-        </section>
+        <basic-card>
+          
+          <div class='material-layout'>
+            <div class='material-label'>Coating Substrate</div>
+            <div class='material-title'>${_tabletName}</div>
+            <a href='/tablet-library'>
+              <large-button label='Load'></large-button>
+            </a>
+            <a href='/tablet'>
+              <large-button label='Explore'></large-button>
+            </a>
+          </div>
+          
+          <div class='material-layout'>
+            <div class='material-label'>Coating Pan</div>
+            <div class='material-title'>${_panName}</div>
+            <a href='/pan-library'>
+              <large-button label='Load'></large-button>
+            </a>
+            <a href='/pan'>
+              <large-button label='Explore'></large-button>
+            </a>
+          </div>
+          
+          <div class='material-layout'>
+            <div class='material-label'>Coating Formula</div>
+            <div class='material-title'>${_coatingName}</div>
+            <a href='/coating-library'>
+              <large-button label='Load'></large-button>
+            </a>
+            <a href='/coating'>
+              <large-button label='Explore'></large-button>
+            </a>
+          </div>
+        </basic-card>
+          
+      
         
-        <section id='parameters-section'>
-      
-          <card-with-toolbar title='Coating Conditions & Process Parameters'>
-            <card-button slot='toolbar' label='Edit'></card-button>
-            <p slot='card-description'>
-              Get recommended coating conditions and process parameters and set
+        <page-section>
+          <div slot='title'>Coating Conditions & Process Parameter</div>
+          <p slot='description'>
+            Get recommended coating conditions and process parameters and set
               your target values.
-            </p>
+          </p>
+            <large-button slot='button' label='Edit'></large-button>
+        </page-section>
+        
+        
+          <basic-card>
             <div id='parameters-layout'>
               <div class='parameter'>
                 <div class='parameter-dot'></div>
@@ -208,18 +199,17 @@ class OverviewPage extends connect(store)(LitElement) {
                 <div class='parameter-value'></div>
              </div>
             </div>
-          </card-with-toolbar>
-        </section>
+          </basic-card>
       
     `;
-  }
-  
-  _stateChanged(state) {
-    this._tabletName = (state.tablet.productName) ? state.tablet.productName : 'None Selected';
-    this._panName = (state.pan.manufacturerName || state.pan.modelName) ? `${state.pan.manufacturerName} ${state.pan.modelName}` : 'None Selected';
-    this._coatingName = (state.coating.productName) ? state.coating.productName : 'None Selected';
-  }
-  
+    }
+
+    _stateChanged(state) {
+        this._tabletName = (state.tablet.productName) ? state.tablet.productName : 'None Selected';
+        this._panName = (state.pan.manufacturerName || state.pan.modelName) ? `${state.pan.manufacturerName} ${state.pan.modelName}` : 'None Selected';
+        this._coatingName = (state.coating.productName) ? state.coating.productName : 'None Selected';
+    }
+
 }
 
 // Register the element with the browser.

@@ -287,3 +287,41 @@ export class Tablet {
         return (part1 + part2) / part3;
     }
 }
+
+
+// _computeIsRound(shape) {
+  //   return shape === 'round';
+  // }
+  // _computeTablet(tablet) {
+  //   // we create a copy to prevent data binding and direct changes to the redux state
+  //   return Object.assign({}, tablet);
+  // }
+  // _saveTablet() {
+  //   this.dispatch({
+  //     type: "SET_TABLET",
+  //     tablet: this.tablet
+  //   });
+  //   window.location = '#/tablet-overview';
+  // }
+  // _cancelTablet() {
+  //   this.dispatch({
+  //     type: "RESET_TABLET"
+  //   });
+  //   window.location = '#/tablet-overview';
+  // }
+  // _saveToFirebase() {
+  //   if(!this.isAdmin) { return; }
+  //   this.dispatch({
+  //     type: "SAVE_TABLET_TO_FIREBASE",
+  //     tablet: this.tablet
+  //   });
+  //   window.location = '#/tablet-library';
+  // }
+  // _replaceOnFirebase() {
+  //   if(!this.isAdmin) { return; }
+  //   this.dispatch({
+  //     type: "REPLACE_TABLET_ON_FIREBASE",
+  //     tablet: this.tablet
+  //   });
+  //   window.location = '#/tablet-library';
+  // }

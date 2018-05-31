@@ -15,28 +15,38 @@ class TextInput extends PolymerElement {
     
         :host {
           display: block;
+          position: relative;
+          margin-top: 12px;
         }
         #label {
-          color: var(--text-light-color);
+          position: absolute;
+          top: -10px;
+          left: 10px;
+          padding: 0px 4px;
+          background: var(--white-color);
+          overflow: hidden;
+          color: #666666;
           font-size: 14px;
-          margin-bottom: 4px
+          margin-bottom: 4px;
+          
         }
         #input, 
         #input:focus {
+          height: 56px;
           width: calc(100% - 32px - 2px);
           background-color: var(--white-color);
-          padding: 12px 16px;
+          padding: 0px 16px;
           appearance: none;
           -moz-appearance: none;
           -webkit-appearance: none;
           border-radius: 4px;
-          border: 1px solid #828282;
+          border: 2px solid #e0e0e0;
           outline: none;
           text-align: start;
           text-overflow: ellipsis;
           font-size: 16px;
-          color: var(--text-color);
-          line-height: 24px;
+          color: #666666;
+          line-height: 28px;
         }
         
         #input:focus {

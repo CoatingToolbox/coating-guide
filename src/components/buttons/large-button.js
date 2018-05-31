@@ -1,14 +1,14 @@
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { LitElement, html } from '@polymer/lit-element';
 
-class CardButton extends PolymerElement {
+class LargeButton extends LitElement {
   static get properties () {
     return {
       label: String
     };
   }
 
-  static get template () {
+  _render({label}) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -34,11 +34,11 @@ class CardButton extends PolymerElement {
         }
       </style>
       
-      <div id='label'>[[label]]</div>
+      <div id='label'>${label}</div>
     `;
   }
 }
 
 // Register the element with the browser.
 /* global customElements */
-customElements.define('card-button', CardButton);
+customElements.define('large-button', LargeButton);

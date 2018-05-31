@@ -1,7 +1,92 @@
 import { html } from '@polymer/lit-element';
 
-export const menuIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path></svg>`;
+export const menuIcon = html`
+    <svg height="24" viewBox="0 0 24 24" width="24">
+        <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+    </svg>`;
+    
+export const productIcon = html`
+    <svg height="24" width="24" viewBox="0 0 24 24">
+      <path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
+    </svg>`;
+    
+export const rulerIcon = html`
+    <svg height="24" width="24" viewBox="0 0 24 24">
+      <path d="M1.39,18.36L3.16,16.6L4.58,18L5.64,16.95L4.22,15.54L5.64,14.12L8.11,16.6L9.17,15.54L6.7,13.06L8.11,11.65L9.53,13.06L10.59,12L9.17,10.59L10.59,9.17L13.06,11.65L14.12,10.59L11.65,8.11L13.06,6.7L14.47,8.11L15.54,7.05L14.12,5.64L15.54,4.22L18,6.7L19.07,5.64L16.6,3.16L18.36,1.39L22.61,5.64L5.64,22.61L1.39,18.36Z" />
+    </svg>`;
 
+  
+export const roundTabletIcon = html`
+    <svg height="24" width="24" viewBox="0 0 24 24">
+      <circle cx='12' cy='12' r='8'></circle>
+    </svg>`;
+    
+      
+export const ovalTabletIcon = html`
+    <svg height="24" width="24" viewBox="0 0 24 24">
+      <path d="m 2 12 a 10 7 0 0 0 20 0 a 10 7 0 0 0 -20 0 z"></path>
+    </svg>`;
+    
+      
+export const capletTabletIcon = html`
+    <svg height="24" width="24" viewBox="0 0 24 24">
+      <path d="m 12 12 m 5.999999999999999 5.4 l -11.999999999999998 0 a 5.4 5.4 0 0 1 0 -10.8 l 11.999999999999998 0 a 5.4 5.4 0 0 1 0 10.8 z"></path>
+    </svg>`;
+  
+
+
+export const appIcon = html`
+    <svg height='36' width='36' 
+        viewBox="0.0 0.0 256.0 256.0" 
+        fill="none" stroke="none" stroke-linecap="square" stroke-miterlimit="10" 
+        xmlns:xlink="http://www.w3.org/1999/xlink" 
+        xmlns="http://www.w3.org/2000/svg">
+    <clipPath id="p.0"><path d="m0 0l256.0 0l0 256.0l-256.0 0l0 -256.0z" 
+        clip-rule="nonzero"/></clipPath>
+    <g clip-path="url(#p.0)">
+    // <path fill="#000000" fill-opacity="0.0" d="m0 0l256.0 0l0 256.0l-256.0 0z" 
+    //     fill-rule="evenodd"/>
+    // <path fill="#6595D7" d="m0 42.66752l0 0c0 -23.56462 19.1029 
+    //     -42.66752 42.66752 -42.66752l170.66495 0l0 0c11.316132 0 22.168793 
+    //     4.495315 30.170502 12.497027c8.001709 8.001712 12.497025 18.854362 
+    //     12.497025 30.17049l0 170.66495c0 23.564621 -19.102905 42.667526 
+    //     -42.667526 42.667526l-170.66495 0c-23.56462 0 -42.66752 -19.102905 
+    //     -42.66752 -42.667526z" fill-rule="evenodd"/>
+    // <path fill="#000000" fill-opacity="0.0808" d="m194.88905 
+    // 60.614174l115.14961 115.49607l-133.7008 133.29134l-115.1496 
+    // -115.49606z" fill-rule="evenodd"/>
+    <path fill="#bdc3c7" d="m32.339996 127.065704l0 0c0 
+        -51.157013 43.34349 -92.62797 96.810394 -92.62797l0 0c25.675705 
+        0 50.299805 9.758987 68.45528 27.130104c18.155472 17.371109 28.355103 
+        40.931396 28.355103 65.49786l0 0c0 51.157013 -43.34349 92.627975 
+        -96.81038 92.627975l0 0c-53.466904 0 -96.810394 -41.470963 -96.810394 
+        -92.627975z" fill-rule="evenodd"/>
+    <path stroke="#5B81B6" stroke-width="3.0" stroke-linejoin="round" 
+        stroke-linecap="butt" d="m32.339996 127.065704l0 0c0 -51.157013 
+        43.34349 -92.62797 96.810394 -92.62797l0 0c25.675705 0 50.299805 
+        9.758987 68.45528 27.130104c18.155472 17.371109 28.355103 40.931396 
+        28.355103 65.49786l0 0c0 51.157013 -43.34349 92.627975 -96.81038 
+        92.627975l0 0c-53.466904 0 -96.810394 -41.470963 -96.810394 -92.627975z" 
+        fill-rule="evenodd"/>
+    <path fill="#a6abaf" d="m92.43341 123.14l0 0c0 -18.949287 16.438957 
+        -34.310715 36.717422 -34.310715l0 0c20.278473 0 36.717438 15.361427 
+        36.717438 34.310715l0 0c0 18.94928 -16.438965 34.310715 -36.717438 
+        34.310715l0 0c-20.278465 0 -36.717422 -15.361435 -36.717422 -34.310715z" 
+        fill-rule="evenodd"/>
+    <path stroke="#5B81B6" stroke-width="3.0" stroke-linejoin="round" 
+        stroke-linecap="butt" d="m92.43341 123.14l0 0c0 -18.949287 16.438957 
+        -34.310715 36.717422 -34.310715l0 0c20.278473 0 36.717438 15.361427 
+        36.717438 34.310715l0 0c0 18.94928 -16.438965 34.310715 -36.717438 
+        34.310715l0 0c-20.278465 0 -36.717422 -15.361435 -36.717422 -34.310715z" 
+        fill-rule="evenodd"/>
+    <path fill="#ED5D5D" d="m188.80672 199.51483c-29.27803 24.33519 -70.91161 
+        28.202972 -105.17354 9.770676c-34.26193 -18.432297 -54.26921 -55.46176 
+        -50.541805 -93.542725z" fill-rule="evenodd"/>
+        <path stroke="#5B81B6" stroke-width="3.0" stroke-linejoin="round" 
+        stroke-linecap="butt" d="m188.80672 199.51483c-29.27803 24.33519 
+        -70.91161 28.202972 -105.17354 9.770676c-34.26193 -18.432297 -54.26921 
+        -55.46176 -50.541805 -93.542725z" fill-rule="evenodd"/>
+    </g></svg>`
 // <g id='spray'>
 //   <path d="M10,4H12V6H10V4M7,3H9V5H7V3M7,6H9V8H7V6M6,8V10H4V8H6M6,5V7H4V5H6M6,2V4H4V2H6M13,22A2,2 0 0,1 11,20V10A2,2 0 0,1 13,8V7H14V4H17V7H18V8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H13M13,10V20H18V10H13Z" />
 // </g>
@@ -40,14 +125,6 @@ export const menuIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><pa
 //   <path d="M18,15H16V17H18M18,11H16V13H18M20,19H12V17H14V15H12V13H14V11H12V9H20M10,7H8V5H10M10,11H8V9H10M10,15H8V13H10M10,19H8V17H10M6,7H4V5H6M6,11H4V9H6M6,15H4V13H6M6,19H4V17H6M12,7V3H2V21H22V7H12Z" />
 // </g>
 
-// <g id='product-info'>
-//   <path d="M14,17H7V15H14M17,13H7V11H17M17,9H7V7H17M19,3H5C3.89,3 3,3.89 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5C21,3.89 20.1,3 19,3Z" />
-// </g>
-
-// <g id='ruler'>
-//   <path d="M1.39,18.36L3.16,16.6L4.58,18L5.64,16.95L4.22,15.54L5.64,14.12L8.11,16.6L9.17,15.54L6.7,13.06L8.11,11.65L9.53,13.06L10.59,12L9.17,10.59L10.59,9.17L13.06,11.65L14.12,10.59L11.65,8.11L13.06,6.7L14.47,8.11L15.54,7.05L14.12,5.64L15.54,4.22L18,6.7L19.07,5.64L16.6,3.16L18.36,1.39L22.61,5.64L5.64,22.61L1.39,18.36Z" />
-// </g>
-
 // <g id='density'>
 //   <path d="M11,9H13V11H11V9M9,11H11V13H9V11M13,11H15V13H13V11M15,9H17V11H15V9M7,9H9V11H7V9M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M9,18H7V16H9V18M13,18H11V16H13V18M17,18H15V16H17V18M19,11H17V13H19V15H17V13H15V15H13V13H11V15H9V13H7V15H5V13H7V11H5V5H19V11Z" />
 // </g>
@@ -77,17 +154,6 @@ export const menuIcon = html`<svg height="24" viewBox="0 0 24 24" width="24"><pa
 // <g id='shape'>
 //   <path d="M11,13.5V21.5H3V13.5H11M12,2L17.5,11H6.5L12,2M17.5,13C20,13 22,15 22,17.5C22,20 20,22 17.5,22C15,22 13,20 13,17.5C13,15 15,13 17.5,13Z" />
 // </g>
-
-// <g id='round-tablet' style='fill-opacity: 0.4; stroke-width: 0.75px;'>
-//     <circle cx='12' cy='12' r='8'></circle>
-// </g>
-// <g id='oval-tablet' style='fill-opacity: 0.4; stroke-width: 0.75'>
-//     <path d="m 2 12 a 10 7 0 0 0 20 0 a 10 7 0 0 0 -20 0 z"></path>
-// </g>
-// <g id='caplet-tablet' style='fill-opacity: 0.4; stroke-width: 0.75px;'>
-//     <path d="m 12 12 m 5.999999999999999 5.4 l -11.999999999999998 0 a 5.4 5.4 0 0 1 0 -10.8 l 11.999999999999998 0 a 5.4 5.4 0 0 1 0 10.8 z"></path>
-// </g>
-
 // <g id='tablet' style='fill-opacity: 0.4; stroke-width: 2.5px;'>
 //     <path d="m 2 9 l 20 0 l 0 6 l -20 0 l 0 -6"></path>
 //     <path d="m 2 9 a 33.524 33.524 0 0 1 20 0"></path>

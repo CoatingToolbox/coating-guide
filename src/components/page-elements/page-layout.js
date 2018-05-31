@@ -11,8 +11,11 @@ class PageLayout extends PolymerElement {
       <style>
         :host {
           display: block;
-          max-width: 900px;
+          max-width: 700px;
           margin: auto;
+        }
+        @media(min-width: 1240px) {
+          max-width: 900px;
         }
       </style>
       

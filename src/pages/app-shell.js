@@ -13,127 +13,110 @@ import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js'
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { installRouter } from 'pwa-helpers/router.js';
 import { store } from '../store.js';
-import { navigate, updateDrawerState } from '../actions/app-actions.js';
-import { menuIcon } from '../components/app-icons.js';
+import { navigate } from '../actions/app-actions.js';
+import { appIcon } from '../components/app-icons.js';
 
 // Element Imports
-import '@polymer/app-layout/app-drawer/app-drawer.js';
-import '@polymer/app-layout/app-drawer-layout/app-drawer-layout.js';
 import '@polymer/app-layout/app-header-layout/app-header-layout.js';
 import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/iron-pages/iron-pages.js';
 import '@material/mwc-icon';
-import '../components/nav-item.js';
-import '../components/nav-icon.js';
-import '../components/nav-section.js';
+import '../components/nav-drawer/nav-drawer.js';
 
 class AppShell extends connect(store)(LitElement) {
-  _render({_page, _drawerOpened}) {
+  _render({_page}) {
     // Anything that's related to rendering should be done in here.
     return html`
     <style>
         :host {
           display: block;
         }
-        app-header,
-        app-toolbar {
-          background-color: var(--app-primary-color);
-          color: var(--white-color);
+        app-header {
+          color: var(--text-color);
+          background-color: var(--white-color);
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
         }
         app-header mwc-icon {
-          fill: var(--white-color);
-          background: none;
-          border: none;
-          border-radius: 50%;
-          padding: 8px;
-        }
-        app-header mwc-icon:hover {
-          background: var(--app-dark-color);
-          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 8px;
         }
         app-header #user-name {
-          font-size: 16px;
+          font-size: 12px;
+          color: var(--text-light-color)
         }
         app-header .icon {
+          display: flex;
+          align-items: center;
+          font-size: 12px;
+          font-weight: bold;
+          justify-content: center;
           margin: 8px;
           border-radius: 50%;
           height: 24px;
           width: 24px;
-          border: 2px solid var(--white-color);
-          background-color: var(--app-dark-color);
+          border: 2px solid var(--app-dark-color);
+          background-color: var(--background-color);
+          color: var(--app-dark-color)
+        }
+        
+        #content-layout {
+          display: flex;
+          height: 100%;
+        }
+        iron-pages {
+          flex-grow: 1;
+          overflow-y: auto;
         }
       </style>
-      <app-drawer-layout fullbleed force-narrow>
-        <app-drawer  slot='drawer' opened='${_drawerOpened}'>
-          <app-toolbar>Menu</app-toolbar>
-          <nav-item link='/overview' label='Overview'></nav-item>
       
-          <nav-section label='Materials & Equipment'></nav-section>
-          
-          <nav-item link='/tablet-overview' label='Tablet' sub-item>
-            <nav-icon link='/tablet-designer' icon='app-icons:edit'></nav-icon>
-            <nav-icon link='/tablet-library' icon='app-icons:library'></nav-icon>
-          </nav-item>
-          
-          <nav-item link='/pan-overview' label='Pan' sub-item>
-            <nav-icon link='/pan-designer' icon='app-icons:edit'></nav-icon>
-            <nav-icon link='/pan-library' icon='app-icons:library'></nav-icon>
-          </nav-item>
-          
-          <nav-item link='/coating-overview' label='Coating' sub-item>
-            <nav-icon link='/coating-designer' icon='app-icons:edit'></nav-icon>
-            <nav-icon link='/coating-library' icon='app-icons:library'></nav-icon>
-          </nav-item>
-            
-          <nav-section label='Trial Setup'></nav-section>
-          <nav-item link='/' label='Coating Amount' sub-item></nav-item>
-          <nav-item link='/' label='Disperson' sub-item></nav-item>
-          <nav-item link='/' label='Batch Size' sub-item></nav-item>
-          
-          <nav-item link='#/' label='Process Parameters'></nav-item>
-       </app-drawer>
         
-      <app-header-layout>
+      <app-header-layout fullbleed>
       
         <app-header slot='header' fixed effects='waterfall'>
           <app-toolbar>
-            <mwc-icon on-click='${_ => store.dispatch(updateDrawerState(true))}'>${menuIcon}</mwc-icon>
+            <mwc-icon>${appIcon}</mwc-icon>
             <div main-title>Colorcon Coating Guide</div>
-            <div class='icon'></div>
-            <div id='user-name'>[[user.email]]</div>
+            <div class='icon'>J</div>
+            <div id='user-name'>Jason Hansell</div>
           </app-toolbar>
         </app-header>
-      
-        <iron-pages  selected='${_page}' attr-for-selected='page' fallback-selection='overview'>
         
-          <overview-page page='overview'></overview-page>
-          
-          <tablet-overview-page page='tablet-overview'></tablet-overview-page>
-          <tablet-library-page page='tablet-library'></tablet-library-page>
-          <tablet-designer-page page='tablet-designer'></tablet-designer-page>
-          
-          <pan-overview-page page='pan-overview'></pan-overview-page>
-          <pan-library-page page='pan-library'></pan-library-page>
-          <pan-designer-page page='pan-designer'></pan-designer-page>
-          
-          <coating-overview-page page='coating-overview'></coating-overview-page>
-          <coating-library-page page='coating-library'></coating-library-page>
-          <coating-designer-page page='coating-designer'></coating-designer-page>
-          
-          <page-404 page='404'></page-404>
-        </iron-pages>
+        <div id='content-layout'>
         
+          <nav-drawer></nav-drawer>
+        
+          <iron-pages  selected='${_page}' attr-for-selected='page' fallback-selection='overview'>
+          
+            <overview-page page='overview'></overview-page>
+            
+            <tablet-library-page page='tablet-library'></tablet-library-page>
+            <tablet-page page='tablet'></tablet-page>
+            
+            <pan-overview-page page='pan-overview'></pan-overview-page>
+            <pan-library-page page='pan-library'></pan-library-page>
+            <pan-designer-page page='pan-designer'></pan-designer-page>
+            
+            <coating-overview-page page='coating-overview'></coating-overview-page>
+            <coating-library-page page='coating-library'></coating-library-page>
+            <coating-designer-page page='coating-designer'></coating-designer-page>
+            
+            <page-404 page='404'></page-404>
+          </iron-pages>
+          
+        </div>
       </app-header-layout>
-    </app-drawer-layout>
     `;
   }
 
   static get properties() {
     return {
-      _page: String,
-      _offline: Boolean
+      _page: String
     };
   }
 
@@ -150,7 +133,6 @@ class AppShell extends connect(store)(LitElement) {
 
   _stateChanged(state) {
     this._page = state.app.page;
-    this._drawerOpened = state.app.drawerOpened;
   }
 }
 

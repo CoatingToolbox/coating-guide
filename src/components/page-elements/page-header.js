@@ -27,7 +27,7 @@ class PageHeader extends PolymerElement {
           grid-column: 1 / 2;
         }
         #title ::slotted(*) {
-          font-size: 36px;
+          font-size: 32px;
         }
         
         #descriptions {
@@ -36,7 +36,6 @@ class PageHeader extends PolymerElement {
         }
         #description ::slotted(*) {
           margin: 6px 0px 0px 0px;
-          max-width: 600px;
           font-weight: 14px;
           color: var(--text-light-color);
         }
