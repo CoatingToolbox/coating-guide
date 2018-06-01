@@ -1,38 +1,15 @@
 
-import { LitElement, html } from '@polymer/lit-element';
-import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../../store.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 
-class TextInput extends connect(store)(LitElement) {
+class TextInput extends PolymerElement {
   static get properties () {
     return {
       label: String,
-      value: String,
-      action: String,
-      path: String,
+      value: { type: String, notify: true },
     };
   }
   
-  _updateValue(value) {
-    return {
-      type: this.action,
-      value
-    };
-  }
-
-  _stateChanged(state) {
-    let path = this.path.split('.');
-    let value = state;
-    path.forEach( property => {
-      value = value[property];
-    });
-    if (typeof value === 'string') {
-      this.value = value;
-    }
-    
-  }
-  
-  _render({label, value}) {
+  static get template() {
     return html` 
       <style>
     
@@ -49,7 +26,7 @@ class TextInput extends connect(store)(LitElement) {
         #input, 
         #input:focus {
           width: calc(100% - 32px - 2px);
-          background-color: var(--background-color);
+          background-color: var(--white-color);
           padding: 12px 16px;
           appearance: none;
           -moz-appearance: none;
@@ -72,12 +49,11 @@ class TextInput extends connect(store)(LitElement) {
         }
       </style>
       
-      <div id='label'>${label}</div>
+      <div id='label'>[[label]]</div>
       <input
         id='input' 
         type="text" 
-        value=${value} 
-        on-change=${(e) => store.dispatch(this._updateValue(e.target.value))}
+        value='{{value::change}}' 
         size='1'
         autocapitalize='words'>
     `;

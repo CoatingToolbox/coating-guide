@@ -1,5 +1,10 @@
 import { html } from '@polymer/lit-element';
 
+export const chevronDownIcon = html`
+    <svg height="24" viewBox="0 0 24 24" width="24">
+        <path d="M7,10L12,15L17,10H7Z" />
+    </svg>`;
+
 export const menuIcon = html`
     <svg height="24" viewBox="0 0 24 24" width="24">
         <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
@@ -44,17 +49,6 @@ export const appIcon = html`
     <clipPath id="p.0"><path d="m0 0l256.0 0l0 256.0l-256.0 0l0 -256.0z" 
         clip-rule="nonzero"/></clipPath>
     <g clip-path="url(#p.0)">
-    // <path fill="#000000" fill-opacity="0.0" d="m0 0l256.0 0l0 256.0l-256.0 0z" 
-    //     fill-rule="evenodd"/>
-    // <path fill="#6595D7" d="m0 42.66752l0 0c0 -23.56462 19.1029 
-    //     -42.66752 42.66752 -42.66752l170.66495 0l0 0c11.316132 0 22.168793 
-    //     4.495315 30.170502 12.497027c8.001709 8.001712 12.497025 18.854362 
-    //     12.497025 30.17049l0 170.66495c0 23.564621 -19.102905 42.667526 
-    //     -42.667526 42.667526l-170.66495 0c-23.56462 0 -42.66752 -19.102905 
-    //     -42.66752 -42.667526z" fill-rule="evenodd"/>
-    // <path fill="#000000" fill-opacity="0.0808" d="m194.88905 
-    // 60.614174l115.14961 115.49607l-133.7008 133.29134l-115.1496 
-    // -115.49606z" fill-rule="evenodd"/>
     <path fill="#bdc3c7" d="m32.339996 127.065704l0 0c0 
         -51.157013 43.34349 -92.62797 96.810394 -92.62797l0 0c25.675705 
         0 50.299805 9.758987 68.45528 27.130104c18.155472 17.371109 28.355103 
@@ -146,7 +140,6 @@ export const appIcon = html`
 // </g>
 
 // <g id='chevron-down'>
-//   <path d="M7,10L12,15L17,10H7Z" />
 // </g>
 
 // <g id='save'><path d="M15,9H5V5H15M12,19A3,3 0 0,1 9,16A3,3 0 0,1 12,13A3,3 0 0,1 15,16A3,3 0 0,1 12,19M17,3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V7L17,3Z" /></g>

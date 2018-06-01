@@ -17,20 +17,22 @@ class NavItem extends PolymerElement {
       <style>
         :host {
           display: flex;
-          padding: 0px 0px 0px 16px;
+          align-items: center;
+          padding: 0px 8px;
+          border-radius: 4px;
           font-size: 16px;
           cursor: pointer;
+          height: 32px;
         }
         :host([sub-item]) {
-          margin-left: 16px;
-          color: var(--text-light-color);
+          font-size: 14px;
+          margin-left: 12px;
         }
         :host(:hover) {
-          background-color: var(--light-gray-color);
+          background-color: var(--app-dark-color);
         }
         #label {
           flex-grow: 1;
-          padding: 8px 0px;
         }
         #button-layout {
           display: flex;

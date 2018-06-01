@@ -12,17 +12,18 @@ export const UPDATE_PAGE = 'UPDATE_PAGE';
 export const UPDATE_DRAWER_STATE = 'UPDATE_DRAWER_STATE';
 
 export const navigate = (path) => (dispatch) => {
-  // Extract the page name from path.
+  // Extract the page name from hash
   let page;
   switch(path) {
     case '/':
-    case '/overview':
+    case '':
+    case '#':
       page = 'overview';
-      dispatch(updateDrawerState(false));
+      // dispatch(updateDrawerState(false));
       break;
     default:
       page = path.slice(1);
-      dispatch(updateDrawerState(true));
+      // dispatch(updateDrawerState(true));
   }
   // dynamically load page
   dispatch(loadPage(page));
@@ -73,11 +74,11 @@ const updatePage = (page) => {
   };
 }
 
-export const updateDrawerState = (opened) => (dispatch, getState) => {
-  if (getState().app.drawerOpened !== opened) {
-    dispatch({
-      type: UPDATE_DRAWER_STATE,
-      opened
-    });
-  }
-}
+// export const updateDrawerState = (opened) => (dispatch, getState) => {
+//   if (getState().app.drawerOpened !== opened) {
+//     dispatch({
+//       type: UPDATE_DRAWER_STATE,
+//       opened
+//     });
+//   }
+// }

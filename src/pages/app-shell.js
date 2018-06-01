@@ -22,8 +22,6 @@ import '@polymer/app-layout/app-header/app-header.js';
 import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import '@polymer/iron-pages/iron-pages.js';
-import '@material/mwc-icon';
-import '../components/nav-drawer/nav-drawer.js';
 
 class AppShell extends connect(store)(LitElement) {
   _render({_page}) {
@@ -36,11 +34,8 @@ class AppShell extends connect(store)(LitElement) {
         app-header {
           color: var(--text-color);
           background-color: var(--white-color);
-          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
-                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
-                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
         }
-        app-header mwc-icon {
+        app-header #icon {
           display: flex;
           justify-content: center;
           align-items: center;
@@ -64,15 +59,6 @@ class AppShell extends connect(store)(LitElement) {
           background-color: var(--background-color);
           color: var(--app-dark-color)
         }
-        
-        #content-layout {
-          display: flex;
-          height: 100%;
-        }
-        iron-pages {
-          flex-grow: 1;
-          overflow-y: auto;
-        }
       </style>
       
         
@@ -80,36 +66,30 @@ class AppShell extends connect(store)(LitElement) {
       
         <app-header slot='header' fixed effects='waterfall'>
           <app-toolbar>
-            <mwc-icon>${appIcon}</mwc-icon>
+            <div id='icon'>${appIcon}</div>
             <div main-title>Colorcon Coating Guide</div>
             <div class='icon'>J</div>
             <div id='user-name'>Jason Hansell</div>
           </app-toolbar>
         </app-header>
         
-        <div id='content-layout'>
+        <iron-pages  selected='${_page}' attr-for-selected='page' fallback-selection='overview'>
         
-          <nav-drawer></nav-drawer>
-        
-          <iron-pages  selected='${_page}' attr-for-selected='page' fallback-selection='overview'>
+          <overview-page page='overview'></overview-page>
           
-            <overview-page page='overview'></overview-page>
-            
-            <tablet-library-page page='tablet-library'></tablet-library-page>
-            <tablet-page page='tablet'></tablet-page>
-            
-            <pan-overview-page page='pan-overview'></pan-overview-page>
-            <pan-library-page page='pan-library'></pan-library-page>
-            <pan-designer-page page='pan-designer'></pan-designer-page>
-            
-            <coating-overview-page page='coating-overview'></coating-overview-page>
-            <coating-library-page page='coating-library'></coating-library-page>
-            <coating-designer-page page='coating-designer'></coating-designer-page>
-            
-            <page-404 page='404'></page-404>
-          </iron-pages>
+          <tablet-library-page page='tablet-library'></tablet-library-page>
+          <tablet-page page='tablet'></tablet-page>
           
-        </div>
+          <pan-overview-page page='pan-overview'></pan-overview-page>
+          <pan-library-page page='pan-library'></pan-library-page>
+          <pan-designer-page page='pan-designer'></pan-designer-page>
+          
+          <coating-overview-page page='coating-overview'></coating-overview-page>
+          <coating-library-page page='coating-library'></coating-library-page>
+          <coating-designer-page page='coating-designer'></coating-designer-page>
+          
+          <page-404 page='404'></page-404>
+        </iron-pages>
       </app-header-layout>
     `;
   }
@@ -128,7 +108,7 @@ class AppShell extends connect(store)(LitElement) {
   }
 
   _firstRendered() {
-    installRouter((location) => store.dispatch(navigate(window.decodeURIComponent(location.pathname))));
+    installRouter((location) => store.dispatch(navigate(window.decodeURIComponent(location.hash))));
   }
 
   _stateChanged(state) {

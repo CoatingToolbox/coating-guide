@@ -2,48 +2,90 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
+import '@polymer/polymer/lib/elements/dom-if.js';
+import { Tablet } from '../../actions/tablet-actions.js';
 
 class TabletGraphic extends connect(store)(LitElement) {
-  
   static get properties () {
     return {
-      view: String,
-      line: String,
+      topView: Boolean,
+      lengthView: Boolean,
+      widthView: Boolean,
       tablet: Object,
-      tabletSVG: Object
-    };
-  }
-
-  constructor() {
-    super();
-    this.tabletSVG = {
+      _tablet: Object,
+      tabletSVG: {
+        type: Object,
+        notify: true,
+        value: function() {
+          return {
             // padding around the edge of svg
             padding: 1.5,
+            
             // the end cap of the dimension line
             cap: 2,
+  
             //target width of svg
             width: 24,
-            height: 12,
+  
             //max length of tablet
             //we use 0.02 meters = 20 mm;
             maxLength: 0.02,
+  
             // scale: 1050,
             // the value to multiple other dimensions by to scale
             get scale() {
                 return (this.width - (2 * this.padding)) / this.maxLength;
             }, 
+            
             // center starting point
-            get centerX() {
+            get center() {
                 return this.width / 2;
-            }, 
-            // center starting point
-            get centerY() {
-                return this.height / 2;
-            }
-      };
+            },
+          };
+        }
+      },
+      pathLengthSideTablet: {
+        type: String,
+        notify: true,
+        computed: "computePathSideTablet(_tablet.shape, _tablet.length, _tablet.lengthCupRadius, _tablet.bandThickness)"
+      },
+      pathLengthTopCup: {
+        type: String,
+        computed: 'computePathTopCup(_tablet.shape, _tablet.length, _tablet.lengthCupRadius, _tablet.bandThickness)'
+      },
+      pathLengthBottomCup: {
+        type: String,
+        computed: 'computePathBottomCup(_tablet.shape, _tablet.length, _tablet.lengthCupRadius, _tablet.bandThickness)'
+      },
+      pathLengthBand: {
+        type: String,
+        computed: 'computePathBand(_tablet.shape, _tablet.length, _tablet.bandThickness)'
+      },
+      pathWidthSideTablet: {
+        type: String,
+        computed: "computePathSideTablet(_tablet.shape, _tablet.width, _tablet.widthCupRadius, _tablet.bandThickness)"
+      },
+      pathWidthTopCup: {
+        type: String,
+        computed: 'computePathTopCup(_tablet.shape, _tablet.width, _tablet.widthCupRadius, _tablet.bandThickness)'
+      },
+      pathWidthBottomCup: {
+        type: String,
+        computed: 'computePathBottomCup(_tablet.shape, _tablet.width, _tablet.widthCupRadius, _tablet.bandThickness)'
+      },
+      pathWidthBand: {
+        type: String,
+        computed: 'computePathBand(_tablet.shape, _tablet.width, _tablet.bandThickness)'
+      },
+      pathTopTablet: {
+        type: String,
+        computed: 'computePathTopTablet(_tablet.shape, _tablet.width, _tablet.length)'
+      }
+    };
   }
+
   _stateChanged(state) {
-    this.tablet = state.tablet;
+    this._tablet = state.tablet;
   }
   
   // SVG Path function
@@ -56,7 +98,7 @@ class TabletGraphic extends connect(store)(LitElement) {
     let scaledCup = cupRadius * svg.scale;
     
     // TOP ARC
-    return "m " + svg.centerX + " " + (svg.centerY) +
+    return "m " + svg.center + " " + (svg.center) +
             " m " + (-scaledLength / 2) + " " + (-scaledBand / 2) +
             " a " + scaledCup + " " + scaledCup + " 0 0 1 " + scaledLength + " 0" +
             " l 0 " + scaledBand +
@@ -219,20 +261,8 @@ class TabletGraphic extends connect(store)(LitElement) {
             " m " + (svg.cap / 2) + " 0" +
             " l " + -svg.cap + " 0";
   }
-  computeTabletPath(tablet) {
-    switch(this.view) {
-      case "top":
-        return this.computePathTopTablet(tablet.shape, tablet.width, tablet.length);
-      case "length": 
-        return this.computePathSideTablet(tablet.shape, tablet.length, tablet.lengthCupRadius, tablet.bandThickness);
-      case "width":
-        return this.computePathSideTablet(tablet.shape, tablet.width, tablet.widthCupRadius, tablet.bandThickness);
-       default: 
-        return '';
-    }
-  }
   
-  _render ({tablet}) {
+  _render ({topView, lengthView, widthView, pathWidthSideTablet, pathTopTablet, pathLengthSideTablet}) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -254,9 +284,23 @@ class TabletGraphic extends connect(store)(LitElement) {
         }
       </style>
       
-        <svg class='tablet-graphic' viewbox='0 0 24 12'>
-          <path d$='${ this.computeTabletPath(tablet) }'></path>
+      <template is='dom-if' if='{topView}'>
+        <svg class='tablet-graphic' viewbox='0 0 24 24'>
+          <path d$='${pathTopTablet}'></path>
         </svg>
+      </template>
+      
+      <template is='dom-if' if='${lengthView}'>
+        <svg class='tablet-graphic' viewbox='0 0 24 24'>
+          <path d$='${pathLengthSideTablet}'></path>
+        </svg>
+      </template>
+      
+      <template is='dom-if' if='{widthView}'>
+        <svg class='tablet-graphic' viewbox='0 0 24 24'>
+          <path d$='${pathWidthSideTablet}'></path>
+        </svg>
+      </template>
     `;
   }
 }

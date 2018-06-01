@@ -1,61 +1,25 @@
 
-import { LitElement, html } from '@polymer/lit-element';
-import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../../store.js';
-import { chevronDownIcon } from '../app-icons.js';
-
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
 import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/iron-dropdown/iron-dropdown.js';
 import '@polymer/iron-selector/iron-selector.js';
 import '@polymer/iron-icon/iron-icon.js';
+import '../app-icons.js';
 
-class DropdownInput extends connect(store)(LitElement) {
+class DropdownInput extends PolymerElement {
   static get properties () {
     return {
       label: String,
       options: Array,
-      selected: String,
-      path: String,
-      action: String,
-      isOpen: Boolean,
-      _optionsHTML: String
+      selected: {type: String, notify: true }
     };
-  }
-  constructor() {
-    super();
-    this.addEventListener('click', () => {
-      this.isOpen = !this.isOpen;
-    });
-  }
-  _firstRendered() {
-    let options;
-    this.options.forEach( (item) => {
-      options = html`
-        ${options} 
-        <div class='item' option='${item}'>${item}</div>
-      `;
-    }) ;
-    this._optionsHTML = options;
-    
-  }
-  _updateSelected(value) {
-    return {
-      type: this.action,
-      value
-    };
-  }
-  _stateChanged(state) {
-    let path = this.path.split('.');
-    let value = state;
-    path.forEach( property => {
-      value = value[property];
-    });
-    if (typeof value === 'string') {
-      this.selected = value;
-    }
   }
   
-  _render({label, _optionsHTML, selected, isOpen}) {
+  _toggleDropdown() {
+    this.$.dropdown.toggle();
+  }
+
+  static get template () {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -91,7 +55,7 @@ class DropdownInput extends connect(store)(LitElement) {
           color: var(--text-color);
           line-height: 24px;
         }
-        #icon {
+        #icon-layout {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -106,7 +70,7 @@ class DropdownInput extends connect(store)(LitElement) {
           cursor: pointer;
         }
         
-        iron-dropdown {
+        #dropdown {
           background-color: var(--white-color);
           font-size: 16px;
           color: var(--text-light-color);
@@ -115,35 +79,36 @@ class DropdownInput extends connect(store)(LitElement) {
                     0 1px 5px 0 rgba(0, 0, 0, 0.12),
                     0 3px 1px -2px rgba(0, 0, 0, 0.2);
         }
-        iron-dropdown .item {
+        #dropdown .item {
           padding: 8px 16px;
         }
-        iron-dropdown .item + .item {
+        #dropdown .item + .item {
           margin-top: 4px;
         }
-        iron-dropdown .item:hover {
+        #dropdown .item:hover {
           cursor: pointer;
           background-color: var(--background-color);
         }
-        iron-dropdown .item.iron-selected {
+        #dropdown .item.iron-selected {
           color: var(--app-accent-color);
           font-weight: bold;
         }
         
       </style>
       
-      <div id='label'>${label}</div>
+      <div id='label'>[[label]]</div>
       
-      <div id='value'>${selected}</div>
+      <div id='value' on-click='_toggleDropdown' >[[selected]]</div>
       
-      <div id='icon'>${ chevronDownIcon }</div>
+      <div id='icon-layout'>
+        <iron-icon id='icon' on-click='_toggleDropdown' icon='app-icons:chevron-down'></iron-icon>
+      </div>
       
-      <iron-dropdown opened=${isOpen} horizontal-align="right" vertical-align="bottom">
-        <iron-selector 
-          slot='dropdown-content'
-          attr-for-selected='option'
-          on-selected-changed=${ (e) =>  store.dispatch(this._updateSelected(e.detail.value))}>
-          ${_optionsHTML}
+      <iron-dropdown id='dropdown' horizontal-align="right" vertical-align="bottom">
+        <iron-selector slot='dropdown-content' selected='{{selected}}' attr-for-selected='option'>
+          <template is='dom-repeat' items='[[options]]'>
+              <div class='item' option='[[item]]' on-click='_toggleDropdown'>[[item]]</div>
+          </template>  
         </iron-selector>
       </iron-dropdown>
       

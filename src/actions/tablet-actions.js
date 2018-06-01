@@ -28,11 +28,17 @@ export class Tablet {
                 get: () => {
                     return this.weight / this.totalVolume;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             cupThickness: {
                 get: () => {
                     return (this.totalThickness - this.bandThickness) / 2;
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },
@@ -40,11 +46,17 @@ export class Tablet {
                 get: () => {
                     return this._cupRadius(this.cupThickness, this.length);
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             widthCupRadius: {
                 get: () => {
                     return this._cupRadius(this.cupThickness, this.width);
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },
@@ -97,6 +109,9 @@ export class Tablet {
 
                     return perimeter;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             crossSectionArea: {
@@ -137,6 +152,9 @@ export class Tablet {
 
                     return crossSection;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             concavity: {
@@ -167,6 +185,9 @@ export class Tablet {
                         return 'Ball';
                     }
 
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },
@@ -201,11 +222,17 @@ export class Tablet {
 
                     return area;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             bandArea: {
                 get: () => {
                     return this.perimeter * this.bandThickness;
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },
@@ -213,17 +240,26 @@ export class Tablet {
                 get: () => {
                     return this.bandArea + this.cupArea * 2;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             totalVolume: {
                 get: () => {
                     return this.bandVolume + this.cupVolume * 2;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             bandVolume: {
                 get: () => {
                     return this.crossSectionArea * this.bandThickness;
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },
@@ -261,11 +297,17 @@ export class Tablet {
 
                     return vol;
                 },
+                set: (value) => {
+                    
+                },
                 enumerable: true
             },
             areaToVolume: {
                 get: () => {
                     return this.totalArea / this.totalVolume;
+                },
+                set: (value) => {
+                    
                 },
                 enumerable: true
             },

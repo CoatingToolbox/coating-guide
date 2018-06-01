@@ -5,13 +5,20 @@ import { roundTabletIcon, ovalTabletIcon, capletTabletIcon } from '../app-icons.
 
 import '@polymer/iron-selector/iron-selector.js';
 
-class TabletShapeCard extends connect(store)(LitElement) {
+class TabletShapeSelector extends connect(store)(LitElement) {
   
   static get properties() {
     return {
       _shape: String,
     };
   }
+  _updateShape(value) {
+    return {
+      type: "SET_TABLET_SHAPE",
+      value
+    };
+  }
+  
   _stateChanged(state) {
     this._shape = state.tablet.shape;
   }
@@ -64,7 +71,9 @@ class TabletShapeCard extends connect(store)(LitElement) {
         }
       </style>
       
-      <iron-selector id='shape-selector' selected='${_shape}' attr-for-selected='shape'>
+      <iron-selector id='shape-selector' 
+        selected='${_shape}' attr-for-selected='shape'
+        on-selected-changed=${ (e) => store.dispatch(this._updateShape(e.detail.value))}>
      
       <div shape='round'>
         ${ roundTabletIcon }
@@ -88,4 +97,4 @@ class TabletShapeCard extends connect(store)(LitElement) {
 
 // Register the element with the browser.
 /* global customElements */
-customElements.define('tablet-shape-card', TabletShapeCard);
+customElements.define('tablet-shape-selector', TabletShapeSelector);

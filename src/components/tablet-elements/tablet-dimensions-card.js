@@ -7,11 +7,15 @@ import '../cards/input-card.js';
 
 class TabletDimensionsPage extends connect(store)(LitElement) {
   
-  
-  _stateChanged(state) {
-    
+  static get properties() {
+    return {
+      length: Number
+    };
   }
-  _render () {
+  _stateChanged(state) {
+    this.length = state.tablet.length;
+  }
+  _render ({length}) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -33,8 +37,8 @@ class TabletDimensionsPage extends connect(store)(LitElement) {
             
             <length-input 
               label='Length' 
-              value='{{tablet.length}}' 
-              unit='{{dimensionUnits}}'>
+              value='${length}' 
+              unit='mm'>
             </length-input>
             
             <length-input 

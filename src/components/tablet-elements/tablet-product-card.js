@@ -13,19 +13,7 @@ class TabletProductCard extends connect(store)(LitElement) {
   
   static get properties () {
     return {
-      dosageOptions: { 
-        type: Array, 
-        value: function() {
-          return ["", "Tablet", "Softgel", "Hard Capsule"];
-        }
-      },
-      marketOptions: {
-        type: Array,
-        value: function() {
-          return ["", "Pharmaceutical", "Nutritional", "Other"];
-        }
-      }
-    };
+      
   }
   
   _stateChanged(state) {

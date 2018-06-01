@@ -10,7 +10,7 @@ class PageSection extends LitElement {
       <style>
         :host {
           display: block;
-          margin: 48px auto 24px auto;
+          margin: 56px 0px 0px 0px;
         }
         
         #title ::slotted(*) {

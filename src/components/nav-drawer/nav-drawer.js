@@ -1,12 +1,10 @@
 
 import { LitElement, html } from '@polymer/lit-element';
-import { connect } from 'pwa-helpers/connect-mixin.js';
-import { store } from '../../store.js';
 import './nav-item.js';
 import './nav-icon.js';
 import './nav-section.js';
 
-class NavDrawer extends connect(store)(LitElement) {
+class NavDrawer extends LitElement{
   
   static get properties() {
     return {
@@ -14,12 +12,9 @@ class NavDrawer extends connect(store)(LitElement) {
     };
   }
   
-  _stateChanged(state) {
-    this._isOpen = state.app.drawerOpened;
-  }
-  
   _shouldRender(props, changedProps, old) {
-    return props._isOpen;
+    // return props._isOpen;
+    return true;
   }
   
   _render () {
@@ -29,17 +24,15 @@ class NavDrawer extends connect(store)(LitElement) {
       :host {
         display: block;
         min-width: 224px;
-        background-color: var(--white-color);
-        padding: 16px 8px;
+        color: var(--white-color);
       }
     </style>
     
-      <nav-item link='/overview' label='Overview'></nav-item>
+      <nav-item link='/#overview' label='Overview'></nav-item>
   
       <nav-section label='Materials & Equipment'></nav-section>
       
-      <nav-item link='/tablet-overview' label='Tablet' sub-item>
-        <nav-icon link='/tablet-designer' icon='app-icons:edit'></nav-icon>
+      <nav-item link='/#tablet' label='Tablet' sub-item>
         <nav-icon link='/tablet-library' icon='app-icons:library'></nav-icon>
       </nav-item>
       

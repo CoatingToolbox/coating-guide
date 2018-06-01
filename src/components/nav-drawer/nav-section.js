@@ -13,12 +13,13 @@ class NavSection extends PolymerElement {
       <style>
         
         :host {
-          display: block;
-          padding: 0px 0px 0px 16px;
+          display: flex;
+          align-items: center;
           font-size: 16px;
+          height: 32px;
+          padding: 0px 8px;
         }
         #label {
-          padding: 8px 0px;
         }
       </style>
       

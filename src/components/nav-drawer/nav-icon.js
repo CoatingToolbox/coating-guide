@@ -26,14 +26,13 @@ class NavIcon extends PolymerElement {
           align-items: center;
           padding: 4px;
           margin: 0px 4px;
-          color: var(--text-light-color);
         }
         iron-icon {
           width: 16px;
           height: 16px;
         }
         :host(:hover) {
-          color: var(--app-accent-color);
+          background-color: var(--app-dark-color);
         }
         
       </style>

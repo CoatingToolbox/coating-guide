@@ -116,7 +116,7 @@ class OverviewPage extends connect(store)(LitElement) {
             <a href='/tablet-library'>
               <large-button label='Load'></large-button>
             </a>
-            <a href='/tablet'>
+            <a href='/#tablet'>
               <large-button label='Explore'></large-button>
             </a>
           </div>
