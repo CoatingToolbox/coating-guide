@@ -1,7 +1,8 @@
 import { Tablet } from '../actions/tablet-actions.js';
 
-
 export default function tabletReducer(state = new Tablet(), action) {
+    
+    let tablet;
     
     switch(action.type) {
         case "SET_TABLET_PRODUCT_NAME": 
@@ -23,8 +24,24 @@ export default function tabletReducer(state = new Tablet(), action) {
         case "SET_TABLET_CONTACT_EMAIL": 
             return Object.assign({}, state, {contactEmail: action.value});
         case "SET_TABLET_SHAPE": 
-            let tablet = new Tablet(state);
+            tablet = new Tablet(state);
             tablet.shape = action.value;
+            return Object.assign({}, tablet);
+        case "SET_TABLET_LENGTH": 
+            tablet = new Tablet(state);
+            tablet.length = action.value;
+            return Object.assign({}, tablet);
+        case "SET_TABLET_WIDTH": 
+            tablet = new Tablet(state);
+            tablet.width = action.value;
+            return Object.assign({}, tablet);
+        case "SET_TABLET_TOTAL_THICKNESS": 
+            tablet = new Tablet(state);
+            tablet.totalThickness = action.value;
+            return Object.assign({}, tablet);
+        case "SET_TABLET_BAND_THICKNESS": 
+            tablet = new Tablet(state);
+            tablet.bandThickness = action.value;
             return Object.assign({}, tablet);
         // case "SET_TABLET":
         //     tablet = action.tablet;

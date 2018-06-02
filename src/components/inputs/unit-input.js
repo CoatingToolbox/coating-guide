@@ -2,60 +2,64 @@
 import { LitElement, html } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../../store.js';
+import { chevronDownIcon } from '../app-icons.js';
 
-import '@polymer/polymer/lib/elements/dom-repeat.js';
 import '@polymer/iron-dropdown/iron-dropdown.js';
 import '@polymer/iron-selector/iron-selector.js';
-import '@polymer/iron-icon/iron-icon.js';
-// import '../app-icons.js';
 
-const _userInputValue = (e) => {
-  console.log(e);
-  // this.value = parseFloat(e.target.value) * this._multiplier;
-};
-  // _setMultiplier(unit, units) {
-  //   let mult = 0;
-  //   if(!unit || !units) { 
-  //     mult = 1; 
-  //   } else {
-  //     let selected = units.filter(item => item.unit == unit);
-  //     if(selected[0]) {
-  //       mult = selected[0].multiplier || 1;
-  //     } 
-  //   }
-  //   this._multiplier = mult;
-  // }
-  // _setInputValue(multiplier, value) {
-  //   this.$.input.value = (value / multiplier).toFixed(2);
-  // }
-  // _unitSelected(e) {
-    // this.unit = e.model.item.unit;
-    // this._toggleDropdown();
-  // }
-  // _toggleDropdown() {
-  //   if(this._units == null) { return; }
-  //   this.$.dropdown.toggle();
-  // }
   
 class UnitInput extends connect(store)(LitElement) {
   static get properties () {
     return {
-      value: Number,
       unit: String,
       label: String,
+      action: String,
+      path: String,
+      isOpen: String,
+      value: Number,
       _units: Array,
-      _multiplier: Number
+      _multiplier: Number,
+      _unitsHTML: String
     };
   }
-  
-  _stateChanged() {
-    return;
+  _firstRendered() {
+    let options;
+    this._units.forEach( (item) => {
+      options = html`
+        ${options} 
+        <div class='item' unit='${item.unit}' on-click=${ () => this.isOpen = false }>${item.text}</div>
+      `;
+    }) ;
+    this._unitsHTML = options;
   }
-  constructor() {
-    super();
-    this._multiplier = 1;
+  _stateChanged(state) {
+    let path = this.path.split('.');
+    let value = state;
+    path.forEach( property => {
+      value = value[property];
+    });
+    if (typeof value === 'number') {
+      this.value = value;
+    }
   }
-  _render ({value, label, unit, _units, _multiplier}) {
+  _updateValue(value) {
+    value = value * this._multiplier;
+    return {
+      type: this.action,
+      value
+    };
+  }
+  _setUnit(value) {
+    this.unit = value;
+    let selected = this._units.filter(item => item.unit == value);
+    if(selected[0]) {
+      this._multiplier = selected[0].multiplier || 1;
+    } 
+  }
+  _toggleDropdown() {
+    this.isOpen = !this.isOpen;
+  }
+  _render ({value, label, unit, _unitsHTML, _multiplier, isOpen }) {
     return html`
       <style>
         :host {
@@ -63,7 +67,6 @@ class UnitInput extends connect(store)(LitElement) {
           grid-template-rows: auto 1fr;
           grid-template-columns: 1fr auto;
         }
-        
         #label {
           grid-row: 1 / 2;
           grid-column: 1 / 3;
@@ -72,13 +75,12 @@ class UnitInput extends connect(store)(LitElement) {
           font-size: 14px;
           margin-bottom: 4px
         }
-        
         #input, 
         #input:focus {
           grid-row: 2 / 3;
           grid-column: 1 / 2;
           background-color: var(--white-color);
-          padding: 12px 16px;
+          padding: 8px 16px;
           appearance: none;
           -moz-appearance: none;
           -webkit-appearance: none;
@@ -89,7 +91,7 @@ class UnitInput extends connect(store)(LitElement) {
           text-align: start;
           text-overflow: ellipsis;
           font-size: 16px;
-          color: var(--text-color);
+          color: #666666;
           line-height: 24px;
           align-self: flex-end;
           width: 100%;
@@ -106,7 +108,6 @@ class UnitInput extends connect(store)(LitElement) {
         #input:hover {
           cursor: text;
         }
-        
         #unit-layout {
           display: flex;
           align-items: center;
@@ -117,35 +118,47 @@ class UnitInput extends connect(store)(LitElement) {
           padding: 8px 4px 8px 12px;
           background-color: var(--white-color);
           font-size: 14px;
-          color: #828282;
+          color: #666666;
           border: 2px solid #e0e0e0;
           border-radius: 0px 4px 4px 0px;
           cursor: pointer;
         }
         #icon {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          grid-row: 2 / 3;
+          grid-column: 2 / 3;
+          background-color: var(--white-color);
+          border-radius: 0px 4px 4px 0px;
           cursor: pointer;
         }
-        
-        #dropdown {
+        #icon svg {
+          height: 22px;
+          width: 22px;
+          fill: #666666;
+        }
+        iron-dropdown {
           background-color: var(--white-color);
-          font-size: 16px;
-          color: var(--text-light-color);
           padding: 16px 8px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                     0 1px 5px 0 rgba(0, 0, 0, 0.12),
                     0 3px 1px -2px rgba(0, 0, 0, 0.2);
         }
-        #dropdown .item {
+        iron-dropdown .item {
+          font-size: 14px;
+          color: var(--text-light-color);
           padding: 8px 16px;
+          min-height: 24px;
         }
-        #dropdown .item + .item {
+        iron-dropdown .item + .item {
           margin-top: 4px;
         }
-        #dropdown .item:hover {
+        iron-dropdown .item:hover {
           cursor: pointer;
           background-color: var(--background-color);
         }
-        #dropdown .item.iron-selected {
+        iron-dropdown .item.iron-selected {
           color: var(--app-accent-color);
           font-weight: bold;
         }
@@ -158,20 +171,23 @@ class UnitInput extends connect(store)(LitElement) {
         type="number" 
         step='0.01' 
         min='0' 
-        value='${ value * _multiplier }
+        value='${ value / _multiplier }'
+        on-change=${ (e) => store.dispatch(this._updateValue(e.target.value)) }
         size='1'>
       
-      <div id='unit-layout' on-click='_toggleDropdown'>
+      <div id='unit-layout' 
+        on-click=${ () => this._toggleDropdown() }>
         <div>${unit}</div>
-        <iron-icon id='icon' icon='app-icons:chevron-down'></iron-icon>
+        <div id='icon'>${ chevronDownIcon }</div>
       </div>
-        
           
-      <iron-dropdown id='dropdown' horizontal-align="right" vertical-align="bottom">
-        <iron-selector slot='dropdown-content' selected='${unit}' attr-for-selected='unit'>
-          <template is='dom-repeat' items='${_units}'>
-              <div class='item' on-tap='_unitSelected' unit='[[item.unit]]'>[[item.text]]</div>
-          </template>  
+      <iron-dropdown id='dropdown' opened=${isOpen} horizontal-align="right" vertical-align="bottom">
+        <iron-selector 
+          slot='dropdown-content' 
+          selected='${unit}' 
+          attr-for-selected='unit'
+          on-selected-changed=${ (e) => this._setUnit(e.detail.value) }>
+          ${ _unitsHTML } 
         </iron-selector>
       </iron-dropdown>
       

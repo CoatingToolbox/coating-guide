@@ -15,7 +15,8 @@ class NavSection extends PolymerElement {
         :host {
           display: flex;
           align-items: center;
-          font-size: 16px;
+          font-size: 14px;
+          font-weight: bold;
           height: 32px;
           padding: 0px 8px;
         }

@@ -15,7 +15,7 @@ class PageSectionTitle extends LitElement {
       <style>
         :host {
           display: block;
-          margin-top: 16px;
+          padding-top: 32px;
           font-size: 24px;
           color: var(--text-color);
         }

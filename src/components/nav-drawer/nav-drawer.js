@@ -23,7 +23,6 @@ class NavDrawer extends LitElement{
     <style>
       :host {
         display: block;
-        min-width: 224px;
         color: var(--white-color);
       }
     </style>

@@ -34,7 +34,7 @@ class TabletShapeSelector extends connect(store)(LitElement) {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
-          margin: 24px auto 48px auto;
+          margin: 24px auto 16px auto;
           
         }
         #shape-selector [shape] {

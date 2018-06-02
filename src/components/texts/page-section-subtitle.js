@@ -17,13 +17,17 @@ class PageSectionSubtitle extends LitElement {
         :host {
           display: flex;
           align-items: center;
-          margin-top: 16px;
+          padding-top: 24px;
           font-size: 18px;
           color: var(--app-primary-color);
           fill: var(--app-primary-color);
         }
+        svg {
+          height: 20px;
+          width: 20px;
+        }
         div {
-          margin-left: 8px;
+          margin-left: 4px;
         }
       </style>
       

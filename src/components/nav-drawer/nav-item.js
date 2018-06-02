@@ -20,12 +20,14 @@ class NavItem extends PolymerElement {
           align-items: center;
           padding: 0px 8px;
           border-radius: 4px;
-          font-size: 16px;
+          font-size: 14px;
+          font-weight: bold;
           cursor: pointer;
           height: 32px;
         }
         :host([sub-item]) {
           font-size: 14px;
+          font-weight: normal;
           margin-left: 12px;
         }
         :host(:hover) {

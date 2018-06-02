@@ -15,9 +15,8 @@ class NavPageLayout extends LitElement {
       <style>
         :host {
           display: grid;
-          grid-template-columns: auto 1fr;
-          padding: 0px 56px 24px 48px;
-          grid-gap: 0px 48px;
+          grid-template-columns: auto auto;
+          padding: 0px 72px 24px 72px;
           margin: auto;
           background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 432px, #000000 432px,var(--background-color) 0%,var(--background-color) 100%);
         }
@@ -28,16 +27,21 @@ class NavPageLayout extends LitElement {
           height: 64px;
           font-size: 20px;
           color: var(--white-color);
+          max-width: calc(700px + 200px);
         }
         #page {
+          align-self: end;
           background-color: var(--white-color);
-          max-width: 800px;
+          max-width: 700px;
+          margin: auto;
           padding: 24px 32px;
           border-radius: 4px;
         }
+        #nav {
+          min-width: 200px;
+        }
       </style>
       <div id='toolbar'>
-        <div>${page}</div>
       </div>
       <div id='page'>
         <slot></slot>
