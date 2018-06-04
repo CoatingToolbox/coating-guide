@@ -2,8 +2,8 @@ import { LitElement, html } from '@polymer/lit-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
-import '../components/page-elements/page-header.js';
-import '../components/page-elements/page-section.js';
+import '../components/texts/page-main-title.js';
+import '../components/texts/page-section-title.js';
 import '../components/cards/basic-card.js';
 import '../components/buttons/large-button.js';
 
@@ -33,9 +33,33 @@ class OverviewPage extends connect(store)(LitElement) {
       <style>
         :host {
           display: block;
-          max-width: 900px;
-          margin: auto;
+          padding: 24px 72px;
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 400px, var(--background-color) 0%,var(--background-color) 100%);
+            --page-width: 900px;
+            
         }
+        basic-card {
+          max-width: calc(var(--page-width) - 64px);
+          margin: 0px auto 48px auto;
+        }
+        page-main-title,
+        .page-description {
+          color: var(--white-color);
+          max-width: var(--page-width);
+          margin: 0px auto;
+        }
+        page-main-title {
+            margin-top: 32px;
+        }
+        .page-description {
+            padding-bottom: 32px;
+        }
+        p {
+          font-size: 14px;
+          color: var(--text-light-color);
+          margin: 0px;
+        }
+        
         .material-layout {
           display: grid;
           grid-template-rows: auto auto;
@@ -92,23 +116,19 @@ class OverviewPage extends connect(store)(LitElement) {
         
       </style>
       
-        <page-header>
-          <div slot='title'>Let's setup your coating process.</div>
-          <p slot='description'>
-            Use the Colorcon Coating Guide to get recommendations on coating conditions and process
-            parameters. Or audit your coating process with key coating metrics.
-          </p>
-        </page-header>
+        <page-main-title text="Let's setup your coating process."></page-main-title>
+        <p class='page-description'>
+          Measure a compressed tablets dimensions, weight and bulk density
+          and we can estimate important tablet properties for coating.
+        </p>
         
-        <page-section>
-          <div slot='title'>Materials & Equipment</div>
-          <p slot='description'>
+        <basic-card>
+        
+        <page-section-title text='Materials & Equipment'></page-section-title>
+          <p>
             To get started choose a tablet, coating pan and coating formula
             from the library or design your own.
           </p>
-        </page-section>
-      
-        <basic-card>
           
           <div class='material-layout'>
             <div class='material-label'>Coating Substrate</div>
@@ -143,20 +163,15 @@ class OverviewPage extends connect(store)(LitElement) {
             </a>
           </div>
         </basic-card>
-          
-      
-        
-        <page-section>
-          <div slot='title'>Coating Conditions & Process Parameter</div>
-          <p slot='description'>
-            Get recommended coating conditions and process parameters and set
-              your target values.
-          </p>
-            <large-button slot='button' label='Edit'></large-button>
-        </page-section>
         
         
           <basic-card>
+        
+        <page-section-title text='Coating Conditions & Process Parameters'></page-section-title>
+          <p>
+            Get recommended coating conditions and process parameters and set
+              your target values.
+          </p>
             <div id='parameters-layout'>
               <div class='parameter'>
                 <div class='parameter-dot'></div>

@@ -27,6 +27,7 @@ class BulkDensityChart extends connect(store)(LitElement) {
         super();
         window.addEventListener('resize', () => this._initChart());
     }
+    
     _firstRendered() {
         window.requestAnimationFrame(() => this._initChart());
     }
@@ -97,8 +98,10 @@ class BulkDensityChart extends connect(store)(LitElement) {
             .merge(linePath)
                 .attr('d', d3Line);
         linePath.exit().remove();
+        this._setDensityPoint(this.density);
         
     }  
+    
     static get properties() {
         return {
             density: Number,
@@ -110,11 +113,14 @@ class BulkDensityChart extends connect(store)(LitElement) {
             
     _stateChanged(state) {
         if(!this.chart) { return; }
-        let density = state.tablet.bulkDensity / 1000000;
-        
+        let density = this.density = state.tablet.bulkDensity / 1000000;
+        this._setDensityPoint()
+    }        
+    
+    _setDensityPoint() {
         let vals = [{
-            x: density,
-            y: density
+            x: this.density,
+            y: this.density
         }];
         
         let circle = this.chart.selectAll('circle.fill-density').data(vals);
@@ -128,7 +134,8 @@ class BulkDensityChart extends connect(store)(LitElement) {
                 .attr('cy', (d) => { return this.yScale(d.y) });
                 
         circle.exit().remove();
-    }        
+    }
+    
     _render({ height, width }) {
         return html`
             

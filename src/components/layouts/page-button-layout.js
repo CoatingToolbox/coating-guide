@@ -1,28 +1,26 @@
 
 import { LitElement, html } from '@polymer/lit-element';
 
-class BasicCard extends LitElement {
+class PageButtonLayout extends LitElement {
   
-  _render () {
+  _render() {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
       <style>
         :host {
-          display: block;
-          background-color: var(--white-color);
-          padding: 24px 32px;
-          border-radius: 4px;
-          border: 1px solid var(--border-color);
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          grid-gap: 16px;
+          padding: 16px 0px;
         }
       </style>
-
-      <slot></slot>
-      
+        
+        <slot></slot>
     `;
   }
 }
 
 // Register the element with the browser.
 /* global customElements */
-customElements.define('basic-card', BasicCard);
+customElements.define('page-button-layout', PageButtonLayout);

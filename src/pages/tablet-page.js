@@ -1,10 +1,12 @@
 import { LitElement, html } from '@polymer/lit-element';
-import { productIcon, rulerIcon, weightIcon, chevronDownIcon } from '../components/app-icons.js';
+import { productIcon, rulerIcon, weightIcon } from '../components/app-icons.js';
 
+import '../components/cards/basic-card.js';
 import '../components/layouts/nav-page-layout.js';
 import '../components/layouts/title-detail-layout.js';
 import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/two-column-input-layout.js';
+import '../components/layouts/page-button-layout.js';
 import '../components/texts/page-main-title.js';
 import '../components/texts/page-section-title.js';
 import '../components/texts/page-section-subtitle.js';
@@ -23,6 +25,8 @@ import '../components/tablet-elements/tablet-shape-selector.js';
 import '../components/tablet-elements/tablet-dimensions-graphic.js';
 import '../components/tablet-elements/tablet-thickness-graphic.js';
 import '../components/tablet-elements/bulk-density-chart.js';
+import '../components/buttons/next-page-button.js';
+import '../components/buttons/last-page-button.js';
 
 
 const dosageOptions = ["", "Tablet", "Softgel", "Hard Capsule"];
@@ -58,7 +62,14 @@ class TabletPage extends LitElement {
     return html`
       <style>
         :host {
-          display: block
+          display: block;
+        }
+        basic-card + basic-card {
+          margin-top: 48px;
+        }
+        page-main-title,
+        .page-description {
+          color: var(--white-color);
         }
         p {
           font-size: 14px;
@@ -66,8 +77,6 @@ class TabletPage extends LitElement {
           margin: 0px;
         }
         
-        two-column-input-layout + two-column-input-layout,
-        input-graphic-layout + input-graphic-layout,
         title-detail-layout + title-detail-layout {
           border-top: 2px solid var(--border-color);
         }
@@ -78,12 +87,13 @@ class TabletPage extends LitElement {
       
       <nav-page-layout page='Tablet Design'>
       
-        <page-main-title text='Design your tablet.'></page-main-title>
-        <p>
+        <page-main-title slot='title' text='Design your tablet.'></page-main-title>
+        <p class='page-description' slot='title'>
           Measure a compressed tablets dimensions, weight and bulk density
           and we can estimate important tablet properties for coating.
         </p>
         
+        <basic-card>
         <page-section-title text='General Information'></page-section-title>
         
         <p>
@@ -158,6 +168,10 @@ class TabletPage extends LitElement {
           action='SET_TABLET_CONTACT_EMAIL'>
         </text-input>
       </two-column-input-layout>
+      
+    </basic-card>
+    
+    <basic-card>
         
         <page-section-title text='Tablet Shape'></page-section-title>
         
@@ -168,7 +182,9 @@ class TabletPage extends LitElement {
         </p>
         
         <tablet-shape-selector on-shape-changed=${ (e) => this._updateInputDisplay(e.detail.value)}></tablet-shape-selector>
-        
+     </basic-card>   
+     
+     <basic-card>
         <page-section-title text='Tablet Dimensions'></page-section-title>
         
         <p>
@@ -233,6 +249,10 @@ class TabletPage extends LitElement {
             <tablet-thickness-graphic graphic line='${dimensionsLine}'></tablet-thickness-graphic>
           
           </input-graphic-layout>
+          
+          </basic-card>
+          
+          <basic-card>
         
           <page-section-title text='Weigth & Density'></page-section-title>
           
@@ -276,6 +296,10 @@ class TabletPage extends LitElement {
             <bulk-density-chart graphic></bulk-density-chart>
               
           </input-graphic-layout>
+          
+          </basic-card>
+          
+          <basic-card>
           
           <page-section-title text='Caculated Properties'></page-section-title>
           
@@ -328,6 +352,15 @@ class TabletPage extends LitElement {
               <description-text path='tablet.concavity' label='Concavity' ></description-text>
             
           </title-detail-layout>
+          
+          </basic-card>
+          
+          <page-button-layout>
+          
+            <last-page-button page='#overview'>Overview</last-page-button>
+            <next-page-button page='#pan'>Coating Pan</next-page-button>
+          
+          </page-button-layout>
         
           
       </nav-page-layout>

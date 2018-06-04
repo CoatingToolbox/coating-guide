@@ -11,8 +11,8 @@ class AreaText extends UnitText {
             {unit: "cm2", text: 'cm2', multiplier: 1e-4},
             {unit: "in2", text: 'in2', multiplier: 0.00064516},
           ];
-    this.unit = 'cm2';
-    this._multiplier = 1e-4;
+    this.unit = 'mm2';
+    this._multiplier = 1e-6;
   }
 }
 

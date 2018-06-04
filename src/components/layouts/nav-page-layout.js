@@ -16,32 +16,38 @@ class NavPageLayout extends LitElement {
         :host {
           display: grid;
           grid-template-columns: auto auto;
-          padding: 0px 72px 24px 72px;
+          padding: 24px 72px;
           margin: auto;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 432px, #000000 432px,var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 500px, var(--background-color) 0%,var(--background-color) 100%);
+          --page-width: 800px;
         }
-        #toolbar {
-          grid-column: 1 / 3;
-          display: flex;
-          align-items: center;
-          height: 64px;
-          font-size: 20px;
+        #title {
+          grid-column: 1 / 2;
+          justify-self: end;
+          width: 100%;
+          max-width:var(--page-width);
+          min-height: 64px;
+          padding: 32px 0px;
+        }
+        #title ::slotted(*) {
           color: var(--white-color);
-          max-width: calc(700px + 200px);
         }
         #page {
-          align-self: end;
-          background-color: var(--white-color);
-          max-width: 700px;
-          margin: auto;
-          padding: 24px 32px;
+          grid-column: 1 / 2;
+          grid-row: 2 / 3;
+          justify-self: end;
+          max-width:var(--page-width);
           border-radius: 4px;
         }
         #nav {
+          grid-column: 2 / 3;
+          grid-row: 2 / 3;
           min-width: 200px;
+          padding-left: 32px;
         }
       </style>
-      <div id='toolbar'>
+      <div id='title'>
+        <slot name='title'></slot>
       </div>
       <div id='page'>
         <slot></slot>
