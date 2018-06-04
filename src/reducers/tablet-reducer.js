@@ -1,8 +1,12 @@
 import { Tablet } from '../actions/tablet-actions.js';
 
+const updateTablet = (state, prop, value) => {
+    let tablet = new Tablet(state);
+    tablet[prop] = value;
+    return tablet;
+};
+
 export default function tabletReducer(state = new Tablet(), action) {
-    
-    let tablet;
     
     switch(action.type) {
         case "SET_TABLET_PRODUCT_NAME": 
@@ -24,48 +28,21 @@ export default function tabletReducer(state = new Tablet(), action) {
         case "SET_TABLET_CONTACT_EMAIL": 
             return Object.assign({}, state, {contactEmail: action.value});
         case "SET_TABLET_SHAPE": 
-            tablet = new Tablet(state);
-            tablet.shape = action.value;
-            return Object.assign({}, tablet);
+            return updateTablet(state, 'shape', action.value);
         case "SET_TABLET_LENGTH": 
-            tablet = new Tablet(state);
-            tablet.length = action.value;
-            return Object.assign({}, tablet);
+            return updateTablet(state, 'length', action.value);
         case "SET_TABLET_WIDTH": 
-            tablet = new Tablet(state);
-            tablet.width = action.value;
-            return Object.assign({}, tablet);
+            return updateTablet(state, 'width', action.value);
         case "SET_TABLET_TOTAL_THICKNESS": 
-            tablet = new Tablet(state);
-            tablet.totalThickness = action.value;
-            return Object.assign({}, tablet);
+            return updateTablet(state, 'totalThickness', action.value);
         case "SET_TABLET_BAND_THICKNESS": 
-            tablet = new Tablet(state);
-            tablet.bandThickness = action.value;
-            return Object.assign({}, tablet);
-        // case "SET_TABLET":
-        //     tablet = action.tablet;
-        //     break;
-        // case "RESET_TABLET":
-        //     tablet = Object.assign({}, state);
-        //     break;
-        // case "SAVE_TABLET_TO_FIREBASE":
-        //     /*global firebase */
-        //     action.tablet.firebaseKey = firebase.database().ref('tablets/').push().key;
-        //     firebase.database().ref(`tablets/${action.tablet.firebaseKey}`).set(action.tablet);
-        //     tablet = action.tablet;
-        //     break;
-        // case "REPLACE_TABLET_ON_FIREBASE":
-        //     if(action.tablet.firebaseKey) {
-        //       /*global firebase */
-        //       firebase.database().ref(`tablets/${action.tablet.firebaseKey}`).set(action.tablet);
-        //     } else {
-        //       console.log('could not replace firebase so loaded as new');
-        //         action.tablet.firebaseKey = firebase.database().ref('tablets/').push().key;
-        //         firebase.database().ref(`tablets/${action.tablet.firebaseKey}`).set(action.tablet);
-        //     }
-        //     tablet = action.tablet;
-        //     break;
+            return updateTablet(state, 'bandThickness', action.value);
+        case "SET_TABLET_WEIGHT": 
+            return updateTablet(state, 'weight', action.value);
+        case "SET_TABLET_WEIGHT_STDEV": 
+            return updateTablet(state, 'weightStdev', action.value);
+        case "SET_TABLET_BULK_DENSITY": 
+            return updateTablet(state, 'bulkDensity', action.value);
         default:
             return state;
     }

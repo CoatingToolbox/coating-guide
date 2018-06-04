@@ -1,4 +1,3 @@
-export const UPDATE_TABLET = 'UPDATE_TABLET';
 
 export class Tablet {
 
@@ -20,6 +19,7 @@ export class Tablet {
         this.totalThickness = 0.00475;
         this.bandThickness = 0.00275;
         this.weight = 0.4;
+        this.weightStdev = 0.002;
         this.bulkDensity = 760000;
 
         // Calcualted properties that are defined as enumerable
@@ -330,40 +330,3 @@ export class Tablet {
     }
 }
 
-
-// _computeIsRound(shape) {
-  //   return shape === 'round';
-  // }
-  // _computeTablet(tablet) {
-  //   // we create a copy to prevent data binding and direct changes to the redux state
-  //   return Object.assign({}, tablet);
-  // }
-  // _saveTablet() {
-  //   this.dispatch({
-  //     type: "SET_TABLET",
-  //     tablet: this.tablet
-  //   });
-  //   window.location = '#/tablet-overview';
-  // }
-  // _cancelTablet() {
-  //   this.dispatch({
-  //     type: "RESET_TABLET"
-  //   });
-  //   window.location = '#/tablet-overview';
-  // }
-  // _saveToFirebase() {
-  //   if(!this.isAdmin) { return; }
-  //   this.dispatch({
-  //     type: "SAVE_TABLET_TO_FIREBASE",
-  //     tablet: this.tablet
-  //   });
-  //   window.location = '#/tablet-library';
-  // }
-  // _replaceOnFirebase() {
-  //   if(!this.isAdmin) { return; }
-  //   this.dispatch({
-  //     type: "REPLACE_TABLET_ON_FIREBASE",
-  //     tablet: this.tablet
-  //   });
-  //   window.location = '#/tablet-library';
-  // }

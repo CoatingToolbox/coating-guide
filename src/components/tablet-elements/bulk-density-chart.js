@@ -1,10 +1,11 @@
 
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { GestureEventListeners } from '@polymer/polymer/lib/mixins/gesture-event-listeners.js';
+import { LitElement, html } from '@polymer/lit-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from '../../store.js';
 
 
-class BulkDensityChart extends GestureEventListeners(PolymerElement) {
+class BulkDensityChart extends connect(store)(LitElement) {
     
     ready() {
         super.ready();

@@ -73,7 +73,10 @@ class TabletShapeSelector extends connect(store)(LitElement) {
       
       <iron-selector id='shape-selector' 
         selected='${_shape}' attr-for-selected='shape'
-        on-selected-changed=${ (e) => store.dispatch(this._updateShape(e.detail.value))}>
+        on-selected-changed=${ (e) => {
+        store.dispatch(this._updateShape(e.detail.value));
+        this.dispatchEvent(new CustomEvent('shape-changed', {detail: {value: e.detail.value}}));
+        }}>
      
       <div shape='round'>
         ${ roundTabletIcon }

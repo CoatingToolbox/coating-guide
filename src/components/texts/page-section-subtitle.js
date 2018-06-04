@@ -17,7 +17,6 @@ class PageSectionSubtitle extends LitElement {
         :host {
           display: flex;
           align-items: center;
-          padding-top: 24px;
           font-size: 18px;
           color: var(--app-primary-color);
           fill: var(--app-primary-color);

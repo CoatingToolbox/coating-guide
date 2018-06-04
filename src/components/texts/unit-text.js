@@ -8,12 +8,11 @@ import '@polymer/iron-dropdown/iron-dropdown.js';
 import '@polymer/iron-selector/iron-selector.js';
 
   
-class UnitInput extends connect(store)(LitElement) {
+class UnitText extends connect(store)(LitElement) {
   static get properties () {
     return {
       unit: String,
       label: String,
-      action: String,
       path: String,
       isOpen: String,
       value: Number,
@@ -52,13 +51,6 @@ class UnitInput extends connect(store)(LitElement) {
       this.value = value;
     }
   }
-  _updateValue(value) {
-    value = value * this._multiplier;
-    return {
-      type: this.action,
-      value
-    };
-  }
   _toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
@@ -66,82 +58,46 @@ class UnitInput extends connect(store)(LitElement) {
     return html`
       <style>
         :host {
-          display: grid;
-          grid-template-rows: auto 1fr;
-          grid-template-columns: 1fr auto;
+          display: flex;
+          align-items: baseline;
+          font-size: 14px;
+          color: var(--text-color);
+          padding: 8px 0px;
+          justify-self: start;
+        }
+        #dot {
+          background-color: var(--app-light-color);
+          border-radius: 50%;
+          height: 10px;
+          width: 10px;
+          margin-right: 8px;
+          align-self: center;
         }
         #label {
-          grid-row: 1 / 2;
-          grid-column: 1 / 3;
-          padding: 0px 4px;
-          color: #666666;
-          font-size: 14px;
-          margin-bottom: 4px
+          font-weight: bold;
+          padding-right: 16px;
         }
-        #input, 
-        #input:focus {
-          grid-row: 2 / 3;
-          grid-column: 1 / 2;
-          background-color: var(--white-color);
-          padding: 8px 16px;
-          appearance: none;
-          -moz-appearance: none;
-          -webkit-appearance: none;
-          border-radius: 4px 0px 0px 4px;
-          border: 2px solid #e0e0e0;
-          border-right: none;
-          outline: none;
-          text-align: start;
+        #input {
           text-overflow: ellipsis;
-          font-size: 16px;
-          color: #666666;
-          line-height: 24px;
-          align-self: flex-end;
-          width: 100%;
-        }
-        #input[type=number]::-webkit-inner-spin-button,
-        #input[type=number]::-webkit-outer-spin-button {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            margin: 0;
-        }
-        #input:focus {
-          color: var(--app-accent-color);
-        }
-        #input:hover {
-          cursor: text;
+          color: var(--text-light-color);
         }
         #unit-layout {
           display: flex;
-          align-items: center;
-          justify-content: center;
-          grid-row: 2 / 3;
-          grid-column: 2 / 3;
-          min-width: 64px;
-          padding: 8px 4px 8px 12px;
-          background-color: var(--white-color);
+          align-items: baseline;
+          padding-left: 6px;
           font-size: 14px;
-          color: #666666;
-          border: 2px solid #e0e0e0;
-          border-radius: 0px 4px 4px 0px;
           cursor: pointer;
+          color: var(--text-light-color);
         }
-        #icon {
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          grid-row: 2 / 3;
-          grid-column: 2 / 3;
-          background-color: var(--white-color);
-          border-radius: 0px 4px 4px 0px;
-          cursor: pointer;
-        }
-        #icon svg {
-          height: 22px;
-          width: 22px;
+        #unit-layout svg {
+          align-self: center;
+          height: 18px;
+          width: 18px;
           fill: #666666;
         }
         iron-dropdown {
+          max-height: 196px;
+          overflow-y: auto;
           background-color: var(--white-color);
           padding: 16px 8px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -167,24 +123,17 @@ class UnitInput extends connect(store)(LitElement) {
         }
       </style>
       
-      <div id='label'>${label}</div>
+      <div id='label'>${label}:</div>
       
-      <input 
-        id='input' 
-        type="number" 
-        step='0.01' 
-        min='0' 
-        value='${ (value / _multiplier).toFixed(2) }'
-        on-change=${ (e) => store.dispatch(this._updateValue(e.target.value)) }
-        size='1'>
+      <div id='input'> ${ (value / _multiplier).toFixed(2) } </div>
       
       <div id='unit-layout' 
         on-click=${ () => this._toggleDropdown() }>
         <div>${unit}</div>
-        <div id='icon'>${ chevronDownIcon }</div>
+        ${ chevronDownIcon }
       </div>
           
-      <iron-dropdown id='dropdown' opened=${isOpen} horizontal-align="right" vertical-align="bottom">
+      <iron-dropdown id='dropdown' opened=${isOpen} horizontal-align="right" vertical-align="top">
         <iron-selector 
           slot='dropdown-content' 
           selected='${unit}' 
@@ -199,6 +148,6 @@ class UnitInput extends connect(store)(LitElement) {
 
 // Register the element with the browser.
 /* global customElements */
-customElements.define('unit-input', UnitInput);
+customElements.define('unit-text', UnitText);
 
-export { UnitInput };
+export { UnitText };
