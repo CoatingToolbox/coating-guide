@@ -25,6 +25,7 @@ import '../components/tablet-elements/tablet-shape-selector.js';
 import '../components/tablet-elements/tablet-dimensions-graphic.js';
 import '../components/tablet-elements/tablet-thickness-graphic.js';
 import '../components/tablet-elements/bulk-density-chart.js';
+import '../components/tablet-elements/tablet-weight-chart.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 
@@ -280,6 +281,8 @@ class TabletPage extends LitElement {
               path='tablet.weightStdev'
               action='SET_TABLET_WEIGHT_STDEV'
             on-unit-changed=${(e) => this.massUnits = e.detail.value}></mass-input>
+            
+            <tablet-weight-chart graphic></tablet-weight-chart>
           </input-graphic-layout>
           
           <input-graphic-layout>

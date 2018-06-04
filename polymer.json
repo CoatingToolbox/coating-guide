@@ -3,15 +3,7 @@
   "shell": "src/pages/app-shell.js",
   "fragments": [
       "src/pages/overview-page.js",
-      "src/pages/tablet-overview-page.js",
-      "src/pages/tablet-designer-page.js",
-      "src/pages/tablet-library-page.js",
-      "src/pages/pan-overview-page.js",
-      "src/pages/pan-designer-page.js",
-      "src/pages/pan-library-page.js",
-      "src/pages/coating-overview-page.js",
-      "src/pages/coating-designer-page.js",
-      "src/pages/coating-library-page.js"
+      "src/pages/tablet-page.js"
   ],
   "sources": [
     "images/**/*"
@@ -19,8 +11,7 @@
   "extraDependencies": [
     "manifest.json",
     "node_modules/@webcomponents/webcomponentsjs/**",
-    "push-manifest.json",
-    "node_modules/d3/dist/d3.js"
+    "push-manifest.json"
   ],
   "builds": [
     {

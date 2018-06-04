@@ -19,7 +19,7 @@ export class Tablet {
         this.totalThickness = 0.00475;
         this.bandThickness = 0.00275;
         this.weight = 0.4;
-        this.weightStdev = 0.002;
+        this.weightStdev = 0.01;
         this.bulkDensity = 760000;
 
         // Calcualted properties that are defined as enumerable

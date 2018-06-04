@@ -11,21 +11,69 @@ import { line, curveNatural } from 'd3-shape';
 
 
 const margin = {top: 20, right: 20, bottom: 50, left: 20};
-const referencePoints = [
-                    { density: 0.76, label: "Placebo" },
-                    { density: 0.56, label: "Softgels" },
-                    { density: 1.30, label: "Mag Oxide" },
-                    { density: 1.10, label: "Multivitamin" }
-                ];
                 
 const minDensity = 0.25;
 const maxDensity = 1.75;
+
+const setReferencePoints = (chart, xScale, yScale) => {
+    
+    let referencePoints = [
+        { x: 0.76, y: 0.76, label: "Placebo" },
+        { x: 0.56, y: 0.56, label: "Softgels" },
+        { x: 1.30, y: 1.30, label: "Mag Oxide" },
+        { x: 1.10, y: 1.1, label: "Multivitamin" }
+    ];
+        
+    let circles = chart.select('.references').selectAll('circle').data(referencePoints);
+    
+    circles.enter()
+                .append('circle')
+                .attr('class', 'circle')
+            .merge(circles)
+                .attr('r', 4)
+                .attr('cx', function(d) { return xScale(d.x); })
+                .attr('cy', function(d) { return yScale(d.y); });
+    circles.exit().remove();
+    
+    let text = chart.select('.references').selectAll('text').data(referencePoints);
+    
+    text.enter()
+        .append('text')
+        .merge(text)
+            .attr('x', function(d) { return xScale(d.x) + 8; })
+            .attr('y', function(d) { return yScale(d.y) + 16; })
+            .text(function(d) { return d.label; });
+    text.exit().remove();
+};
+
+const setReferenceLine = (chart, xScale, yScale) => {
+    let d3Line = line()
+        .x(function(d) { return xScale(d.x); })
+        .y(function(d) { return yScale(d.y); })
+        .curve(curveNatural);
+    
+    let vals = [];
+    
+    let step = (maxDensity - minDensity) / 10;
+    
+    for(var i = minDensity; i <= maxDensity; i = i + step) {
+        vals.push({x: i, y: i});
+    }
+    
+    let linePath = chart.select('.line').data([vals]);
+    linePath.enter()
+        .merge(linePath)
+            .attr('d', d3Line);
+    linePath.exit().remove();
+};
 
 class BulkDensityChart extends connect(store)(LitElement) {
     
     constructor() {
         super();
         window.addEventListener('resize', () => this._initChart());
+        this.xScale = scaleLinear().domain([0, 2]).nice();
+        this.yScale = scaleLinear().domain([0, 2]).nice();
     }
     
     _firstRendered() {
@@ -37,69 +85,20 @@ class BulkDensityChart extends connect(store)(LitElement) {
         let width = this.width = this.clientWidth;
         let adjustedHeight = height - margin.top  - margin.bottom;
         let adjustedWidth = width - margin.left  - margin.right;
-            
+        
+        let xScale = this.xScale = this.xScale.range([0, adjustedWidth]); 
+        let yScale = this.yScale = this.yScale.range([adjustedHeight, 0]);
+        
         let chart = this.chart = select(this.shadowRoot.querySelector('#chart'))
                     .select(".chart")
                         .attr("transform", `translate( ${ margin.left }, ${ margin.top})`);
-                                        
+        
         chart.select(".x.axis").attr("transform", `translate(0, ${ adjustedHeight })`);
         chart.select(".x.title").attr("transform", `translate(${ adjustedWidth / 2}, ${adjustedHeight + margin.top + 25})`);
-        
-        let xScale = this.xScale = scaleLinear().range([0, adjustedWidth]).domain([0, 2]).nice();
         chart.select(".x.axis").call(axisBottom(xScale));
-    
-        let yScale = this.yScale = scaleLinear().range([adjustedHeight, 0]).domain([0, 2]).nice();
         
-        let vals = [];
-        referencePoints.forEach(val => {
-            vals.push({
-                x: val.density,
-                y: val.density,
-                label: val.label
-            });
-        });
-        
-        let circles = chart.select('.references').selectAll('circle').data(vals);
-        
-        circles.enter()
-                    .append('circle')
-                    .attr('class', 'circle')
-                .merge(circles)
-                    .attr('r', 4)
-                    .attr('cx', function(d) { return xScale(d.x); })
-                    .attr('cy', function(d) { return yScale(d.y); });
-        circles.exit().remove();
-        
-        let text = chart.select('.references').selectAll('text').data(vals);
-        
-        text.enter()
-            .append('text')
-            .merge(text)
-                .attr('x', function(d) { return xScale(d.x) + 8; })
-                .attr('y', function(d) { return yScale(d.y) + 16; })
-                .text(function(d) { return d.label; });
-        text.exit().remove();
-        
-        let d3Line = this.d3Line = line()
-            .x(function(d) { return xScale(d.x); })
-            .y(function(d) { return yScale(d.y); })
-            .curve(curveNatural);
-        
-        vals = [];
-        
-        let step = (maxDensity - minDensity) / 10;
-        
-        for(var i = minDensity; i <= maxDensity; i = i + step) {
-            vals.push({x: i, y: i});
-        }
-        
-        let linePath = chart.select('.line').data([vals]);
-        linePath.enter()
-            .merge(linePath)
-                .attr('d', d3Line);
-        linePath.exit().remove();
-        this._setDensityPoint(this.density);
-        
+        setReferencePoints(chart, xScale, yScale);
+        setReferenceLine(chart, xScale, yScale);
     }  
     
     static get properties() {
@@ -107,43 +106,23 @@ class BulkDensityChart extends connect(store)(LitElement) {
             density: Number,
             height: Number,
             width: Number,
-            xScale: Object
+            xScale: Object,
+            yScale: Object
         };
     }   
             
     _stateChanged(state) {
-        if(!this.chart) { return; }
-        let density = this.density = state.tablet.bulkDensity / 1000000;
-        this._setDensityPoint()
-    }        
-    
-    _setDensityPoint() {
-        let vals = [{
-            x: this.density,
-            y: this.density
-        }];
-        
-        let circle = this.chart.selectAll('circle.fill-density').data(vals);
-        
-        circle.enter()
-                .append('circle')
-                .attr('class', 'fill-density')
-              .merge(circle)
-                .attr('r', 7)
-                .attr('cx', (d) => { return this.xScale(d.x) })
-                .attr('cy', (d) => { return this.yScale(d.y) });
-                
-        circle.exit().remove();
-    }
-    
-    _render({ height, width }) {
+        this.density = state.tablet.bulkDensity / 1000000;
+    } 
+    _render({ height, width, xScale, yScale, density }) {
         return html`
             
             <style>
                 :host {
                     display: block;
-                    min-height: 196px;
                     height: 100%;
+                    min-height: 196px;
+                    max-height: 300px;
                   }
                   #chart {
                     font-family: inherit;
@@ -206,7 +185,12 @@ class BulkDensityChart extends connect(store)(LitElement) {
                         <circle class='circle'></circle>
                         <text></text>
                     </g>
-                    <circle class='circle fill-density highlight'></circle>
+                    <circle 
+                        class='circle fill-density highlight'
+                        cx$='${ xScale(density) }'
+                        cy$='${ yScale(density) }'
+                        r='7'>
+                    </circle>
                 </g>
             </svg>
         `;
