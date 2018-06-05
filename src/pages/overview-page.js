@@ -133,7 +133,7 @@ class OverviewPage extends connect(store)(LitElement) {
           <div class='material-layout'>
             <div class='material-label'>Coating Substrate</div>
             <div class='material-title'>${_tabletName}</div>
-            <a href='/tablet-library'>
+            <a href='/#tablet-library'>
               <large-button label='Load'></large-button>
             </a>
             <a href='/#tablet'>
@@ -144,10 +144,10 @@ class OverviewPage extends connect(store)(LitElement) {
           <div class='material-layout'>
             <div class='material-label'>Coating Pan</div>
             <div class='material-title'>${_panName}</div>
-            <a href='/pan-library'>
+            <a href='/#pan-library'>
               <large-button label='Load'></large-button>
             </a>
-            <a href='/pan'>
+            <a href='/#pan'>
               <large-button label='Explore'></large-button>
             </a>
           </div>
@@ -155,10 +155,10 @@ class OverviewPage extends connect(store)(LitElement) {
           <div class='material-layout'>
             <div class='material-label'>Coating Formula</div>
             <div class='material-title'>${_coatingName}</div>
-            <a href='/coating-library'>
+            <a href='/#coating-library'>
               <large-button label='Load'></large-button>
             </a>
-            <a href='/coating'>
+            <a href='/#coating'>
               <large-button label='Explore'></large-button>
             </a>
           </div>

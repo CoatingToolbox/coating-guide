@@ -146,25 +146,25 @@ class TabletPage extends LitElement {
         <page-section-subtitle wide text='Company Information' icon=${ productIcon }></page-section-subtitle>
         
         <text-input 
-          label='Formulation' 
+          label='Company' 
           path='tablet.companyName'
           action='SET_TABLET_COMPANY_NAME'>
         </text-input>
         
         <text-input 
-          label='Formulation' 
+          label='Location' 
           path='tablet.companyLocation'
           action='SET_TABLET_COMPANY_LOCATION'>
         </text-input>
         
         <text-input 
-          label='Formulation' 
+          label='Contact' 
           path='tablet.contactName'
           action='SET_TABLET_CONTACT_NAME'>
         </text-input>
         
         <text-input 
-          label='Formulation' 
+          label='Email' 
           path='tablet.contactEmail'
           action='SET_TABLET_CONTACT_EMAIL'>
         </text-input>

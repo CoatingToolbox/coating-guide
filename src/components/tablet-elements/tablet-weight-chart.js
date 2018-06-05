@@ -74,12 +74,12 @@ class TabletWeightChart extends connect(store)(LitElement) {
             
     _stateChanged(state) {
         let mean = state.tablet.weight * 1000;
-        let stdev = state.tablet.weightStdev * 1000 > 0;
+        let stdev = (state.tablet.weightStdev > 0) ? state.tablet.weightStdev * 1000 : 0.0000000001;
         
         let low = mean - stdev * 4;
         let high = mean + stdev * 4;
         let xScale = this.xScale = this.xScale.domain([low, high]);
-        let yScale = this.yScale = this.yScale.domain([0, 0.1]);
+        let yScale = this.yScale = this.yScale.domain([0, gaussian_pdf(mean, mean, mean * 0.015)]);
         
         this.data = computeData(mean, stdev);
         

@@ -43,6 +43,8 @@ export default function tabletReducer(state = new Tablet(), action) {
             return updateTablet(state, 'weightStdev', action.value);
         case "SET_TABLET_BULK_DENSITY": 
             return updateTablet(state, 'bulkDensity', action.value);
+        case "LOAD_TABLET_FROM_LIBRARY":
+            return Object.assign({}, new Tablet(action.value));
         default:
             return state;
     }
