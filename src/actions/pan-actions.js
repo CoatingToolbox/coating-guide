@@ -19,7 +19,7 @@ export class Pan {
     this.gunModel = '930';
     this.gunCount = '3';
     this.gunToGunDistance = '';
-    this.maxAirflow = 2000;
+    this.maxAirflow = 2000 * 1.699011; /* m3/h */
     this.airflowType = '';
     this.perforationType = 'Fully';
 

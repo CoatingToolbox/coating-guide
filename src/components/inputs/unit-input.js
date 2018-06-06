@@ -8,6 +8,18 @@ import '@polymer/iron-dropdown/iron-dropdown.js';
 import '@polymer/iron-selector/iron-selector.js';
 
   
+  
+const getMultiplier = (value, units) => {
+  if(!units) { return }
+  let mult = 1;
+  units.forEach(item => {
+    if(item.unit === value) {
+      mult = item.multiplier;
+    }
+  });
+  return mult;
+};
+
 class UnitInput extends connect(store)(LitElement) {
   static get properties () {
     return {
@@ -23,6 +35,9 @@ class UnitInput extends connect(store)(LitElement) {
     };
   }
   _firstRendered() {
+    
+    this._multiplier = getMultiplier(this.unit, this._units);
+    
     let options;
     this._units.forEach( (item) => {
       options = html`
@@ -95,7 +110,7 @@ class UnitInput extends connect(store)(LitElement) {
           text-overflow: ellipsis;
           font-size: 16px;
           color: #666666;
-          line-height: 24px;
+          line-height: 28px;
           align-self: flex-end;
           width: 100%;
         }
