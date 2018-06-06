@@ -41,9 +41,9 @@ const loadPage = (page) => async (dispatch) => {
     case "tablet-library":
         await import('../pages/tablet-library-page.js');
         break;
-    // case "pan-overview":
-    //     await import('../pages/pan-overview-page.js');
-    //     break;
+    case "pan":
+        await import('../pages/pan-page.js');
+        break;
     // case "pan-library":
     //     await import('../pages/pan-library-page.js');
     //     break;

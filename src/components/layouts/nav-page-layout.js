@@ -18,7 +18,7 @@ class NavPageLayout extends LitElement {
           grid-template-columns: auto auto;
           padding: 24px 72px;
           margin: auto;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 500px, var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 550px, var(--background-color) 0%,var(--background-color) 100%);
           --page-width: 800px;
         }
         #title {

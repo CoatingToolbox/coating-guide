@@ -55,7 +55,7 @@ class NextPageButton extends LitElement {
         }
       </style>
       
-      <div id='label'>Next Page</div>
+      <div id='label'>Next Section</div>
       <slot></slot>
       ${ arrowRightIcon }
     `;

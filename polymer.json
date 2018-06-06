@@ -3,7 +3,9 @@
   "shell": "src/pages/app-shell.js",
   "fragments": [
       "src/pages/overview-page.js",
-      "src/pages/tablet-page.js"
+      "src/pages/tablet-page.js",
+      "src/pages/pan-page.js",
+      "src/pages/tablet-library-page.js"
   ],
   "sources": [
     "images/**/*"

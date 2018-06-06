@@ -30,20 +30,9 @@ class NavDrawer extends LitElement{
       <nav-item link='/#overview' label='Overview'></nav-item>
   
       <nav-section label='Materials & Equipment'></nav-section>
-      
-      <nav-item link='/#tablet' label='Tablet' sub-item>
-        <nav-icon link='/tablet-library' icon='app-icons:library'></nav-icon>
-      </nav-item>
-      
-      <nav-item link='/pan-overview' label='Pan' sub-item>
-        <nav-icon link='/pan-designer' icon='app-icons:edit'></nav-icon>
-        <nav-icon link='/pan-library' icon='app-icons:library'></nav-icon>
-      </nav-item>
-      
-      <nav-item link='/coating-overview' label='Coating' sub-item>
-        <nav-icon link='/coating-designer' icon='app-icons:edit'></nav-icon>
-        <nav-icon link='/coating-library' icon='app-icons:library'></nav-icon>
-      </nav-item>
+      <nav-item link='/#tablet' label='Tablet Core' sub-item></nav-item>
+      <nav-item link='/#pan' label='Coating Pan' sub-item></nav-item>
+      <nav-item link='/#coating' label='Coating Formula' sub-item></nav-item>
         
       <nav-section label='Trial Setup'></nav-section>
       <nav-item link='/' label='Coating Amount' sub-item></nav-item>

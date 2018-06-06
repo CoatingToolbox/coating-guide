@@ -80,13 +80,11 @@ class AppShell extends connect(store)(LitElement) {
           <tablet-library-page page='tablet-library'></tablet-library-page>
           <tablet-page page='tablet'></tablet-page>
           
-          <pan-overview-page page='pan-overview'></pan-overview-page>
+          <pan-page page='pan'></pan-page>
           <pan-library-page page='pan-library'></pan-library-page>
-          <pan-designer-page page='pan-designer'></pan-designer-page>
           
-          <coating-overview-page page='coating-overview'></coating-overview-page>
+          <coating-page page='coating'></coating-page>
           <coating-library-page page='coating-library'></coating-library-page>
-          <coating-designer-page page='coating-designer'></coating-designer-page>
           
           <page-404 page='404'></page-404>
         </iron-pages>

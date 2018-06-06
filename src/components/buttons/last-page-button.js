@@ -56,7 +56,7 @@ class LastPageButton extends LitElement {
         }
       </style>
       
-      <div id='label'>Next Page</div>
+      <div id='label'>Last Section</div>
       <slot></slot>
       ${ arrowLeftIcon }
     `;
