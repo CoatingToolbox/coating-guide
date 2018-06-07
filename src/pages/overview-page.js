@@ -3,6 +3,8 @@ import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
 import '../components/texts/page-main-title.js';
+import '../components/texts/page-description.js';
+import '../components/texts/page-section-description.js';
 import '../components/texts/page-section-title.js';
 import '../components/cards/basic-card.js';
 import '../components/buttons/large-button.js';
@@ -16,15 +18,6 @@ class OverviewPage extends connect(store)(LitElement) {
             _panName: String,
         };
     }
-
-    // _displayAsPercent(value) {
-    //   let percent = (value * 100).toFixed(1);
-    //   return `${percent}%`;
-    // }
-    // _displayAsKilo(value) {
-    //   let kg = (value / 1000).toFixed(1);
-    //   return `${kg} kg`;
-    // }
 
     _render({ _tabletName, _coatingName, _panName }) {
         // Template getter must return an instance of HTMLTemplateElement.
@@ -43,7 +36,7 @@ class OverviewPage extends connect(store)(LitElement) {
           margin: 0px auto 48px auto;
         }
         page-main-title,
-        .page-description {
+        page-description {
           color: var(--white-color);
           max-width: var(--page-width);
           margin: 0px auto;
@@ -51,15 +44,9 @@ class OverviewPage extends connect(store)(LitElement) {
         page-main-title {
             margin-top: 32px;
         }
-        .page-description {
+        page-description {
             padding-bottom: 32px;
         }
-        p {
-          font-size: 14px;
-          color: var(--text-light-color);
-          margin: 0px;
-        }
-        
         .material-layout {
           display: grid;
           grid-template-rows: auto auto;
@@ -116,19 +103,19 @@ class OverviewPage extends connect(store)(LitElement) {
         
       </style>
       
-        <page-main-title text="Let's setup your coating process."></page-main-title>
-        <p class='page-description'>
+        <page-main-title>Let's setup your coating process.</page-main-title>
+        <page-description>
           Measure a compressed tablets dimensions, weight and bulk density
           and we can estimate important tablet properties for coating.
-        </p>
+        </page-description>
         
         <basic-card>
         
-        <page-section-title text='Materials & Equipment'></page-section-title>
-          <p>
+        <page-section-title>Materials & Equipment</page-section-title>
+          <page-section-description>
             To get started choose a tablet, coating pan and coating formula
             from the library or design your own.
-          </p>
+          </page-section-description>
           
           <div class='material-layout'>
             <div class='material-label'>Coating Substrate</div>
@@ -167,11 +154,11 @@ class OverviewPage extends connect(store)(LitElement) {
         
           <basic-card>
         
-        <page-section-title text='Coating Conditions & Process Parameters'></page-section-title>
-          <p>
+        <page-section-title>Coating Conditions & Process Parameters</page-section-title>
+          <page-section-description>
             Get recommended coating conditions and process parameters and set
               your target values.
-          </p>
+          </page-section-description>
             <div id='parameters-layout'>
               <div class='parameter'>
                 <div class='parameter-dot'></div>

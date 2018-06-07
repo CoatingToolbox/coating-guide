@@ -1,11 +1,11 @@
 
 import { LitElement, html } from '@polymer/lit-element';
-import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 import { TABLET_LIBRARY } from '../actions/tablet-actions.js';
 import { searchIcon, loadIcon, roundTabletIcon, ovalTabletIcon, capletTabletIcon } from '../components/app-icons.js';
 
 import '../components/texts/page-main-title.js';
+import '../components/texts/page-description.js';
 import '@polymer/paper-input/paper-input.js';
 
 const getLibraryTemplate = (library) => {
@@ -79,16 +79,12 @@ const loadTablet = (tablet) => {
   window.location = '#tablet';
 };
 
-class TabletLibraryPage extends connect(store)(LitElement) {
+class TabletLibraryPage extends LitElement {
   static get properties () {
     return {
       filterTerm: String,
       libraryTemplate: String,
     };
-  }
-  
-  _stateChanged(state) {
-  
   }
   
   constructor() {
@@ -105,25 +101,17 @@ class TabletLibraryPage extends connect(store)(LitElement) {
         :host {
           display: block;
           padding: 48px 72px;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 320px, var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 288px, var(--background-color) 0%,var(--background-color) 100%);
         }
         #layout {
           max-width: 1024px;
           margin: auto;
         }
-        .page-description {
-          color: var(--white-color);
-          padding-bottom: 32px;
-          max-width: 600px;
-          margin-right: auto;
-        }
         #search-layout {
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          margin: 16px 32px 0px;
-          max-width: var(--max-width);
-          margin: auto;
+          margin: 32px auto 0px;
         }
         #search-layout svg {
           fill: var(--white-color);
@@ -140,7 +128,6 @@ class TabletLibraryPage extends connect(store)(LitElement) {
         #table {
           display: grid;
           grid-template-columns: 2fr 1fr auto auto auto auto;
-          grid-template-rows: 48px;
           grid-auto-rows: auto;
           background-color: var(--white-color);
           border-radius: 6px;
@@ -201,7 +188,7 @@ class TabletLibraryPage extends connect(store)(LitElement) {
           background-color: var(--app-dark-color);
           border-bottom: none;
           color: white;
-          padding: 32px 16px;
+          padding: 20px 16px;
         }
         #table .subtext {
           color: var(--text-light-color);
@@ -214,16 +201,15 @@ class TabletLibraryPage extends connect(store)(LitElement) {
       
       
       <div id='layout'>
-        <page-main-title text="Choose a tablet from the library."></page-main-title>
-        <p class='page-description'>
-          Don't have tablet details? We have collected a range of pharmacetuical and nutritional tablets that your
+        <page-main-title>Tablet Core Library</page-main-title>
+        <page-description>
+          Don't have tablet details? Choose a tablet from the library. We have collected a range of pharmacetuical and nutritional tablets that your
           can select to get started faster.
-        </p>
+        </page-description>
         
         <div id='search-layout'>
           ${ searchIcon }
           <paper-input 
-            value='${filterTerm}'
             placeholder='Search Tablets...' 
             no-label-float
             on-value-changed='${ (e) => {

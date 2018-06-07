@@ -8,8 +8,10 @@ import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/two-column-input-layout.js';
 import '../components/layouts/page-button-layout.js';
 import '../components/texts/page-main-title.js';
+import '../components/texts/page-description.js';
 import '../components/texts/page-section-title.js';
 import '../components/texts/page-section-subtitle.js';
+import '../components/texts/page-section-description.js';
 import '../components/inputs/text-input.js';
 import '../components/texts/density-text.js';
 import '../components/texts/length-text.js';
@@ -68,15 +70,6 @@ class TabletPage extends LitElement {
         basic-card + basic-card {
           margin-top: 48px;
         }
-        page-main-title,
-        .page-description {
-          color: var(--white-color);
-        }
-        p {
-          font-size: 14px;
-          color: var(--text-light-color);
-          margin: 0px;
-        }
         
         title-detail-layout + title-detail-layout {
           border-top: 2px solid var(--border-color);
@@ -86,26 +79,26 @@ class TabletPage extends LitElement {
         }
       </style>
       
-      <nav-page-layout page='Tablet Design'>
+      <nav-page-layout>
       
-        <page-main-title slot='title' text='Design your tablet.'></page-main-title>
-        <p class='page-description' slot='title'>
+        <page-main-title slot='title'>Design your tablet.</page-main-title>
+        <page-description slot='title'>
           Measure a compressed tablets dimensions, weight and bulk density
           and we can estimate important tablet properties for coating.
-        </p>
+        </page-description>
         
         <basic-card>
-        <page-section-title text='General Information'></page-section-title>
+        <page-section-title>General Information</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
+        </page-section-description>
       
       <two-column-input-layout>
       
-        <page-section-subtitle wide text='Product Description' icon=${ productIcon }></page-section-subtitle>
+        <page-section-subtitle title>${ productIcon } Product Description</page-section-subtitle>
       
         <text-input 
           wide 
@@ -143,7 +136,7 @@ class TabletPage extends LitElement {
         
       <two-column-input-layout>
       
-        <page-section-subtitle wide text='Company Information' icon=${ productIcon }></page-section-subtitle>
+        <page-section-subtitle title>${ productIcon } Company Information</page-section-subtitle>
         
         <text-input 
           label='Company' 
@@ -174,31 +167,30 @@ class TabletPage extends LitElement {
     
     <basic-card>
         
-        <page-section-title text='Tablet Shape'></page-section-title>
+        <page-section-title>Tablet Shape</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
+        </page-section-description>
         
         <tablet-shape-selector on-shape-changed=${ (e) => this._updateInputDisplay(e.detail.value)}></tablet-shape-selector>
      </basic-card>   
      
      <basic-card>
-        <page-section-title text='Tablet Dimensions'></page-section-title>
+        <page-section-title>Tablet Dimensions</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
+        </page-section-description>
       
       
       <input-graphic-layout>
       
-        <page-section-subtitle title text='Tablet Weight' icon=${ rulerIcon }></page-section-subtitle>
-        
+        <page-section-subtitle title>${ rulerIcon } Tablet Weight</page-section-subtitle>
         
           <length-input 
             label='Length' 
@@ -226,7 +218,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title text='Compressed Tablet Thickness' icon=${ rulerIcon }></page-section-subtitle>
+          <page-section-subtitle title>${ rulerIcon } Compressed Tablet Thickness</page-section-subtitle>
           
           
             <length-input 
@@ -255,17 +247,17 @@ class TabletPage extends LitElement {
           
           <basic-card>
         
-          <page-section-title text='Weigth & Density'></page-section-title>
+          <page-section-title>Weight & Density</page-section-title>
           
-          <p>
+          <page-section-description>
             Each product is unique. The tooling, formulation and even process
             can crete differences. Provide a descriptions of the product 
             and company who makes it to make it easy to identify.
-          </p>
+          </page-section-description>
           
           <input-graphic-layout>
           
-          <page-section-subtitle title text='Tablet Weight' icon=${ weightIcon }></page-section-subtitle>
+          <page-section-subtitle title>${ weightIcon } Tablet Weight</page-section-subtitle>
           
           
             <mass-input
@@ -287,7 +279,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title text='Tablet Bulk Density' icon=${ weightIcon }></page-section-subtitle>
+          <page-section-subtitle title>${ weightIcon } Tablet Bulk Density</page-section-subtitle>
           
           
             <density-input
@@ -304,20 +296,17 @@ class TabletPage extends LitElement {
           
           <basic-card>
           
-          <page-section-title text='Caculated Properties'></page-section-title>
+          <page-section-title>Calcualted Properties</page-section-title>
           
-          <p>
+          <page-section-description>
             Each product is unique. The tooling, formulation and even process
             can crete differences. Provide a descriptions of the product 
             and company who makes it to make it easy to identify.
-          </p>
+          </page-section-description>
           
           <title-detail-layout>
           
-            <page-section-subtitle  
-              slot='title' 
-              text='Tablet' 
-              icon=${ weightIcon }></page-section-subtitle>
+            <page-section-subtitle slot='title'>${ weightIcon } Tablet</page-section-subtitle>
           
               <density-text unit='g/ml' path='tablet.compressedDensity' label='Compressed Density' ></density-text>
               <area-text unit='mm2' path='tablet.totalArea' label='Surface Area' ></area-text>
@@ -328,11 +317,8 @@ class TabletPage extends LitElement {
           
           <title-detail-layout>
           
-            <page-section-subtitle  
-              slot='title' 
-              text='Tooling' 
-              icon=${ weightIcon }></page-section-subtitle>
-          
+            <page-section-subtitle slot='title'>${ weightIcon } Tooling</page-section-subtitle>
+    
               <length-text unit='mm' path='tablet.perimeter' label='Perimeter' ></length-text>
               <area-text unit='mm2' path='tablet.crossSectionArea' label='Cross Section Area' ></area-text>
               <area-text unit='mm2' path='tablet.cupArea' label='Cup Area' ></area-text>
@@ -343,12 +329,8 @@ class TabletPage extends LitElement {
           
           
           <title-detail-layout>
-          
-            <page-section-subtitle  
-              slot='title' 
-              text='Concavity' 
-              icon=${ weightIcon }></page-section-subtitle>
-          
+            <page-section-subtitle slot='title'>${ weightIcon } Concavity</page-section-subtitle>
+        
               <length-text unit='mm' path='tablet.cupThickness' label='Cup Depth' ></length-text>
               <length-text unit='mm' path='tablet.lengthCupRadius' label='Length Cup Radius' ></length-text>
               <length-text id='widthCupRadiusText' unit='mm' path='tablet.widthCupRadius' label='Width Cup Radius' ></length-text>

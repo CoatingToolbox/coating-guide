@@ -1,51 +1,43 @@
 
-import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
-import { ReduxMixin } from '../redux-mixin.js';
-import '@polymer/iron-icon/iron-icon.js';
-import '@polymer/polymer/lib/elements/dom-repeat.js';
-import '../components/header/page-layout.js';
-import '../components/header/page-header.js';
-import '../components/app-icons.js';
+import { LitElement, html } from '@polymer/lit-element';
+import { store } from '../store.js';
+import { PAN_LIBRARY } from '../actions/pan-actions.js';
+import { searchIcon, loadIcon } from '../components/app-icons.js';
 
-class PanLibraryPage extends ReduxMixin(PolymerElement) {
-  static get properties () {
-    return {
-      filterTerm: String,
-      firebaseLibrary: Array
-    };
-  }
-  
-  ready() {
-    super.ready();
-    
-    firebase.database().ref('pans/').on('value', snapshot => {
-      let library = [];
-      snapshot.forEach(child => {
-        library.push(child.val());
-      });
-      this.firebaseLibrary = library;
-    });
-  }
-  
-  _load(e) {
-    this.dispatch({
-      type: "SET_PAN",
-      pan: e.model.item
-    });
-    window.scrollTo(0,0);
-    window.location = '#/pan-overview';
-  }
-  
-  _edit(e) {
-    this.dispatch({
-      type: "SET_PAN",
-      pan: e.model.item
-    });
-    window.scrollTo(0,0);
-    window.location = '#/pan-designer';
-  }
-  
-  _filterLibrary(library, searchTerm) {
+import '../components/texts/page-main-title.js';
+import '../components/texts/page-description.js';
+import '@polymer/paper-input/paper-input.js';
+
+const getLibraryTemplate = (library) => {
+  let template = html``;
+  library.forEach( item => {
+    template = html`
+      ${template}
+      <div class='cell'>
+          <div class='item-title'>${ item.nickname }</div>
+      </div>
+      <div class='cell'>
+          <div class='item-title'>${ item.modelName }</div>
+          <div class='subtext'>${ item.manufacturerName }</div>
+      </div>
+      <div class='cell'>
+          <div>${ item.companyName }</div>
+          <div class='subtext'>${ item.companyLocation }</div>
+      </div>
+      <div class='cell number'>${ (item.mainDiameter * 39.3701).toFixed(1) } </div>
+      <div class='cell number'>${ (item.brimVolume * 1000).toFixed(1) } </div>
+      <div class='cell number'>${ (item.minFillVolume * 1000).toFixed(1) } to ${ (item.maxFillVolume * 1000).toFixed(1) }</div>
+      
+      <div class='cell'>
+          <div class='icon-button' on-click=${ ()=> loadPan(item) }> ${ loadIcon }
+          </div>
+      </div>
+ 
+      `;
+  });
+  return template;
+};
+const filterLibrary = (searchTerm, library) => {
     if(!searchTerm) { return library; }
     return library.filter( 
       pan => { 
@@ -58,55 +50,73 @@ class PanLibraryPage extends ReduxMixin(PolymerElement) {
         );
       }
       );
+};
+const loadPan = (pan) => {
+  store.dispatch({
+    type: "LOAD_PAN_FROM_LIBRARY",
+    value: pan,
+  });
+  window.location = '#pan';
+};
+
+
+class PanLibraryPage extends LitElement {
+  static get properties () {
+    return {
+      filterTerm: String,
+      libraryTemplate: String,
+    };
   }
   
-  static get template () {
+  _firstRendered() {
+    this.libraryTemplate = getLibraryTemplate(PAN_LIBRARY);
+  }
+  
+  _render({ libraryTemplate }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
       <style>
         :host {
-          display: block;          
-        }
-        page-layout {
+          display: block;
+          padding: 48px 72px;
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 265px, var(--background-color) 0%,var(--background-color) 100%);
+        }     
+        #layout {
           max-width: 1024px;
+          margin: auto;
         }
+        
         #search-layout {
           display: flex;
           align-items: center;
           justify-content: flex-end;
-          margin: 16px 32px 0px;
-          max-width: var(--max-width);
-          margin: auto;
+          margin: 32px auto 0px;
         }
-        #search-layout #search-icon {
-          color: var(--text-light-color);
+        #search-layout svg {
+          fill: var(--white-color);
           margin-right: 8px;
         }
         #search-layout paper-input {
-          color: var(--text-color);
-          --paper-input-container-input-color: var(--text-color);
-          --paper-input-container-color: var(--text-light-color);
-          --paper-input-container-focus-color: var(--app-accent-color);
+          color: var(--white-color);
+          --paper-input-container-input-color: var(--white-color);
+          --paper-input-container-color: var(--white-color);
+          --paper-input-container-focus-color: var(--white-color);
         } 
         
         /*Styles for Table and Cells*/
         #table {
           display: grid;
           grid-template-columns: 2fr 1fr 1fr auto auto auto auto;
-          grid-template-rows: 48px;
           grid-auto-rows: auto;
-          max-width: var(--max-width);
-          margin: auto;
           background-color: var(--white-color);
           border-radius: 6px;
-          border: var(--border-line);
         }
         #table .cell {
           display: flex;
           flex-direction: column;
           justify-content: center;
-          padding: 16px;
+          padding: 24px 16px;
           border-bottom: 1px solid var(--border-color);
         }
         
@@ -115,38 +125,30 @@ class PanLibraryPage extends ReduxMixin(PolymerElement) {
         }
         
         /*Styles for buttons in table*/
-        #table .icon-layout {
-          display: flex;
-          flex-direction: row;
-          align-items: center;
-          justify-content: center;
-        }
+        
         #table .icon-button {
           display: flex;
-          flex-direction: column;
           align-items: center;
           justify-content: center;
           align-self: center;
           padding: 4px;
           border-radius: 50%;
-          color: #bdbdc3;
+          fill: #bdbdc3;
           background-color: var(--background-color);
           border: 2px solid #bdbdc3;
           transition: all 0.2s;
         }
         #table .icon-button:hover {
           cursor: pointer;
-          color: var(--app-accent-color);
+          fill: var(--app-accent-color);
           border: 2px solid var(--app-accent-color);
           transition: all 0.2s;
         }
-        #table .icon-button + .icon-button {
-          margin-left: 12px;
-        }
-        #table .icon-button iron-icon {
+        #table .icon-button svg {
           width: 20px;
           height: 20px;
         }
+        
         
         /*Styles for shape icon in table*/
         #table .shape-icon {
@@ -165,9 +167,10 @@ class PanLibraryPage extends ReduxMixin(PolymerElement) {
         
         /*Text Fields In Table*/
         #table .header {
-          background-color: var(--app-primary-color);
+          background-color: var(--app-dark-color);
           border-bottom: none;
           color: white;
+          padding: 20px 16px;
         }
         #table .subtext {
           color: var(--text-light-color);
@@ -178,62 +181,35 @@ class PanLibraryPage extends ReduxMixin(PolymerElement) {
         }
       </style>
       
-      <page-layout>
+      <div id='layout'>
       
-      <page-header>
-        <div slot='title'>Coating Pan Library</div>
-        <p slot='description'>
-          Measure a compressed tablets dimensions, weight and bulk density
-          and we can estimate important tablet properties for coating.
-        </p>
-      </page-header>
-      
-      <div id='search-layout'>
-        <iron-icon id='search-icon' icon='my-icons:search'></iron-icon>
-        <paper-input value='{{filterTerm}}' placeholder='Search Coating Pans...' no-label-float></paper-input>
+        <page-main-title>Coating Pan Library</page-main-title>
+        <page-description>
+          Choose a coating pan from Colorcon's library.
+        </page-description>
+        <div id='search-layout'>
+          ${ searchIcon }
+          <paper-input 
+            placeholder='Search Pans...' 
+            no-label-float
+            on-value-changed='${ (e) => {
+              let d = filterLibrary(e.detail.value, PAN_LIBRARY);
+              this.libraryTemplate = getLibraryTemplate(d);
+            }}'></paper-input>
+        </div>
+        <div id='table'>
+          <div class='header cell'>Name</div>
+          <div class='header cell'>Equipment</div>
+          <div class='header cell'>Location</div>
+          <div class='header cell'>Diameter</div>
+          <div class='header cell'>Brim Volume</div>
+          <div class='header cell'>Working Volume</div>
+          <div class='header cell'></div>
+          
+          ${ libraryTemplate }
+          
+        </div>
       </div>
-      
-      <div id='table'>
-        <div class='header cell'>Name</div>
-        <div class='header cell'>Equipment</div>
-        <div class='header cell'>Location</div>
-        <div class='header cell'>Diameter</div>
-        <div class='header cell'>Brim Volume</div>
-        <div class='header cell'>Working Volume</div>
-        <div class='header cell'></div>
-        
-        <template is='dom-repeat' items='[[_filterLibrary(firebaseLibrary, filterTerm)]]'>
-          <div class='cell'>
-            <div class='item-title'>[[item.nickname]]</div>
-          </div>
-          <div class='cell'>
-            <div class='item-title'>[[item.modelName]]</div>
-            <div class='subtext'>[[item.manufacturerName]]</div>
-          </div>
-          <div class='cell'>
-            <div>[[item.companyName]]</div>
-            <div class='subtext'>[[item.companyLocation]]</div>
-          </div>
-          <div class='cell number'>[[item.formatted.panDiameter]]</div>
-          <div class='cell number'>[[item.formatted.brimVolume]]</div>
-          <div class='cell number'>[[item.formatted.volumeRange]]</div>
-          <div class='cell icon-layout'>
-            <div class='icon-button' on-click='_load'>
-              <iron-icon icon='app-icons:load'></iron-icon>
-            </div>
-            <div class='icon-button' on-click='_edit'>
-              <iron-icon icon='app-icons:edit'></iron-icon>
-            </div>
-           
-          </div> 
-        </template>
-        
-      </div>   
-      
-    </div>  
-    
-    </page-layout>
-      
     `;
   }
 }

@@ -2,13 +2,8 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 class PageSectionTitle extends LitElement {
-
-  static get properties() {
-    return {
-      text: String,
-    };
-  }
-  _render ({text}) {
+  
+  _render () {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -20,7 +15,7 @@ class PageSectionTitle extends LitElement {
         }
       </style>
       
-      <div>${text}</div>
+      <slot></slot>
       
     `;
   }

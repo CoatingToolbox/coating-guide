@@ -44,15 +44,15 @@ const loadPage = (page) => async (dispatch) => {
     case "pan":
         await import('../pages/pan-page.js');
         break;
-    // case "pan-library":
-    //     await import('../pages/pan-library-page.js');
-    //     break;
+    case "pan-library":
+        await import('../pages/pan-library-page.js');
+        break;
     // case "pan-designer":
     //     await import('../pages/pan-designer-page.js');
     //     break;
-    // case "coating-overview":
-    //     await import('../pages/coating-overview-page.js');
-    //     break;
+    case "coating":
+        await import('../pages/coating-page.js');
+        break;
     // case "coating-library":
     //     await import('../pages/coating-library-page.js');
     //     break;

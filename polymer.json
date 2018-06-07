@@ -5,7 +5,9 @@
       "src/pages/overview-page.js",
       "src/pages/tablet-page.js",
       "src/pages/pan-page.js",
-      "src/pages/tablet-library-page.js"
+      "src/pages/coating-page.js",
+      "src/pages/tablet-library-page.js",
+      "src/pages/pan-library-page.js"
   ],
   "sources": [
     "images/**/*"

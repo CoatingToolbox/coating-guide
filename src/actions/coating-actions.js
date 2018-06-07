@@ -4,9 +4,6 @@ export const UPDATE_COATING = "UPDATE_COATING";
 export class Coating {
 
         constructor(parameters={}) {
-            this.recommendedSolids = 0.2;
-            this.recommendedWG = 0.03;
-            this.recommendProductTemp = 47;
             this.solids = 0.2;
             this.viscosityIntercept = 20;
             this.viscosityExponent = 10;
@@ -16,12 +13,15 @@ export class Coating {
             this.productName = 'Opadry II';
             this.formulaName = '85F18422';
             this.color = 'White';
-            this.firebaseKey = '';
+            this.releaseType = 'Immediate Release';
             
             Object.defineProperties(this, {
                 viscosity: {
                     get: () => {
                         return this.viscosityIntercept * Math.exp(this.viscosityExponent * this.solids);
+                    },
+                    set: (value) => {
+                        this.solids = Math.log(value / this.viscosityIntercept) / this.viscosityExponent;
                     },
                     enumerable: true
                 }

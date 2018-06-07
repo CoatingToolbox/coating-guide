@@ -3,13 +3,7 @@ import { LitElement, html } from '@polymer/lit-element';
 
 class PageSectionSubtitle extends LitElement {
 
-  static get properties() {
-    return {
-      text: String,
-      icon: String
-    };
-  }
-  _render ({text, icon}) {
+  _render () {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -21,17 +15,14 @@ class PageSectionSubtitle extends LitElement {
           color: var(--app-primary-color);
           fill: var(--app-primary-color);
         }
-        svg {
+        ::slotted(svg) {
           height: 20px;
           width: 20px;
-        }
-        div {
-          margin-left: 4px;
+          margin-right: 4px;
         }
       </style>
       
-      ${ icon }
-      <div>${text}</div>
+      <slot></slot>
       
     `;
   }

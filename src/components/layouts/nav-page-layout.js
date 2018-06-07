@@ -36,6 +36,7 @@ class NavPageLayout extends LitElement {
           grid-column: 1 / 2;
           grid-row: 2 / 3;
           justify-self: end;
+          width: 100%;
           max-width:var(--page-width);
           border-radius: 4px;
         }

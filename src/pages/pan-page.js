@@ -8,7 +8,9 @@ import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/two-column-input-layout.js';
 import '../components/layouts/page-button-layout.js';
 import '../components/texts/page-main-title.js';
+import '../components/texts/page-description.js';
 import '../components/texts/page-section-title.js';
+import '../components/texts/page-section-description.js';
 import '../components/texts/page-section-subtitle.js';
 import '../components/inputs/text-input.js';
 import '../components/inputs/length-input.js';
@@ -54,11 +56,6 @@ class PanPage extends LitElement {
         .page-description {
           color: var(--white-color);
         }
-        p {
-          font-size: 14px;
-          color: var(--text-light-color);
-          margin: 0px;
-        }
         
         title-detail-layout + title-detail-layout {
           border-top: 2px solid var(--border-color);
@@ -68,28 +65,28 @@ class PanPage extends LitElement {
         }
       </style>
       
-      <nav-page-layout page='pan'>
+      <nav-page-layout>
       
-        <page-main-title slot='title' text='Design your coating pan.'></page-main-title>
-        <p class='page-description' slot='title'>
+        <page-main-title slot='title'>Design your coating pan.</page-main-title>
+        <page-description slot='title'>
           Coating pans come in different makes and models and each of these can be customized
           with different baffles, gun setup and airhanders. Provide some info below
           so we can make recommendations on batch size, process parameters and more.
-        </p>
+        </page-description>
         
         <basic-card>
         
-        <page-section-title text='General Information'></page-section-title>
+        <page-section-title>General Information</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
+        </page-section-description>
       
       <two-column-input-layout>
       
-        <page-section-subtitle wide text='Make & Model' icon=${ productIcon }></page-section-subtitle>
+        <page-section-subtitle title>${ productIcon } Make & Model</page-section-subtitle>
       
         <text-input 
           wide 
@@ -113,7 +110,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle wide text='Company Information' icon=${ productIcon }></page-section-subtitle>
+      <page-section-subtitle title>${ productIcon } Company Information</page-section-subtitle>
       
       <text-input 
         label='Company' 
@@ -144,17 +141,17 @@ class PanPage extends LitElement {
   
   <basic-card>
         
-        <page-section-title text='Coating Pan Dimensions'></page-section-title>
+        <page-section-title>Coating Pan Dimensions</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
-        
-        <page-section-subtitle title text='Pan Height'></page-section-subtitle>
+        </page-section-description>
         
         <input-graphic-layout>
+        
+        <page-section-subtitle title>Pan Height</page-section-subtitle>
         
           <length-input
             label='Drum Diameter'
@@ -173,12 +170,13 @@ class PanPage extends LitElement {
           </length-input>
         
         </input-graphic-layout>
-  
-  
-        
-        <page-section-subtitle title text='Pan Depth'></page-section-subtitle>
         
         <input-graphic-layout>
+        
+  
+  
+        
+        <page-section-subtitle title>Pan Depth</page-section-subtitle>
         
           <length-input
             label='Depth at Brim'
@@ -204,17 +202,17 @@ class PanPage extends LitElement {
   
           <basic-card>
         
-        <page-section-title text='Coating Pan Configuration'></page-section-title>
+        <page-section-title>Coating Pan Configuration</page-section-title>
         
-        <p>
+        <page-section-description>
           Each product is unique. The tooling, formulation and even process
           can crete differences. Provide a descriptions of the product 
           and company who makes it to make it easy to identify.
-        </p>
+        </page-section-description>
       
       <two-column-input-layout>
       
-        <page-section-subtitle wide text='Airflow' icon=${ productIcon }></page-section-subtitle>
+        <page-section-subtitle title>${ productIcon } Airflow</page-section-subtitle>
       
             
             
@@ -244,7 +242,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle wide text='Baffles' icon=${ productIcon }></page-section-subtitle>
+      <page-section-subtitle title>Baffles</page-section-subtitle>
       
       
             
@@ -275,7 +273,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle wide text='Spray Gun' icon=${ productIcon }></page-section-subtitle>
+      <page-section-subtitle title>Spray Guns</page-section-subtitle>
       
             <dropdown-input 
               label='Manufacturer' 
@@ -313,20 +311,17 @@ class PanPage extends LitElement {
   
   <basic-card>
           
-          <page-section-title text='Caculated Properties'></page-section-title>
+          <page-section-title>Calculated Properties</page-section-title>
           
-          <p>
+          <page-section-description>
             Each product is unique. The tooling, formulation and even process
             can crete differences. Provide a descriptions of the product 
             and company who makes it to make it easy to identify.
-          </p>
+          </page-section-description>
           
           <title-detail-layout>
           
-            <page-section-subtitle  
-              slot='title' 
-              text='Pan Volumes' 
-              icon=></page-section-subtitle>
+            <page-section-subtitle slot='title' >Pan Volume</page-section-subtitle>
           
               <volume-text unit='l' path='pan.brimVolume' label='Brim Volume' ></volume-text>
               <volume-text unit='l' path='pan.maxFillVolume' label='Max Working Volume' ></volume-text>

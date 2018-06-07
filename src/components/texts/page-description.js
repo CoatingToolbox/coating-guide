@@ -1,7 +1,7 @@
 
 import { LitElement, html } from '@polymer/lit-element';
 
-class PageMainTitle extends LitElement {
+class PageDescription extends LitElement {
 
   _render () {
     // Template getter must return an instance of HTMLTemplateElement.
@@ -10,8 +10,10 @@ class PageMainTitle extends LitElement {
       <style>
         :host {
           display: block;
-          font-size: 36px;
+          font-size: 16px;
           color: var(--white-color);
+          max-width: 700px;
+          margin-rigth: auto;
         }
       </style>
       
@@ -23,4 +25,4 @@ class PageMainTitle extends LitElement {
 
 // Register the element with the browser.
 /* global customElements */
-customElements.define('page-main-title', PageMainTitle);
+customElements.define('page-description', PageDescription);
