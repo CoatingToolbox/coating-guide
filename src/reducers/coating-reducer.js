@@ -25,6 +25,8 @@ export default function coatingReducer(state = new Coating(), action) {
             return updateCoating(state, 'viscosityExponent', action.value);
         case 'SET_COATING_VISCOSITY_INTERCEPT':
             return updateCoating(state, 'viscosityIntercept', action.value);
+        case 'LOAD_COATING_FROM_LIBRARY':
+            return new Coating(action.value);
         default:
             return state;
     }

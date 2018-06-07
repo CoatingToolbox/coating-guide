@@ -26,7 +26,7 @@ class NumberInput extends connect(store)(LitElement) {
     path.forEach( property => {
       value = value[property];
     });
-    if (typeof value === 'string') {
+    if (typeof value === 'number') {
       this.value = value;
     }
     

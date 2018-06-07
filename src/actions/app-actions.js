@@ -47,23 +47,17 @@ const loadPage = (page) => async (dispatch) => {
     case "pan-library":
         await import('../pages/pan-library-page.js');
         break;
-    // case "pan-designer":
-    //     await import('../pages/pan-designer-page.js');
-    //     break;
     case "coating":
         await import('../pages/coating-page.js');
         break;
-    // case "coating-library":
-    //     await import('../pages/coating-library-page.js');
-    //     break;
-    // case "coating-designer":
-    //     await import('../pages/coating-designer-page.js');
-    //     break;
+    case "coating-library":
+        await import('../pages/coating-library-page.js');
+        break;
     default:
       page = 404;
       await import('../pages/page-404.js');
   }
-  
+  window.scrollTo(0,0);
   dispatch(updatePage(page));
 }
 

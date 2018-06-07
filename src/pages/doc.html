@@ -1,19 +1,18 @@
 <div class='cell'>
-    <div class='item-title'>${ item.nickname }</div>
+    <div class='item-title'>${item.productName}</div>
+    <div class='item-title'>${item.formulaName}</div>
 </div>
 <div class='cell'>
-    <div class='item-title'>${ item.modelName }</div>
-    <div class='subtext'>${ item.manufacturerName }</div>
+    <div class='subtext'>${item.color}</div>
 </div>
 <div class='cell'>
-    <div>${ item.companyName }</div>
-    <div class='subtext'>${ item.companyLocation }</div>
+    <div>${item.releaseType}</div>
 </div>
-<div class='cell number'>${ (item.mainDiameter * 39.3701).toFixed(1) } </div>
-<div class='cell number'>${ (item.brimVolume * 1000).toFixed(1) } </div>
-<div class='cell number'>${ (item.minFillVolume * 1000).toFixed(1) } to ${ (item.maxFillVolume * 1000).toFixed(1) }</div>
+<div class='cell number'>${(item.vicosity).toFixed(0)} at ${(item.solids * 100).toFixed(1)}% solids</div>
+<div class='cell number'>${(item.filmDensity / 1000000 ).toFixed(2)}</div>
+<div class='cell number'>${(item.filmOpacity * 100).toFixed(0)}</div>
 
 <div class='cell'>
-    <div class='icon-button' on-click=${ ()=> loadPan(item) }> ${ loadIcon }
+    <div class='icon-button' on-click=${ ()=> loadCoating(item) }> ${ loadIcon }
     </div>
 </div>
