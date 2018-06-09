@@ -74,6 +74,7 @@ class OverviewPage extends connect(store)(LitElement) {
         .material-layout a {
           grid-row: 1 / 3;
           align-self: center;
+          text-decoration: none;
         }
         
         #parameters-layout {
@@ -124,10 +125,10 @@ class OverviewPage extends connect(store)(LitElement) {
             <div class='material-label'>Coating Substrate</div>
             <div class='material-title'>${_tabletName}</div>
             <a href='/#tablet-library'>
-              <large-button label='Load'></large-button>
+              <large-button>Load</large-button>
             </a>
             <a href='/#tablet'>
-              <large-button label='Explore'></large-button>
+              <large-button highlight>Edit</large-button>
             </a>
           </div>
           
@@ -135,10 +136,10 @@ class OverviewPage extends connect(store)(LitElement) {
             <div class='material-label'>Coating Equipment</div>
             <div class='material-title'>${_panName}</div>
             <a href='/#pan-library'>
-              <large-button label='Load'></large-button>
+              <large-button>Load</large-button>
             </a>
             <a href='/#pan'>
-              <large-button label='Explore'></large-button>
+              <large-button highlight>Edit</large-button>
             </a>
           </div>
           
@@ -146,10 +147,10 @@ class OverviewPage extends connect(store)(LitElement) {
             <div class='material-label'>Coating Formula</div>
             <div class='material-title'>${_coatingName}</div>
             <a href='/#coating-library'>
-              <large-button label='Load'></large-button>
+              <large-button>Load</large-button>
             </a>
             <a href='/#coating'>
-              <large-button label='Explore'></large-button>
+              <large-button highlight>Edit</large-button>
             </a>
           </div>
         </basic-card>

@@ -2,11 +2,7 @@
 import { LitElement, html } from '@polymer/lit-element';
 
 class LargeButton extends LitElement {
-  static get properties () {
-    return {
-      label: String
-    };
-  }
+  
 
   _render({label}) {
     // Template getter must return an instance of HTMLTemplateElement.
@@ -21,20 +17,24 @@ class LargeButton extends LitElement {
           background-color: var(--background-color);
           color: var(--text-light-color);
           cursor: pointer;
+          font-size: 14px;
           transition: 0.2s all;
         }
-        :host(:hover) {
+        :host(:hover),
+        :host([highlight]) {
+          transition: 0.3s all;
           border-color: var(--app-accent-color);
           background-color: var(--app-accent-color);
           color: var(--white-color);
-          transition: 0.3s all;
         }
-        #label {
-          font-size: 14px;
+        :host(:hover) {
+          box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2);
         }
       </style>
       
-      <div id='label'>${label}</div>
+      <slot></slot>
     `;
   }
 }
