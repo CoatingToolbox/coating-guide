@@ -103,10 +103,13 @@ class OverviewPage extends connect(store)(LitElement) {
         
       </style>
       
-        <page-main-title>Let's setup your coating process.</page-main-title>
+        <page-main-title>Coating Overview</page-main-title>
         <page-description>
-          Measure a compressed tablets dimensions, weight and bulk density
-          and we can estimate important tablet properties for coating.
+          Let's setup your coating process. Provide information about
+          the materials & equipment, than determine optimal conditions
+          for coating dispersion, coating amount and batch size. With,
+          your process parameters selected finally, review critical coating
+          specifications to determine how to improve your process.
         </page-description>
         
         <basic-card>

@@ -81,7 +81,7 @@ class TabletPage extends LitElement {
       
       <nav-page-layout>
       
-        <page-main-title slot='title'>Design your tablet.</page-main-title>
+        <page-main-title slot='title'>Tablet Core</page-main-title>
         <page-description slot='title'>
           Measure a compressed tablets dimensions, weight and bulk density
           and we can estimate important tablet properties for coating.
@@ -92,8 +92,8 @@ class TabletPage extends LitElement {
         
         <page-section-description>
           Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          can create differences. Provide a descriptions of the product 
+          and company information to make it easy to identify.
         </page-section-description>
       
       <two-column-input-layout>
@@ -170,9 +170,9 @@ class TabletPage extends LitElement {
         <page-section-title>Tablet Shape</page-section-title>
         
         <page-section-description>
-          Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          To get started select the 
+          shape that best describes your tablet. This selection defines
+          the model used in calculating the final tablet properties.
         </page-section-description>
         
         <tablet-shape-selector on-shape-changed=${ (e) => this._updateInputDisplay(e.detail.value)}></tablet-shape-selector>
@@ -182,9 +182,13 @@ class TabletPage extends LitElement {
         <page-section-title>Tablet Dimensions</page-section-title>
         
         <page-section-description>
-          Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          With the the compressed tablet provide the following easy to measure dimensions.
+          <ul>
+            <li><b>Length:</b> - The longest dimension or diamter of a round tablet.</li>
+            <li><b>Width:</b> - The shortest dimension of an oval or caplet tablet.</li>
+            <li><b>Total Thickness:</b> - The thickness of the tablet at the peak concavity.</li>
+            <li><b>Band Thickness:</b> - The thickness of the tablet band only.</li>
+          </ul>
         </page-section-description>
       
       
@@ -250,9 +254,9 @@ class TabletPage extends LitElement {
           <page-section-title>Weight & Density</page-section-title>
           
           <page-section-description>
-            Each product is unique. The tooling, formulation and even process
-            can crete differences. Provide a descriptions of the product 
-            and company who makes it to make it easy to identify.
+            The average tablet weight and standard deviation are important parameters
+            in determing the optimal coating amount. And the bulk density helps determine
+            the appropriate batch size.
           </page-section-description>
           
           <input-graphic-layout>
@@ -299,9 +303,10 @@ class TabletPage extends LitElement {
           <page-section-title>Calcualted Properties</page-section-title>
           
           <page-section-description>
-            Each product is unique. The tooling, formulation and even process
-            can crete differences. Provide a descriptions of the product 
-            and company who makes it to make it easy to identify.
+            Based on the above information properties of the tablet, tooling and concavity
+            are calculated. We will use the tablet properties to determine the optimal amount
+            of coating. The tooling and concavity information is for reference only but can 
+            be used to understand how changes in your formulation would impact the final product.
           </page-section-description>
           
           <title-detail-layout>

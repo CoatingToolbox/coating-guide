@@ -13,18 +13,10 @@ const getLibraryTemplate = (library) => {
   library.forEach( item => {
     template = html`
       ${template}
-      <div class='cell'>
-        <div class='item-title'>${item.productName}</div>
-    </div>
-      <div class='cell'>
-        <div class='item-title'>${item.formulaName}</div>
-    </div>
-    <div class='cell'>
-        <div class='subtext'>${item.color}</div>
-    </div>
-    <div class='cell'>
-        <div>${item.releaseType}</div>
-    </div>
+    <div class='cell'>${item.productName}</div>
+    <div class='cell'>${item.formulaName}</div>
+    <div class='cell'>${item.color}</div>
+    <div class='cell'>${item.releaseType}</div>
     <div class='cell number'>${(item.solids * 100).toFixed(1)}%</div>
     <div class='cell number'>${(item.filmDensity / 1000000 ).toFixed(2)} g/ml</div>
     <div class='cell number'>${(item.filmOpacity * 100).toFixed(0)}%</div>

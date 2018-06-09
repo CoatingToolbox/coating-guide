@@ -15,17 +15,20 @@ class NavPageLayout extends LitElement {
       <style>
         :host {
           display: grid;
-          grid-template-columns: auto auto;
+          grid-template-columns: auto;
           padding: 24px 72px;
           margin: auto;
           background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 550px, var(--background-color) 0%,var(--background-color) 100%);
           --page-width: 800px;
         }
+        #title, 
+        #page {
+          max-width: var(--page-width);
+          width: 100%;
+          justify-self: center;
+        }
         #title {
           grid-column: 1 / 2;
-          justify-self: end;
-          width: 100%;
-          max-width:var(--page-width);
           min-height: 64px;
           padding: 32px 0px;
         }
@@ -35,16 +38,29 @@ class NavPageLayout extends LitElement {
         #page {
           grid-column: 1 / 2;
           grid-row: 2 / 3;
-          justify-self: end;
-          width: 100%;
-          max-width:var(--page-width);
-          border-radius: 4px;
         }
         #nav {
-          grid-column: 2 / 3;
-          grid-row: 2 / 3;
-          min-width: 200px;
-          padding-left: 32px;
+          display: none;
+        }
+        @media(min-width: 1200px) {
+          :host {
+            grid-template-column: auto auto;
+          }
+          #title, 
+          #page {
+            max-width: var(--page-width);
+            width: 100%;
+            justify-self: center;
+          }
+          #nav {
+            display: block;
+            grid-column: 2 / 3;
+            grid-row: 2 / 3;
+            min-width: 200px;
+            padding-left: 32px;
+          }
+          
+          
         }
       </style>
       <div id='title'>

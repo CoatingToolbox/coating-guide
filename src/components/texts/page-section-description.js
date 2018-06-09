@@ -11,8 +11,8 @@ class PageSectionDescription extends LitElement {
         :host {
           display: block;
           font-size: 16px;
-          color: var(--text-color);
-          max-width: 600px;
+          color: var(--text-light-color);
+          text-align: justify;
           margin: 8px auto 16px 0px;
         }
       </style>
