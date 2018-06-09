@@ -15,10 +15,10 @@ class NavPageLayout extends LitElement {
       <style>
         :host {
           display: grid;
-          grid-template-columns: auto;
+          grid-template-columns: 1fr;
           padding: 24px 72px;
           margin: auto;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 550px, var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 528px, var(--background-color) 0%,var(--background-color) 100%);
           --page-width: 800px;
         }
         #title, 
@@ -29,8 +29,7 @@ class NavPageLayout extends LitElement {
         }
         #title {
           grid-column: 1 / 2;
-          min-height: 64px;
-          padding: 32px 0px;
+          padding: 48px 0px;
         }
         #title ::slotted(*) {
           color: var(--white-color);
@@ -44,7 +43,7 @@ class NavPageLayout extends LitElement {
         }
         @media(min-width: 1200px) {
           :host {
-            grid-template-column: auto auto;
+            grid-template-columns: 1fr auto;
           }
           #title, 
           #page {

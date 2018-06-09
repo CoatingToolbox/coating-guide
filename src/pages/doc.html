@@ -1,18 +1,63 @@
-<div class='cell'>
-    <div class='item-title'>${item.productName}</div>
-    <div class='item-title'>${item.formulaName}</div>
-</div>
-<div class='cell'>
-    <div class='subtext'>${item.color}</div>
-</div>
-<div class='cell'>
-    <div>${item.releaseType}</div>
-</div>
-<div class='cell number'>${(item.vicosity).toFixed(0)} at ${(item.solids * 100).toFixed(1)}% solids</div>
-<div class='cell number'>${(item.filmDensity / 1000000 ).toFixed(2)}</div>
-<div class='cell number'>${(item.filmOpacity * 100).toFixed(0)}</div>
+<style>
+    :host {
+        display: block;
+    }
 
-<div class='cell'>
-    <div class='icon-button' on-click=${ ()=> loadCoating(item) }> ${ loadIcon }
-    </div>
-</div>
+    basic-card+basic-card {
+        margin-top: 48px;
+    }
+</style>
+
+<nav-page-layout>
+
+    <page-main-title slot='title'>Coating Formulation</page-main-title>
+
+    <basic-card>
+        <page-section-title>General Information</page-section-title>
+        <page-section-description>
+            For reference provide a description of the coating formulations.
+        </page-section-description>
+        <two-column-input-layout>
+            <page-section-subtitle title>${ productIcon } Product Description</page-section-subtitle>
+            <text-input label='Product Name' path='coating.productName' action='SET_COATING_PRODUCT_NAME'>
+            </text-input>
+            <text-input label='Formula' path='coating.formulaName' action='SET_COATING_FORMULA_NAME'>
+            </text-input>
+            <text-input label='Color' path='coating.color' action='SET_COATING_COLOR'>
+            </text-input>
+            <dropdown-input label='Release Type' path='coating.releaseType' action='SET_COATING_RELEASE_TYPE' options='${ coatingTypeOptions }'>
+            </dropdown-input>
+        </two-column-input-layout>
+    </basic-card>
+
+    <basic-card>
+        <page-section-title>Film Properties</page-section-title>
+        <page-section-description></page-section-description>
+        <input-graphic-layout>
+            <page-section-subtitle title>${ densityIcon } Film Density</page-section-subtitle>
+            <density-input label='Film Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
+        </input-graphic-layout>
+        <input-graphic-layout>
+            <page-section-subtitle title>${ densityIcon } Opacity</page-section-subtitle>
+            <percent-input label='Opacity' unit='%' action='SET_COATING_OPACITY' path='coating.opacity'></percent-input>
+        </input-graphic-layout>
+    </basic-card>
+
+
+    <basic-card>
+        <page-section-title>Dispersion</page-section-title>
+        <page-section-description></page-section-description>
+        <input-graphic-layout>
+            <page-section-subtitle title>${ volumeIcon } Viscosity</page-section-subtitle>
+            <number-input label='Viscosity Curve Intercept' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
+            <number-input label='Viscosity Curve Exponent' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
+        </input-graphic-layout>
+    </basic-card>
+
+    <page-button-layout>
+        <last-page-button page='#pan'>Coating Equipment</last-page-button>
+        <next-page-button page='#batch'>Batch Size</next-page-button>
+    </page-button-layout>
+
+
+</nav-page-layout>

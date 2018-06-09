@@ -1,5 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
-import { productIcon, rulerIcon, weightIcon } from '../components/app-icons.js';
+import { productIcon, rulerIcon, weightIcon, companyIcon, toolingIcon, concavityIcon, densityIcon } from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
 import '../components/layouts/nav-page-layout.js';
@@ -82,11 +82,6 @@ class TabletPage extends LitElement {
       <nav-page-layout>
       
         <page-main-title slot='title'>Tablet Core</page-main-title>
-        <page-description slot='title'>
-          Measure a compressed tablets dimensions, weight and bulk density
-          and we can estimate important tablet properties for coating.
-        </page-description>
-        
         <basic-card>
         <page-section-title>General Information</page-section-title>
         
@@ -136,7 +131,7 @@ class TabletPage extends LitElement {
         
       <two-column-input-layout>
       
-        <page-section-subtitle title>${ productIcon } Company Information</page-section-subtitle>
+        <page-section-subtitle title>${ companyIcon } Company Information</page-section-subtitle>
         
         <text-input 
           label='Company' 
@@ -184,10 +179,10 @@ class TabletPage extends LitElement {
         <page-section-description>
           With the the compressed tablet provide the following easy to measure dimensions.
           <ul>
-            <li><b>Length:</b> - The longest dimension or diamter of a round tablet.</li>
-            <li><b>Width:</b> - The shortest dimension of an oval or caplet tablet.</li>
-            <li><b>Total Thickness:</b> - The thickness of the tablet at the peak concavity.</li>
-            <li><b>Band Thickness:</b> - The thickness of the tablet band only.</li>
+            <li><b>Length - </b> The longest dimension or diamter of a round tablet.</li>
+            <li><b>Width - </b> The shortest dimension of an oval or caplet tablet.</li>
+            <li><b>Total Thickness - </b> The thickness of the tablet at the peak concavity.</li>
+            <li><b>Band Thickness - </b> The thickness of the tablet band only.</li>
           </ul>
         </page-section-description>
       
@@ -283,7 +278,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title>${ weightIcon } Tablet Bulk Density</page-section-subtitle>
+          <page-section-subtitle title>${ densityIcon } Tablet Bulk Density</page-section-subtitle>
           
           
             <density-input
@@ -311,7 +306,7 @@ class TabletPage extends LitElement {
           
           <title-detail-layout>
           
-            <page-section-subtitle slot='title'>${ weightIcon } Tablet</page-section-subtitle>
+            <page-section-subtitle slot='title'>${ concavityIcon } Tablet</page-section-subtitle>
           
               <density-text unit='g/ml' path='tablet.compressedDensity' label='Compressed Density' ></density-text>
               <area-text unit='mm2' path='tablet.totalArea' label='Surface Area' ></area-text>
@@ -322,7 +317,7 @@ class TabletPage extends LitElement {
           
           <title-detail-layout>
           
-            <page-section-subtitle slot='title'>${ weightIcon } Tooling</page-section-subtitle>
+            <page-section-subtitle slot='title'>${ toolingIcon } Tooling</page-section-subtitle>
     
               <length-text unit='mm' path='tablet.perimeter' label='Perimeter' ></length-text>
               <area-text unit='mm2' path='tablet.crossSectionArea' label='Cross Section Area' ></area-text>
@@ -334,7 +329,7 @@ class TabletPage extends LitElement {
           
           
           <title-detail-layout>
-            <page-section-subtitle slot='title'>${ weightIcon } Concavity</page-section-subtitle>
+            <page-section-subtitle slot='title'>${ concavityIcon } Concavity</page-section-subtitle>
         
               <length-text unit='mm' path='tablet.cupThickness' label='Cup Depth' ></length-text>
               <length-text unit='mm' path='tablet.lengthCupRadius' label='Length Cup Radius' ></length-text>

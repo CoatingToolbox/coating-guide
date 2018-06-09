@@ -80,7 +80,7 @@ class PanLibraryPage extends LitElement {
         :host {
           display: block;
           padding: 48px 72px;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 265px, var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 258px, var(--background-color) 0%,var(--background-color) 100%);
         }     
         #layout {
           max-width: 1024px;
@@ -184,9 +184,6 @@ class PanLibraryPage extends LitElement {
       <div id='layout'>
       
         <page-main-title>Coating Pan Library</page-main-title>
-        <page-description>
-          Choose a coating pan from Colorcon's library.
-        </page-description>
         <div id='search-layout'>
           ${ searchIcon }
           <paper-input 

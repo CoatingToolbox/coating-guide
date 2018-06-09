@@ -10,7 +10,8 @@ class PageMainTitle extends LitElement {
       <style>
         :host {
           display: block;
-          font-size: 36px;
+          font-size: 48px;
+          font-weight: 300;
           color: var(--white-color);
         }
       </style>

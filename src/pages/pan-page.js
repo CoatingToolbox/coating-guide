@@ -1,5 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
-import { productIcon, rulerIcon, weightIcon } from '../components/app-icons.js';
+import { productIcon, companyIcon, rulerIcon, volumeIcon, mixIcon, sprayIcon, airIcon} from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
 import '../components/layouts/nav-page-layout.js';
@@ -23,7 +23,6 @@ import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 
 const perforationOptions = ["", "Fully", "Partially", "Solid", "Other"];
-const airflowOptions = ["", "Upper Right with Plenum", "Upper Right No Plenum", "Integrated Plenum", "Other"];
 const baffleOptions = ["", "Ploughshare", "Rabbit", "Helical", "Sharkfin", "Other"];
 const gunOptions = ["", "Spraying System", "Schlick", "Freund", "Other"];
 
@@ -67,21 +66,15 @@ class PanPage extends LitElement {
       
       <nav-page-layout>
       
-        <page-main-title slot='title'>Design your coating pan.</page-main-title>
-        <page-description slot='title'>
-          Coating pans come in different makes and models and each of these can be customized
-          with different baffles, gun setup and airhanders. Provide some info below
-          so we can make recommendations on batch size, process parameters and more.
-        </page-description>
+        <page-main-title slot='title'>Coating Equipment</page-main-title>
         
         <basic-card>
         
         <page-section-title>General Information</page-section-title>
-        
+          Coating pans come in different makes and models and each configured differently.
+          Provide a description of the equipment and company for easy identifications.
         <page-section-description>
-          Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          
         </page-section-description>
       
       <two-column-input-layout>
@@ -110,7 +103,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle title>${ productIcon } Company Information</page-section-subtitle>
+      <page-section-subtitle title>${ companyIcon } Company Information</page-section-subtitle>
       
       <text-input 
         label='Company' 
@@ -144,14 +137,18 @@ class PanPage extends LitElement {
         <page-section-title>Coating Pan Dimensions</page-section-title>
         
         <page-section-description>
-          Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          Provide the following dimensions of the coating pan:
+          <ul>
+            <li><b>Drum Diameter - </b> The main diameter of the coating pan drum.</li>
+            <li><b>Opening Diameter - </b> The diameter of the coating pan's opening.</li>
+            <li><b>Brim Depth - </b> The length from the pan opening (ie brim) to the back wall.</li>
+            <li><b>Wall Depth - </b> The length from front to back of the perforated pan wall.</li>
+          </ul>
         </page-section-description>
         
         <input-graphic-layout>
         
-        <page-section-subtitle title>Pan Height</page-section-subtitle>
+        <page-section-subtitle title>${ rulerIcon } Pan Height</page-section-subtitle>
         
           <length-input
             label='Drum Diameter'
@@ -176,10 +173,10 @@ class PanPage extends LitElement {
   
   
         
-        <page-section-subtitle title>Pan Depth</page-section-subtitle>
+        <page-section-subtitle title>${ rulerIcon } Pan Depth</page-section-subtitle>
         
           <length-input
-            label='Depth at Brim'
+            label='Brim Depth'
             path='pan.brimWidth'
             action='SET_PAN_BRIM_WIDTH'
               unit='${ lengthUnits }'
@@ -187,7 +184,7 @@ class PanPage extends LitElement {
           </length-input>
           
           <length-input
-            label='Depth at Perforated Wall'
+            label='Wall Depth'
             path='pan.wallWidth'
             action='SET_PAN_WALL_WIDTH'
               unit='${ lengthUnits }'
@@ -205,14 +202,13 @@ class PanPage extends LitElement {
         <page-section-title>Coating Pan Configuration</page-section-title>
         
         <page-section-description>
-          Each product is unique. The tooling, formulation and even process
-          can crete differences. Provide a descriptions of the product 
-          and company who makes it to make it easy to identify.
+          Details on the spray guns, airflow and baffles which make this equipment unique 
+          and can be used to provide guidance to optimize the process.
         </page-section-description>
       
       <two-column-input-layout>
       
-        <page-section-subtitle title>${ productIcon } Airflow</page-section-subtitle>
+        <page-section-subtitle title>${ airIcon } Airflow</page-section-subtitle>
       
             
             
@@ -242,7 +238,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle title>Baffles</page-section-subtitle>
+      <page-section-subtitle title>${ mixIcon } Baffles</page-section-subtitle>
       
       
             
@@ -273,7 +269,7 @@ class PanPage extends LitElement {
         
     <two-column-input-layout>
     
-      <page-section-subtitle title>Spray Guns</page-section-subtitle>
+      <page-section-subtitle title>${ sprayIcon } Spray Guns</page-section-subtitle>
       
             <dropdown-input 
               label='Manufacturer' 
@@ -314,18 +310,27 @@ class PanPage extends LitElement {
           <page-section-title>Calculated Properties</page-section-title>
           
           <page-section-description>
-            Each product is unique. The tooling, formulation and even process
-            can crete differences. Provide a descriptions of the product 
-            and company who makes it to make it easy to identify.
+            Coating pans are often desribed by the pan diameter but the pan 
+            volume provides a better understanding of the pans capacity. The following
+            volumes are predecited from the dimensions provided.Array
+            
+          <ul>
+            <li><b>Brim - </b> The pan volume upto the brim and before tablets would fall out.</li>
+            <li><b>Max - </b> To leave room for when the pans are tumbling the max working
+            volume is calcualted as one inch from the brim.</li>
+            <li><b>Min - </b> Low pan loads are known to have negative effect of tablet mixing,
+            so the minimum working volume is calculated based on the baffle height. If baffle height
+            info is not available this is based on a 70% fill.</li>
+          </ul>
           </page-section-description>
           
           <title-detail-layout>
           
-            <page-section-subtitle slot='title' >Pan Volume</page-section-subtitle>
+            <page-section-subtitle slot='title' >${ volumeIcon } Pan Volume</page-section-subtitle>
           
               <volume-text unit='l' path='pan.brimVolume' label='Brim Volume' ></volume-text>
-              <volume-text unit='l' path='pan.maxFillVolume' label='Max Working Volume' ></volume-text>
-              <volume-text unit='l' path='pan.minFillVolume' label='Min Working Volume' ></volume-text>
+              <volume-text unit='l' path='pan.maxFillVolume' label='Max Volume' ></volume-text>
+              <volume-text unit='l' path='pan.minFillVolume' label='Min Volume' ></volume-text>
             
           </title-detail-layout>
           

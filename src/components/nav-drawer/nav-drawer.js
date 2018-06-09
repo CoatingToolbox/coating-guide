@@ -31,12 +31,12 @@ class NavDrawer extends LitElement{
   
       <nav-section label='Materials & Equipment'></nav-section>
       <nav-item link='/#tablet' label='Tablet Core' sub-item></nav-item>
-      <nav-item link='/#pan' label='Coating Pan' sub-item></nav-item>
+      <nav-item link='/#pan' label='Coating Equipment' sub-item></nav-item>
       <nav-item link='/#coating' label='Coating Formula' sub-item></nav-item>
         
       <nav-section label='Trial Setup'></nav-section>
       <nav-item link='/' label='Coating Amount' sub-item></nav-item>
-      <nav-item link='/' label='Disperson' sub-item></nav-item>
+      <nav-item link='/' label='Dispersion' sub-item></nav-item>
       <nav-item link='/' label='Batch Size' sub-item></nav-item>
       
       <nav-item link='#/' label='Process Parameters'></nav-item>

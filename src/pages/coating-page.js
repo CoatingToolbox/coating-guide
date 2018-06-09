@@ -1,5 +1,5 @@
 import { LitElement, html } from '@polymer/lit-element';
-import { productIcon } from '../components/app-icons.js';
+import { productIcon, densityIcon, volumeIcon } from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
 import '../components/layouts/nav-page-layout.js';
@@ -23,19 +23,11 @@ const coatingTypeOptions = ["", "Immediate Release", "Extended Release", "Delaye
 
 class CoatingPage extends LitElement {
   
-  static get properties() {
-    return {
-      
-    };
-  }
-  
-  constructor() {
-    super();
-  }
-  _render({ lengthUnits }) {
+  _render({ }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
-    return html`<style>
+    return html`
+    <style>
     :host {
         display: block;
     }
@@ -47,10 +39,7 @@ class CoatingPage extends LitElement {
 
 <nav-page-layout>
 
-    <page-main-title slot='title'>Design your coating formula.</page-main-title>
-    <page-description slot='title'>
-        Coating pans come in different makes and models and each of these can be customized with different baffles, gun setup and airhanders. Provide some info below so we can make recommendations on batch size, process parameters and more.
-    </page-description>
+    <page-main-title slot='title'>Coating Formulation</page-main-title>
 
     <basic-card>
         <page-section-title>General Information</page-section-title>
@@ -58,7 +47,7 @@ class CoatingPage extends LitElement {
             For reference provide a description of the coating formulations.
         </page-section-description>
         <two-column-input-layout>
-            <page-section-subtitle title>Product Description</page-section-subtitle>
+            <page-section-subtitle title>${ productIcon } Product Description</page-section-subtitle>
             <text-input label='Product Name' path='coating.productName' action='SET_COATING_PRODUCT_NAME'>
             </text-input>
             <text-input label='Formula' path='coating.formulaName' action='SET_COATING_FORMULA_NAME'>
@@ -73,13 +62,12 @@ class CoatingPage extends LitElement {
     <basic-card>
         <page-section-title>Film Properties</page-section-title>
         <page-section-description></page-section-description>
-
         <input-graphic-layout>
-            <page-section-subtitle title>Film Density</page-section-subtitle>
+            <page-section-subtitle title>${ densityIcon } Film Density</page-section-subtitle>
             <density-input label='Film Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
         </input-graphic-layout>
         <input-graphic-layout>
-            <page-section-subtitle title>Opacity</page-section-subtitle>
+            <page-section-subtitle title>${ densityIcon } Opacity</page-section-subtitle>
             <percent-input label='Opacity' unit='%' action='SET_COATING_OPACITY' path='coating.opacity'></percent-input>
         </input-graphic-layout>
     </basic-card>
@@ -88,9 +76,8 @@ class CoatingPage extends LitElement {
     <basic-card>
         <page-section-title>Dispersion</page-section-title>
         <page-section-description></page-section-description>
-
         <input-graphic-layout>
-            <page-section-subtitle title>Viscosity</page-section-subtitle>
+            <page-section-subtitle title>${ volumeIcon } Viscosity</page-section-subtitle>
             <number-input label='Viscosity Curve Intercept' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
             <number-input label='Viscosity Curve Exponent' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
         </input-graphic-layout>
@@ -102,9 +89,7 @@ class CoatingPage extends LitElement {
     </page-button-layout>
 
 
-</nav-page-layout>
-
-    `;
+</nav-page-layout>`;
   }
 }
 

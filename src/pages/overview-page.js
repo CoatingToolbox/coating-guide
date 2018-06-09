@@ -132,7 +132,7 @@ class OverviewPage extends connect(store)(LitElement) {
           </div>
           
           <div class='material-layout'>
-            <div class='material-label'>Coating Pan</div>
+            <div class='material-label'>Coating Equipment</div>
             <div class='material-title'>${_panName}</div>
             <a href='/#pan-library'>
               <large-button label='Load'></large-button>

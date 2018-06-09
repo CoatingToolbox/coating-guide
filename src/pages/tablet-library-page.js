@@ -101,7 +101,7 @@ class TabletLibraryPage extends LitElement {
         :host {
           display: block;
           padding: 48px 72px;
-          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 288px, var(--background-color) 0%,var(--background-color) 100%);
+          background: linear-gradient(to bottom, var(--app-primary-color) 0%,var(--app-primary-color) 258px, var(--background-color) 0%,var(--background-color) 100%);
         }
         #layout {
           max-width: 1024px;
@@ -202,10 +202,6 @@ class TabletLibraryPage extends LitElement {
       
       <div id='layout'>
         <page-main-title>Tablet Core Library</page-main-title>
-        <page-description>
-          Don't have tablet details? Choose a tablet from the library. We have collected a range of pharmacetuical and nutritional tablets that your
-          can select to get started faster.
-        </page-description>
         
         <div id='search-layout'>
           ${ searchIcon }
