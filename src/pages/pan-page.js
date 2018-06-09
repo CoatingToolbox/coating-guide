@@ -33,8 +33,8 @@ class PanPage extends LitElement {
   
   static get properties() {
     return {
-      lengthUnits: String
-      
+      lengthUnits: String,
+      dimensionsLine: String
     };
   }
   
@@ -42,7 +42,7 @@ class PanPage extends LitElement {
     super();
     this.lengthUnits = 'in';
   }
-  _render({ lengthUnits }) {
+  _render({ lengthUnits, dimensionsLine }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -157,6 +157,7 @@ class PanPage extends LitElement {
             path='pan.mainDiameter'
             action='SET_PAN_MAIN_DIAMETER'
               unit='${ lengthUnits }'
+            on-click=${() => this.dimensionsLine = 'main'}
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
           
@@ -165,10 +166,11 @@ class PanPage extends LitElement {
             path='pan.openingDiameter'
             action='SET_PAN_OPENING_DIAMETER'
               unit='${ lengthUnits }'
+            on-click=${() => this.dimensionsLine = 'opening'}
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
           
-          <pan-diameter-graphic graphic></pan-diameter-graphic>
+          <pan-diameter-graphic line='${ dimensionsLine }' graphic></pan-diameter-graphic>
         
         </input-graphic-layout>
         
@@ -184,6 +186,7 @@ class PanPage extends LitElement {
             path='pan.brimWidth'
             action='SET_PAN_BRIM_WIDTH'
               unit='${ lengthUnits }'
+            on-click=${() => this.dimensionsLine = 'brim'}
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
           
@@ -192,10 +195,11 @@ class PanPage extends LitElement {
             path='pan.wallWidth'
             action='SET_PAN_WALL_WIDTH'
               unit='${ lengthUnits }'
+            on-click=${() => this.dimensionsLine = 'wall'}
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
           
-          <pan-depth-graphic graphic></pan-depth-graphic>
+          <pan-depth-graphic  line='${ dimensionsLine }' graphic></pan-depth-graphic>
         
         </input-graphic-layout>
   

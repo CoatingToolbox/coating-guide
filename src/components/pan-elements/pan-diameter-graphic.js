@@ -60,12 +60,29 @@ const getFrontFill = (diameter, fillHeight) => {
         return  "M " + (svg.centerX - fillHalfChord) + " " + (svg.centerY + gapHeight) +
                       " a " + scaledRadius + " " + scaledRadius + " 0 0 0 " + (2 * fillHalfChord) + " 0 z";
       };
+const getLine = (diameter, opening, line) => {
+  let d;
+  switch(line) {
+    case 'main':
+      d = diameter;
+      break;
+    case 'opening':
+      d = opening;
+      break;
+    default: 
+    return '';
+  }
+  let scaledDiameter = diameter * svg.scale;
+  let scaledD = d * svg.scale;
+  
+  return `M ${ svg.centerX + scaledDiameter / 2 + svg.padding} ${svg.centerY - scaledD / 2}
+     l ${svg.cap} 0 m ${-svg.cap / 2} 0 l 0 ${scaledD} m ${svg.cap / 2} 0 l ${-svg.cap} 0`;
+};
 
 class PanDiameterGraphic extends connect(store)(LitElement) {
   
   static get properties () {
     return {
-      view: String,
       line: String,
       diameter: Number,
       opening: Number,
@@ -81,7 +98,7 @@ class PanDiameterGraphic extends connect(store)(LitElement) {
     this.fillHeight = state.pan.brimHeight;
   }
   
-  _render ({ diameter, opening, fillHeight }) {
+  _render ({ diameter, opening, fillHeight, line }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -98,6 +115,9 @@ class PanDiameterGraphic extends connect(store)(LitElement) {
           --pan-fill-color: var(--app-light-color, #FF514B);
         }
         
+        .line {
+          stroke: var(--app-primary-color);
+        }
         .graphic {
           height: 100%;
           max-height: 196px;
@@ -118,6 +138,7 @@ class PanDiameterGraphic extends connect(store)(LitElement) {
           <path class='outline' d$='${ getFrontPan(diameter) }'></path>
           <path class='volume' d$='${ getFrontFill(diameter, fillHeight) }'></path>
           <path class='outline' d$='${ getFrontPan(opening) }'></path>
+          <path class='line' d$='${ getLine(diameter, opening, line) }'></path>
         </svg>
     `;
   }

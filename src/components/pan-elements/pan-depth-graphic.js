@@ -77,12 +77,28 @@ const getSideFill= (diameter, open, wall, brim, fillHeight) => {
                 " l " + -scaledWall + " 0" +
                 " l " + (-wallX + fillX) + " " + (-wallY + brimToFill) + " z";
       }
-
+const getLine = (diameter, wallWidth, brimWidth, line) => {
+  let x;
+  switch(line) {
+    case 'wall':
+      x = wallWidth;
+      break;
+    case 'brim':
+      x = brimWidth;
+      break;
+    default: 
+    return '';
+  }
+  let scaledDiameter = diameter * svg.scale;
+  let scaledX = x * svg.scale;
+  
+  return `M ${ svg.centerX - scaledX / 2} ${svg.centerY + scaledDiameter / 2 + svg.padding}
+     l 0 ${svg.cap} m 0 ${-svg.cap / 2} l ${scaledX} 0 m 0 ${svg.cap / 2} l 0 ${-svg.cap}`;
+};
 class PanDepthGraphic extends connect(store)(LitElement) {
   
   static get properties () {
     return {
-      view: String,
       line: String,
       diameter: Number,
       opening: Number,
@@ -99,7 +115,7 @@ class PanDepthGraphic extends connect(store)(LitElement) {
     this.brimWidth = state.pan.brimWidth;
   }
   
-  _render ({ diameter, opening, fillHeight, wallWidth, brimWidth }) {
+  _render ({ diameter, opening, fillHeight, wallWidth, brimWidth, line }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -130,11 +146,16 @@ class PanDepthGraphic extends connect(store)(LitElement) {
           fill: var(--pan-fill-color);
           fill-opacity: 1;
         }
+        
+        .line {
+          stroke: var(--app-primary-color);
+        }
       </style>
       
         <svg class='graphic' viewbox='0 0 24 18'>
           <path class='outline' d$='${ getSidePan(diameter, opening, wallWidth, brimWidth) }'></path>
           <path class='volume' d$='${ getSideFill(diameter, opening, wallWidth, brimWidth, fillHeight) }'></path>
+          <path class='line' d$='${ getLine(diameter, wallWidth, brimWidth, line) }'></path>
         </svg>
     `;
   }
