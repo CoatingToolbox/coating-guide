@@ -7,6 +7,8 @@ import '../components/layouts/title-detail-layout.js';
 import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/two-column-input-layout.js';
 import '../components/layouts/page-button-layout.js';
+import '../components/buttons/next-page-button.js';
+import '../components/buttons/last-page-button.js';
 import '../components/texts/page-main-title.js';
 import '../components/texts/page-description.js';
 import '../components/texts/page-section-title.js';
@@ -35,6 +37,11 @@ class CoatingPage extends LitElement {
     basic-card+basic-card {
         margin-top: 48px;
     }
+    .equation {
+        padding: 24px 48px;
+        text-align: center;
+        font-weight: bold;
+    }
 </style>
 
 <nav-page-layout>
@@ -60,26 +67,43 @@ class CoatingPage extends LitElement {
     </basic-card>
 
     <basic-card>
-        <page-section-title>Film Properties</page-section-title>
-        <page-section-description></page-section-description>
+        <page-section-title>Density</page-section-title>
+        <page-section-description>
+            The ingredients used in the coating effect the density of the dispersion and film.
+            Therefore using large amounts of dense ingredients like talc and titanium dioxide 
+            change the optimal coating amount and the dispersion preperation.
+        </page-section-description>
         <input-graphic-layout>
-            <page-section-subtitle title>${ densityIcon } Film Density</page-section-subtitle>
-            <density-input label='Film Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
+            <density-input label='Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
         </input-graphic-layout>
+       
+    </basic-card>
+
+    <basic-card>
+        <page-section-title>Opacity</page-section-title>
+        <page-section-description>
+            Many film coating formulations include opacifiers like titanium dioxide or
+            calcium carbonate. The base formula and the level of opacifier used results 
+            in different hiding power. 
+        </page-section-description>
         <input-graphic-layout>
-            <page-section-subtitle title>${ densityIcon } Opacity</page-section-subtitle>
             <percent-input label='Opacity' unit='%' action='SET_COATING_OPACITY' path='coating.opacity'></percent-input>
         </input-graphic-layout>
     </basic-card>
 
 
     <basic-card>
-        <page-section-title>Dispersion</page-section-title>
-        <page-section-description></page-section-description>
+        <page-section-title>Viscosity</page-section-title>
+        <page-section-description>
+            Based on the polymer other other solule ingredients each coating formulation
+            has a different viscosity curve but most are explained the exponential function below:
+            <div class='equation'> viscosity = <i>e</i><sup>(<i>x</i> * solids)</sup> + <i>b</i></div>
+            Provide the intercept and exponent that best desribes the viscosity curve. (Hint: use
+            excel to fit an exponential regression curve for accurate values).
+        </page-section-description>
         <input-graphic-layout>
-            <page-section-subtitle title>${ volumeIcon } Viscosity</page-section-subtitle>
-            <number-input label='Viscosity Curve Intercept' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
-            <number-input label='Viscosity Curve Exponent' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
+            <number-input label='Intercept (b)' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
+            <number-input label='Exponent (x)' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
         </input-graphic-layout>
     </basic-card>
 

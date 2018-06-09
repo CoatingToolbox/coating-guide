@@ -189,7 +189,7 @@ class TabletPage extends LitElement {
       
       <input-graphic-layout>
       
-        <page-section-subtitle title>${ rulerIcon } Tablet Weight</page-section-subtitle>
+        <page-section-subtitle title>${ rulerIcon } Size</page-section-subtitle>
         
           <length-input 
             label='Length' 
@@ -217,7 +217,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title>${ rulerIcon } Compressed Tablet Thickness</page-section-subtitle>
+          <page-section-subtitle title>${ rulerIcon } Thickness</page-section-subtitle>
           
           
             <length-input 
@@ -246,7 +246,7 @@ class TabletPage extends LitElement {
           
           <basic-card>
         
-          <page-section-title>Weight & Density</page-section-title>
+          <page-section-title>Tablet Weight</page-section-title>
           
           <page-section-description>
             The average tablet weight and standard deviation are important parameters
@@ -276,9 +276,22 @@ class TabletPage extends LitElement {
             <tablet-weight-chart graphic></tablet-weight-chart>
           </input-graphic-layout>
           
+          </basic-card>
+          
+          
+          <basic-card>
+        
+          <page-section-title>Bulk Density</page-section-title>
+          
+          <page-section-description>
+            The average tablet weight and standard deviation are important parameters
+            in determing the optimal coating amount. And the bulk density helps determine
+            the appropriate batch size.
+          </page-section-description>
+          
           <input-graphic-layout>
           
-          <page-section-subtitle title>${ densityIcon } Tablet Bulk Density</page-section-subtitle>
+          <page-section-subtitle title>${ densityIcon } Bulk Density</page-section-subtitle>
           
           
             <density-input

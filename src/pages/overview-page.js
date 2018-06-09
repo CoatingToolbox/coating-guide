@@ -124,33 +124,33 @@ class OverviewPage extends connect(store)(LitElement) {
           <div class='material-layout'>
             <div class='material-label'>Coating Substrate</div>
             <div class='material-title'>${_tabletName}</div>
+            <a href='/#tablet'>
+              <large-button>Edit</large-button>
+            </a>
             <a href='/#tablet-library'>
               <large-button>Load</large-button>
-            </a>
-            <a href='/#tablet'>
-              <large-button highlight>Edit</large-button>
             </a>
           </div>
           
           <div class='material-layout'>
             <div class='material-label'>Coating Equipment</div>
             <div class='material-title'>${_panName}</div>
+            <a href='/#pan'>
+              <large-button>Edit</large-button>
+            </a>
             <a href='/#pan-library'>
               <large-button>Load</large-button>
-            </a>
-            <a href='/#pan'>
-              <large-button highlight>Edit</large-button>
             </a>
           </div>
           
           <div class='material-layout'>
             <div class='material-label'>Coating Formula</div>
             <div class='material-title'>${_coatingName}</div>
+            <a href='/#coating'>
+              <large-button>Edit</large-button>
+            </a>
             <a href='/#coating-library'>
               <large-button>Load</large-button>
-            </a>
-            <a href='/#coating'>
-              <large-button highlight>Edit</large-button>
             </a>
           </div>
         </basic-card>
@@ -212,7 +212,7 @@ class OverviewPage extends connect(store)(LitElement) {
 
     _stateChanged(state) {
         this._tabletName = (state.tablet.productName) ? state.tablet.productName : 'None Selected';
-        this._panName = (state.pan.manufacturerName || state.pan.modelName) ? `${state.pan.manufacturerName} ${state.pan.modelName}` : 'None Selected';
+        this._panName = state.pan.nickname ? state.pan.nickname : 'None Selected';
         this._coatingName = (state.coating.productName) ? state.coating.productName : 'None Selected';
     }
 

@@ -21,6 +21,8 @@ import '../components/texts/description-text.js';
 import '../components/texts/volume-text.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
+import '../components/pan-elements/pan-diameter-graphic.js';
+import '../components/pan-elements/pan-depth-graphic.js';
 
 const perforationOptions = ["", "Fully", "Partially", "Solid", "Other"];
 const baffleOptions = ["", "Ploughshare", "Rabbit", "Helical", "Sharkfin", "Other"];
@@ -165,6 +167,8 @@ class PanPage extends LitElement {
               unit='${ lengthUnits }'
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
+          
+          <pan-diameter-graphic graphic></pan-diameter-graphic>
         
         </input-graphic-layout>
         
@@ -190,6 +194,8 @@ class PanPage extends LitElement {
               unit='${ lengthUnits }'
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
+          
+          <pan-depth-graphic graphic></pan-depth-graphic>
         
         </input-graphic-layout>
   
@@ -214,7 +220,7 @@ class PanPage extends LitElement {
             
       
           <text-input 
-            label='Airflow Directoin' 
+            label='Airflow Direction' 
             path='pan.airflowType'
             action='SET_PAN_AIRFLOW_TYPE'>
           </text-input>
