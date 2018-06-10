@@ -4,7 +4,7 @@ export class Coating {
         this.solids = 0.2;
         this.viscosityIntercept = 20;
         this.viscosityExponent = 10;
-        this.filmDensity = 1100000;
+        this.filmDensity = 2200000;
         this.filmOpacity = 0;
 
         this.productName = 'Opadry II';

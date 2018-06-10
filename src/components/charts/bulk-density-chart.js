@@ -174,6 +174,12 @@ class BulkDensityChart extends connect(store)(LitElement) {
                   .circle.highlight {
                     stroke: var(--app-accent-color);
                   }
+                  .references text {
+                      font-size: 12px;
+                      color: var(--text-light-color);
+                      fill: var(--text-light-color);
+                  }
+                  
             </style>
             
             <svg id='chart' width$=${width} height$=${height}>

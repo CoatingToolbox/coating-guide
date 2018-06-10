@@ -21,8 +21,8 @@ import '../components/texts/description-text.js';
 import '../components/texts/volume-text.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
-import '../components/pan-elements/pan-diameter-graphic.js';
-import '../components/pan-elements/pan-depth-graphic.js';
+import '../components/graphics/pan-diameter-graphic.js';
+import '../components/graphics/pan-depth-graphic.js';
 
 const perforationOptions = ["", "Fully", "Partially", "Solid", "Other"];
 const baffleOptions = ["", "Ploughshare", "Rabbit", "Helical", "Sharkfin", "Other"];
@@ -56,6 +56,10 @@ class PanPage extends LitElement {
         page-main-title,
         .page-description {
           color: var(--white-color);
+        }
+        ul {
+          max-width: 600px;
+          margin: 16px auto 0px auto;
         }
         
         title-detail-layout + title-detail-layout {

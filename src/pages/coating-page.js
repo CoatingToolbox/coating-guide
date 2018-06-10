@@ -14,12 +14,13 @@ import '../components/texts/page-description.js';
 import '../components/texts/page-section-title.js';
 import '../components/texts/page-section-description.js';
 import '../components/texts/page-section-subtitle.js';
-
 import '../components/inputs/text-input.js';
 import '../components/inputs/dropdown-input.js';
 import '../components/inputs/density-input.js';
 import '../components/inputs/percent-input.js';
 import '../components/inputs/number-input.js';
+import '../components/charts/coating-density-chart.js';
+import '../components/charts/coating-viscosity-chart.js';
 
 const coatingTypeOptions = ["", "Immediate Release", "Extended Release", "Delayed Release"];
 
@@ -36,6 +37,10 @@ class CoatingPage extends LitElement {
 
     basic-card+basic-card {
         margin-top: 48px;
+    }
+    ul {
+      max-width: 600px;
+      margin: 16px auto 0px auto;
     }
     .equation {
         padding: 24px 48px;
@@ -75,6 +80,7 @@ class CoatingPage extends LitElement {
         </page-section-description>
         <input-graphic-layout>
             <density-input label='Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
+            <coating-density-chart graphic></coating-density-chart>
         </input-graphic-layout>
        
     </basic-card>
@@ -87,6 +93,7 @@ class CoatingPage extends LitElement {
             in different hiding power. 
         </page-section-description>
         <input-graphic-layout>
+            <page-section-subtitle title></page-section-subtitle>
             <percent-input label='Opacity' unit='%' action='SET_COATING_OPACITY' path='coating.opacity'></percent-input>
         </input-graphic-layout>
     </basic-card>
@@ -102,8 +109,10 @@ class CoatingPage extends LitElement {
             excel to fit an exponential regression curve for accurate values).
         </page-section-description>
         <input-graphic-layout>
+            <page-section-subtitle title></page-section-subtitle>
             <number-input label='Intercept (b)' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
             <number-input label='Exponent (x)' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
+            <coating-viscosity-chart graphic></coating-viscosity-chart>
         </input-graphic-layout>
     </basic-card>
 

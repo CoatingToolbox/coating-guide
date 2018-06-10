@@ -23,11 +23,11 @@ import '../components/inputs/length-input.js';
 import '../components/inputs/mass-input.js';
 import '../components/inputs/density-input.js';
 import '../components/inputs/dropdown-input.js';
-import '../components/tablet-elements/tablet-shape-selector.js';
-import '../components/tablet-elements/tablet-dimensions-graphic.js';
-import '../components/tablet-elements/tablet-thickness-graphic.js';
-import '../components/tablet-elements/bulk-density-chart.js';
-import '../components/tablet-elements/tablet-weight-chart.js';
+import '../components/inputs/tablet-shape-selector.js';
+import '../components/graphics/tablet-dimensions-graphic.js';
+import '../components/graphics/tablet-thickness-graphic.js';
+import '../components/charts/bulk-density-chart.js';
+import '../components/charts/tablet-weight-chart.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 
@@ -69,6 +69,10 @@ class TabletPage extends LitElement {
         }
         basic-card + basic-card {
           margin-top: 48px;
+        }
+        ul {
+          max-width: 600px;
+          margin: 16px auto 0px auto;
         }
         
         title-detail-layout + title-detail-layout {
