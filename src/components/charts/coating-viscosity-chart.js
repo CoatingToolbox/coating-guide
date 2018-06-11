@@ -17,7 +17,7 @@ const maxY = 800;
 
 const getData = (intercept, exponent) => {
     let vals = [];
-    let step = (maxX - minX) / 10;
+    let step = (maxX - minX) / 25;
     for(var i = minX; i <= maxX; i = i + step) {
         vals.push( { solids: i, viscosity: getViscosity(i, intercept, exponent) } );
     }
@@ -37,7 +37,9 @@ class CoatingViscosityChart extends connect(store)(LitElement) {
     
     constructor() {
         super();
-        window.addEventListener('resize', () => this._initChart() );
+        window.addEventListener('resize', () => {
+            window.requestAnimationFrame(() => this._initChart());
+        });
         let xScale = this.xScale = scaleLinear().domain([minX, maxX]).nice();
         let yScale = this.yScale = scaleLinear().domain([minY, maxY]).nice();
         this.data = [];
@@ -50,7 +52,6 @@ class CoatingViscosityChart extends connect(store)(LitElement) {
      
     _initChart() {
         
-      console.log('init chart');
         let height = this.height = this.clientHeight;
         let width = this.width = this.clientWidth;
         let adjustedHeight = height - margin.top  - margin.bottom;
