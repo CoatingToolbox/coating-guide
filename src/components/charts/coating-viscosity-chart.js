@@ -49,6 +49,8 @@ class CoatingViscosityChart extends connect(store)(LitElement) {
     }
      
     _initChart() {
+        
+      console.log('init chart');
         let height = this.height = this.clientHeight;
         let width = this.width = this.clientWidth;
         let adjustedHeight = height - margin.top  - margin.bottom;

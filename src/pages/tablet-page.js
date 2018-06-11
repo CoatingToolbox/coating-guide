@@ -1,4 +1,8 @@
-import { LitElement, html } from '@polymer/lit-element';
+
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from '../store.js';
 import { productIcon, rulerIcon, weightIcon, companyIcon, toolingIcon, concavityIcon, densityIcon } from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
@@ -35,14 +39,19 @@ import '../components/buttons/last-page-button.js';
 const dosageOptions = ["", "Tablet", "Softgel", "Hard Capsule"];
 const marketOptions = ["", "Pharmaceutical", "Nutritional", "Other"];
 
-class TabletPage extends LitElement {
+class TabletPage extends connect(store)(PageViewElement) {
   
   static get properties() {
     return {
       dimensionsLine: String,
       lengthUnits: String,
       massUnits: String,
+      isRound: Boolean
     };
+  }
+  
+  _stateChanged(state) {
+    this.isRound = (state.tablet.shape.toLowerCase() == 'round');
   }
   
   constructor() {
@@ -50,16 +59,7 @@ class TabletPage extends LitElement {
     this.lengthUnits = 'mm';
     this.massUnits = 'mg';
   }
-  _updateInputDisplay(shape){
-    if(shape === 'round') {
-      this.shadowRoot.querySelector('#widthInput').setAttribute('hidden', '');
-      this.shadowRoot.querySelector('#widthCupRadiusText').setAttribute('hidden', '');
-    } else {
-      this.shadowRoot.querySelector('#widthInput').removeAttribute('hidden');
-      this.shadowRoot.querySelector('#widthCupRadiusText').removeAttribute('hidden');
-    }
-  }
-  _render({ dimensionsLine, lengthUnits, massUnits }) {
+  _render({ dimensionsLine, lengthUnits, massUnits, isRound }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -77,9 +77,6 @@ class TabletPage extends LitElement {
         
         title-detail-layout + title-detail-layout {
           border-top: 2px solid var(--border-color);
-        }
-        [hidden] {
-          display: none;
         }
       </style>
       
@@ -174,7 +171,7 @@ class TabletPage extends LitElement {
           the model used in calculating the final tablet properties.
         </page-section-description>
         
-        <tablet-shape-selector on-shape-changed=${ (e) => this._updateInputDisplay(e.detail.value)}></tablet-shape-selector>
+        <tablet-shape-selector></tablet-shape-selector>
      </basic-card>   
      
      <basic-card>
@@ -201,18 +198,16 @@ class TabletPage extends LitElement {
             path='tablet.length'
             action='SET_TABLET_LENGTH'
             on-click=${() => this.dimensionsLine = 'length'}
-            on-unit-changed=${(e) => this.lengthUnits = e.detail.value}>
-          </length-input>
+            on-unit-changed=${(e) => this.lengthUnits = e.detail.value}></length-input>
           
           <length-input 
-            id='widthInput'
             label='Width' 
             unit=${lengthUnits}
             path='tablet.width'
             action='SET_TABLET_WIDTH'
-            on-click=${() => this.dimensionsLine = 'width'}
-            on-unit-changed=${(e) => this.lengthUnits = e.detail.value} >
-          </length-input>
+            style='display: ${isRound ? 'none' : 'grid'}'
+            on-click='${() => this.dimensionsLine = 'width'}'
+            on-unit-changed='${(e) => this.lengthUnits = e.detail.value}'></length-input>
           
             <tablet-dimensions-graphic graphic line='${dimensionsLine}'></tablet-dimensions-graphic>
           
@@ -260,7 +255,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title>${ weightIcon } Tablet Weight</page-section-subtitle>
+          <page-section-subtitle title></page-section-subtitle>
           
           
             <mass-input
@@ -295,7 +290,7 @@ class TabletPage extends LitElement {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title>${ densityIcon } Bulk Density</page-section-subtitle>
+          <page-section-subtitle title></page-section-subtitle>
           
           
             <density-input
@@ -350,7 +345,8 @@ class TabletPage extends LitElement {
         
               <length-text unit='mm' path='tablet.cupThickness' label='Cup Depth' ></length-text>
               <length-text unit='mm' path='tablet.lengthCupRadius' label='Length Cup Radius' ></length-text>
-              <length-text id='widthCupRadiusText' unit='mm' path='tablet.widthCupRadius' label='Width Cup Radius' ></length-text>
+              <length-text unit='mm' path='tablet.widthCupRadius' label='Width Cup Radius' 
+                style='display: ${isRound ? 'none' : 'flex'}'></length-text>
               <description-text path='tablet.concavity' label='Concavity' ></description-text>
             
           </title-detail-layout>

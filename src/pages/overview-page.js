@@ -1,4 +1,6 @@
-import { LitElement, html } from '@polymer/lit-element';
+
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
 
@@ -10,7 +12,7 @@ import '../components/cards/basic-card.js';
 import '../components/buttons/large-button.js';
 
 
-class OverviewPage extends connect(store)(LitElement) {
+class OverviewPage extends connect(store)(PageViewElement) {
     static get properties() {
         return {
             _tabletName: String,

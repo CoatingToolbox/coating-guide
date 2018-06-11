@@ -1,5 +1,6 @@
 
-import { LitElement, html } from '@polymer/lit-element';
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
 import { store } from '../store.js';
 import { COATING_LIBRARY } from '../actions/coating-actions.js';
 import { searchIcon, loadIcon } from '../components/app-icons.js';
@@ -50,7 +51,7 @@ const loadCoating = (coating) => {
 };
 
 
-class CoatingLibraryPage extends LitElement {
+class CoatingLibraryPage extends PageViewElement {
   static get properties () {
     return {
       filterTerm: String,

@@ -59,6 +59,12 @@ class AppShell extends connect(store)(LitElement) {
           background-color: var(--background-color);
           color: var(--app-dark-color)
         }
+        .page {
+          display: none !important;
+        }
+        .page[active] {
+          display: block !important;
+        }
       </style>
       
         
@@ -73,21 +79,19 @@ class AppShell extends connect(store)(LitElement) {
           </app-toolbar>
         </app-header>
         
-        <iron-pages  selected='${_page}' attr-for-selected='page' fallback-selection='overview'>
+        <overview-page class='page' active?='${ _page === 'overview'}'></overview-page>
         
-          <overview-page page='overview'></overview-page>
-          
-          <tablet-library-page page='tablet-library'></tablet-library-page>
-          <tablet-page page='tablet'></tablet-page>
-          
-          <pan-page page='pan'></pan-page>
-          <pan-library-page page='pan-library'></pan-library-page>
-          
-          <coating-page page='coating'></coating-page>
-          <coating-library-page page='coating-library'></coating-library-page>
-          
-          <page-404 page='404'></page-404>
-        </iron-pages>
+        <tablet-library-page  class='page' active?='${ _page === 'tablet-library'}'></tablet-library-page>
+        <tablet-page  class='page' active?='${ _page === 'tablet'}'></tablet-page>
+        
+        <pan-page  class='page' active?='${ _page === 'pan'}'></pan-page>
+        <pan-library-page  class='page' active?='${ _page === 'pan-library'}'></pan-library-page>
+        
+        <coating-page  class='page' active?='${ _page === 'coating'}'></coating-page>
+        <coating-library-page  class='page' active?='${ _page === 'coating-library'}'></coating-library-page>
+        
+        <page-404 class='page' active?='${ _page === '404'}'></page-404>
+        
       </app-header-layout>
     `;
   }

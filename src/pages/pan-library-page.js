@@ -1,5 +1,6 @@
 
-import { LitElement, html } from '@polymer/lit-element';
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
 import { store } from '../store.js';
 import { PAN_LIBRARY } from '../actions/pan-actions.js';
 import { searchIcon, loadIcon } from '../components/app-icons.js';
@@ -56,11 +57,11 @@ const loadPan = (pan) => {
     type: "LOAD_PAN_FROM_LIBRARY",
     value: pan,
   });
-  window.location = '#pan';
+  window.location = '#overview';
 };
 
 
-class PanLibraryPage extends LitElement {
+class PanLibraryPage extends PageViewElement {
   static get properties () {
     return {
       filterTerm: String,

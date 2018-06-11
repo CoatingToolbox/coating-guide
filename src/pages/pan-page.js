@@ -1,4 +1,6 @@
-import { LitElement, html } from '@polymer/lit-element';
+
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
 import { productIcon, companyIcon, rulerIcon, volumeIcon, mixIcon, sprayIcon, airIcon} from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
@@ -23,13 +25,14 @@ import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 import '../components/graphics/pan-diameter-graphic.js';
 import '../components/graphics/pan-depth-graphic.js';
+import '../components/charts/pan-volume-chart.js';
 
 const perforationOptions = ["", "Fully", "Partially", "Solid", "Other"];
 const baffleOptions = ["", "Ploughshare", "Rabbit", "Helical", "Sharkfin", "Other"];
 const gunOptions = ["", "Spraying System", "Schlick", "Freund", "Other"];
 
 
-class PanPage extends LitElement {
+class PanPage extends PageViewElement {
   
   static get properties() {
     return {
@@ -49,6 +52,10 @@ class PanPage extends LitElement {
       <style>
         :host {
           display: block;
+        }
+        #volume-layout {
+          display: flex;
+          justify-content: space-around;
         }
         basic-card + basic-card {
           margin-top: 48px;
@@ -321,7 +328,7 @@ class PanPage extends LitElement {
   
   <basic-card>
           
-          <page-section-title>Calculated Properties</page-section-title>
+          <page-section-title>Calculated Volumes</page-section-title>
           
           <page-section-description>
             Coating pans are often desribed by the pan diameter but the pan 
@@ -334,19 +341,15 @@ class PanPage extends LitElement {
             volume is calcualted as one inch from the brim.</li>
             <li><b>Min - </b> Low pan loads are known to have negative effect of tablet mixing,
             so the minimum working volume is calculated based on the baffle height. If baffle height
-            info is not available this is based on a 70% fill.</li>
+            info is not available this is based on a 70% of the brim height.</li>
           </ul>
           </page-section-description>
           
-          <title-detail-layout>
-          
-            <page-section-subtitle slot='title' >${ volumeIcon } Pan Volume</page-section-subtitle>
-          
-              <volume-text unit='l' path='pan.brimVolume' label='Brim Volume' ></volume-text>
-              <volume-text unit='l' path='pan.maxFillVolume' label='Max Volume' ></volume-text>
-              <volume-text unit='l' path='pan.minFillVolume' label='Min Volume' ></volume-text>
-            
-          </title-detail-layout>
+          <div id='volume-layout'>
+            <pan-volume-chart label='Brim' path='brimVolume'></pan-volume-chart>
+            <pan-volume-chart highlight label='Max' path='maxFillVolume'></pan-volume-chart>
+            <pan-volume-chart label='Min' path='minFillVolume'></pan-volume-chart>
+          </div>
           
           </basic-card>
 

@@ -1,5 +1,6 @@
 
-import { LitElement, html } from '@polymer/lit-element';
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
 import { store } from '../store.js';
 import { TABLET_LIBRARY } from '../actions/tablet-actions.js';
 import { searchIcon, loadIcon, roundTabletIcon, ovalTabletIcon, capletTabletIcon } from '../components/app-icons.js';
@@ -76,10 +77,10 @@ const loadTablet = (tablet) => {
     type: "LOAD_TABLET_FROM_LIBRARY",
     value: tablet,
   });
-  window.location = '#tablet';
+  window.location = '#overview';
 };
 
-class TabletLibraryPage extends LitElement {
+class TabletLibraryPage extends PageViewElement {
   static get properties () {
     return {
       filterTerm: String,

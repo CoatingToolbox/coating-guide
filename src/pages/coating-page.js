@@ -1,4 +1,8 @@
-import { LitElement, html } from '@polymer/lit-element';
+
+import { html } from '@polymer/lit-element';
+import { PageViewElement } from './page-view-element';
+import { connect } from 'pwa-helpers/connect-mixin.js';
+import { store } from '../store.js';
 import { productIcon, densityIcon, volumeIcon } from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
@@ -26,19 +30,21 @@ import '../components/charts/coating-opacity-chart.js';
 const coatingTypeOptions = ["", "Immediate Release", "Extended Release", "Delayed Release"];
 const colorOptions = ['', 'Beige', 'Black', 'Blue', 'Brown', 'Clear', 'Green', 'Orange', 'Purple', 'Red', 'White', 'Yellow'];
 
-class CoatingPage extends LitElement {
-  _colorChanged(color) {
-      switch(color) {
-            case 'Clear':
-            case 'clear':
-                this.shadowRoot.querySelector('#opacity-card').setAttribute('hidden', '');
-                break;
-            default: 
-                this.shadowRoot.querySelector('#opacity-card').removeAttribute('hidden');
-                break;
-      }
+class CoatingPage extends connect(store)(PageViewElement) {
+    
+    static get properties() {
+        return {
+            isClear: Boolean,
+            active: Boolean
+        };
+    }    
+  _stateChanged(state) {
+      this.isClear = (state.coating.color.toLowerCase() == 'clear');
   }
-  _render({ }) {
+  _shouldRender(props) {
+      return props.active;
+  }
+  _render({ isClear }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
@@ -83,42 +89,12 @@ class CoatingPage extends LitElement {
                 label='Color' 
                 path='coating.color' 
                 action='SET_COATING_COLOR' 
-                options='${ colorOptions }'
-                on-selected-changed='${(e) => this._colorChanged(e.detail.value)}'></dropdown-input>
+                options='${ colorOptions }'></dropdown-input>
             <dropdown-input label='Release Type' path='coating.releaseType' action='SET_COATING_RELEASE_TYPE' options='${ coatingTypeOptions }'>
             </dropdown-input>
         </two-column-input-layout>
     </basic-card>
-
-    <basic-card>
-        <page-section-title>Density</page-section-title>
-        <page-section-description>
-            The ingredients used in the coating effect the density of the dispersion and film.
-            Therefore using large amounts of dense ingredients like talc and titanium dioxide 
-            change the optimal coating amount and the dispersion preperation.
-        </page-section-description>
-        <input-graphic-layout>
-            <density-input label='Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
-            <coating-density-chart graphic></coating-density-chart>
-        </input-graphic-layout>
-       
-    </basic-card>
-
-    <basic-card id='opacity-card'>
-        <page-section-title>Opacity</page-section-title>
-        <page-section-description>
-            Many film coating formulations include opacifiers like titanium dioxide or
-            calcium carbonate. The base formula and the level of opacifier used results 
-            in different hiding power. 
-        </page-section-description>
-        <input-graphic-layout>
-            <page-section-subtitle title></page-section-subtitle>
-            <percent-input label='Percent TiO2' unit='%' action='SET_COATING_PERCENT_TIO2' path='coating.percentTio2'></percent-input>
-            <coating-opacity-chart graphic></coating-opacity-chart>
-        </input-graphic-layout>
-    </basic-card>
-
-
+    
     <basic-card>
         <page-section-title>Viscosity</page-section-title>
         <page-section-description>
@@ -136,6 +112,36 @@ class CoatingPage extends LitElement {
         </input-graphic-layout>
     </basic-card>
 
+    <basic-card style='display: ${ isClear ? 'none !important' : 'block !important'}'>
+        <page-section-title>Opacity</page-section-title>
+        <page-section-description>
+            Many film coating formulations include opacifiers like titanium dioxide or
+            calcium carbonate. The base formula and the level of opacifier used results 
+            in different hiding power. 
+        </page-section-description>
+        <input-graphic-layout>
+            <page-section-subtitle title></page-section-subtitle>
+            <percent-input label='Percent TiO2' unit='%' action='SET_COATING_PERCENT_TIO2' path='coating.percentTio2'></percent-input>
+            <coating-opacity-chart graphic></coating-opacity-chart>
+        </input-graphic-layout>
+    </basic-card>
+
+
+
+
+    <basic-card>
+        <page-section-title>Density</page-section-title>
+        <page-section-description>
+            The ingredients used in the coating effect the density of the dispersion and film.
+            Therefore using large amounts of dense ingredients like talc and titanium dioxide 
+            change the optimal coating amount and the dispersion preperation.
+        </page-section-description>
+        <input-graphic-layout>
+            <density-input label='Density' unit='g/ml' action='SET_COATING_FILM_DENSITY' path='coating.filmDensity'></density-input>
+            <coating-density-chart graphic></coating-density-chart>
+        </input-graphic-layout>
+       
+    </basic-card>
     <page-button-layout>
         <last-page-button page='#pan'>Coating Equipment</last-page-button>
         <next-page-button page='#batch'>Batch Size</next-page-button>
