@@ -33,6 +33,16 @@ export class Coating {
 }
 
 export const COATING_LIBRARY = [{
+        "color": "White",
+        "filmDensity": 2200000,
+        "formulaName": "85F18422",
+        "productName": "Opadry II 85F Series",
+        "solids": 0.2,
+        "releaseType": "Immediate Release",
+        "viscosityExponent": 10,
+        "viscosityIntercept": 20,
+        "percentTio2": 0.25
+    },{
         "color": "Clear",
         "filmDensity": 1100000,
         "formulaName": "20A19286",
@@ -40,7 +50,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.075,
         "releaseType": "Immediate Release",
         "viscosityExponent": 45.66,
-        "viscosityIntercept": 8.91242
+        "viscosityIntercept": 8.91242,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -50,7 +61,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.075,
         "releaseType": "Immediate Release",
         "viscosityExponent": 41.17,
-        "viscosityIntercept": 6.8664
+        "viscosityIntercept": 6.8664,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -60,7 +72,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.1,
         "releaseType": "Immediate Release",
         "viscosityExponent": 37.02,
-        "viscosityIntercept": 6.8809
+        "viscosityIntercept": 6.8809,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -70,7 +83,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.1,
         "releaseType": "Immediate Release",
         "viscosityExponent": 34.37,
-        "viscosityIntercept": 6.5929
+        "viscosityIntercept": 6.5929,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -80,7 +94,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.1,
         "releaseType": "Immediate Release",
         "viscosityExponent": 28.88,
-        "viscosityIntercept": 4.8946
+        "viscosityIntercept": 4.8946,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -90,7 +105,8 @@ export const COATING_LIBRARY = [{
         "solids": 0.1,
         "releaseType": "Immediate Release",
         "viscosityExponent": 20.28,
-        "viscosityIntercept": 10.043
+        "viscosityIntercept": 10.043,
+        "percentTio2": 0
     },
     {
         "color": "Clear",
@@ -100,6 +116,7 @@ export const COATING_LIBRARY = [{
         "solids": 0.1,
         "releaseType": "Immediate Release",
         "viscosityExponent": 16.36,
-        "viscosityIntercept": 3.4653
+        "viscosityIntercept": 3.4653,
+        "percentTio2": 0
     }
 ];

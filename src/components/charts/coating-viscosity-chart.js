@@ -37,7 +37,7 @@ class CoatingViscosityChart extends connect(store)(LitElement) {
     
     constructor() {
         super();
-        window.addEventListener('resize', () => this._initChart());
+        window.addEventListener('resize', () => this._initChart() );
         let xScale = this.xScale = scaleLinear().domain([minX, maxX]).nice();
         let yScale = this.yScale = scaleLinear().domain([minY, maxY]).nice();
         this.data = [];

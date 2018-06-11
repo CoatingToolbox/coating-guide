@@ -19,7 +19,6 @@ const getLibraryTemplate = (library) => {
     <div class='cell'>${item.releaseType}</div>
     <div class='cell number'>${(item.solids * 100).toFixed(1)}%</div>
     <div class='cell number'>${(item.filmDensity / 1000000 ).toFixed(2)} g/ml</div>
-    <div class='cell number'>${(item.filmOpacity * 100).toFixed(0)}%</div>
     
     <div class='cell'>
         <div class='icon-button' on-click=${ ()=> loadCoating(item) }> ${ loadIcon }
@@ -47,7 +46,7 @@ const loadCoating = (coating) => {
     type: "LOAD_COATING_FROM_LIBRARY",
     value: coating,
   });
-  window.location = '#coating';
+  window.location = '#overview';
 };
 
 
@@ -98,7 +97,7 @@ class CoatingLibraryPage extends LitElement {
         /*Styles for Table and Cells*/
         #table {
           display: grid;
-          grid-template-columns: auto auto auto auto auto auto auto auto;
+          grid-template-columns: auto auto auto auto auto auto auto;
           grid-auto-rows: auto;
           background-color: var(--white-color);
           border-radius: 6px;
@@ -193,7 +192,6 @@ class CoatingLibraryPage extends LitElement {
         <div class='header cell'>Releae Type</div>
         <div class='header cell'>Solids</div>
         <div class='header cell'>Film Density</div>
-        <div class='header cell'>Opacity</div>
         <div class='header cell'></div>
         
         ${ libraryTemplate }

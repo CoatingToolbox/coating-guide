@@ -157,6 +157,8 @@ class UnitInput extends connect(store)(LitElement) {
           fill: #666666;
         }
         iron-dropdown {
+          max-height: 196px;
+          overflow-y: auto;
           background-color: var(--white-color);
           padding: 16px 8px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),

@@ -24,9 +24,20 @@ import '../components/charts/coating-viscosity-chart.js';
 import '../components/charts/coating-opacity-chart.js';
 
 const coatingTypeOptions = ["", "Immediate Release", "Extended Release", "Delayed Release"];
+const colorOptions = ['', 'Beige', 'Black', 'Blue', 'Brown', 'Clear', 'Green', 'Orange', 'Purple', 'Red', 'White', 'Yellow'];
 
 class CoatingPage extends LitElement {
-  
+  _colorChanged(color) {
+      switch(color) {
+            case 'Clear':
+            case 'clear':
+                this.shadowRoot.querySelector('#opacity-card').setAttribute('hidden', '');
+                break;
+            default: 
+                this.shadowRoot.querySelector('#opacity-card').removeAttribute('hidden');
+                break;
+      }
+  }
   _render({ }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
@@ -48,6 +59,9 @@ class CoatingPage extends LitElement {
         text-align: center;
         font-weight: bold;
     }
+    [hidden] {
+        display: none !important;
+    }
 </style>
 
 <nav-page-layout>
@@ -65,8 +79,12 @@ class CoatingPage extends LitElement {
             </text-input>
             <text-input label='Formula' path='coating.formulaName' action='SET_COATING_FORMULA_NAME'>
             </text-input>
-            <text-input label='Color' path='coating.color' action='SET_COATING_COLOR'>
-            </text-input>
+            <dropdown-input 
+                label='Color' 
+                path='coating.color' 
+                action='SET_COATING_COLOR' 
+                options='${ colorOptions }'
+                on-selected-changed='${(e) => this._colorChanged(e.detail.value)}'></dropdown-input>
             <dropdown-input label='Release Type' path='coating.releaseType' action='SET_COATING_RELEASE_TYPE' options='${ coatingTypeOptions }'>
             </dropdown-input>
         </two-column-input-layout>
@@ -86,7 +104,7 @@ class CoatingPage extends LitElement {
        
     </basic-card>
 
-    <basic-card>
+    <basic-card id='opacity-card'>
         <page-section-title>Opacity</page-section-title>
         <page-section-description>
             Many film coating formulations include opacifiers like titanium dioxide or

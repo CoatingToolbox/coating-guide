@@ -113,6 +113,8 @@ class DropdownInput extends connect(store)(LitElement) {
         }
         
         iron-dropdown {
+          max-height: 196px;
+          overflow-y: auto;
           background-color: var(--white-color);
           padding: 16px 8px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
@@ -149,7 +151,11 @@ class DropdownInput extends connect(store)(LitElement) {
         <iron-selector 
           slot='dropdown-content'
           attr-for-selected='option'
-          on-selected-changed=${ (e) =>  store.dispatch(this._updateSelected(e.detail.value))}>
+          selected='${selected}'
+          on-selected-changed=${ (e) =>  { 
+            store.dispatch(this._updateSelected(e.detail.value));
+            this.dispatchEvent(new CustomEvent('selected-changed', {detail: {value: e.detail.value}}));
+          }}>
           ${_optionsHTML}
         </iron-selector>
       </iron-dropdown>
