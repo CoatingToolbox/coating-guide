@@ -8,7 +8,7 @@ import { select } from 'd3-selection';
 import { arc } from 'd3-shape';
 
 
-const margin = {top: 50, right: 50, bottom: 50, left: 50};
+const margin = {top: 40, right: 40, bottom: 40, left: 40};
 const innerRadius = 0.8;
 class PanVolumeChart extends connect(store)(LitElement) {
     
@@ -71,8 +71,8 @@ class PanVolumeChart extends connect(store)(LitElement) {
             <style>
                 :host {
                     display: block;
-                    height: 196px;
-                    width: 196px;
+                    max-height: 156px;
+                    max-width: 156px;
                     margin: 32px;
                   }
                   #chart {
@@ -97,11 +97,11 @@ class PanVolumeChart extends connect(store)(LitElement) {
                   }
                   text {
                       text-anchor: middle;
-                      font-size: 32px;
+                      font-size: 28px;
                       fill: var(--app-dark-color);
                   }
                   .subtitle {
-                      font-size: 20px;
+                      font-size: 18px;
                   }
                   :host([highlight]) .highlight-arc,
                   :host([highlight]) text {
