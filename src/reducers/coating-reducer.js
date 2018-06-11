@@ -21,6 +21,8 @@ export default function coatingReducer(state = new Coating(), action) {
             return updateCoating(state, 'filmDensity', action.value);
         case 'SET_COATING_OPACITY':
             return updateCoating(state, 'opacity', action.value);
+        case 'SET_COATING_PERCENT_TIO2':
+            return updateCoating(state, 'percentTio2', action.value);
         case 'SET_COATING_VISCOSITY_EXPONENT':
             return updateCoating(state, 'viscosityExponent', action.value);
         case 'SET_COATING_VISCOSITY_INTERCEPT':

@@ -31,7 +31,6 @@ const getLine = (xScale, yScale) => {
 };
 const getViscosity = (solids, intercept, exponent) => {
     let v = Math.exp(solids / 100 * exponent) * intercept;
-    console.log(v)
     return v;
 };
 class CoatingViscosityChart extends connect(store)(LitElement) {

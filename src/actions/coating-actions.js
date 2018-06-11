@@ -5,7 +5,7 @@ export class Coating {
         this.viscosityIntercept = 20;
         this.viscosityExponent = 10;
         this.filmDensity = 2200000;
-        this.filmOpacity = 0;
+        this.percentTio2 = 0.25;
 
         this.productName = 'Opadry II';
         this.formulaName = '85F18422';

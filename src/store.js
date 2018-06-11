@@ -16,6 +16,7 @@ import appReducer from './reducers/app-reducer.js';
 import tabletReducer from './reducers/tablet-reducer.js';
 import panReducer from './reducers/pan-reducer.js';
 import coatingReducer from './reducers/coating-reducer.js';
+import coatingAmountReducer from './reducers/coating-amount-reducer.js';
 
 // Sets up a Chrome extension for time travel debugging.
 // See https://github.com/zalmoxisus/redux-devtools-extension for more information.
@@ -26,15 +27,34 @@ const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || origCompose;
 // that you can dispatch async actions). See the "Redux and state management"
 // section of the wiki for more details:
 // https://github.com/Polymer/pwa-starter-kit/wiki/4.-Redux-and-state-management
+
+const rootReducer = (state = {}, action = {}) => {
+  const app = appReducer(state.app, action);
+  const tablet = tabletReducer(state.tablet, action);
+  const pan = panReducer(state.pan, action);
+  const coating = coatingReducer(state.coating, action);
+  const coatingAmount = coatingAmountReducer(state.coatingAmount, action, tablet, coating);
+  
+  return Object.assign({}, state, 
+    {
+      app,
+      tablet,
+      pan,
+      coating,
+      coatingAmount
+    });
+};
+
 export const store = createStore(
-  (state, action) => state,
+  rootReducer,
   compose(lazyReducerEnhancer(combineReducers), applyMiddleware(thunk))
 );
 
 // Initially loaded reducers.
-store.addReducers({
-  app: appReducer,
-  tablet: tabletReducer,
-  pan: panReducer,
-  coating: coatingReducer
-});
+// store.addReducers({
+//   app: appReducer,
+//   tablet: tabletReducer,
+//   pan: panReducer,
+//   coating: coatingReducer,
+//   coatingAmount: coatingAmountReducer(state.coatingAmount, action, this.tablet, this.coating)
+// });

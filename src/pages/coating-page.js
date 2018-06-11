@@ -21,6 +21,7 @@ import '../components/inputs/percent-input.js';
 import '../components/inputs/number-input.js';
 import '../components/charts/coating-density-chart.js';
 import '../components/charts/coating-viscosity-chart.js';
+import '../components/charts/coating-opacity-chart.js';
 
 const coatingTypeOptions = ["", "Immediate Release", "Extended Release", "Delayed Release"];
 
@@ -94,7 +95,8 @@ class CoatingPage extends LitElement {
         </page-section-description>
         <input-graphic-layout>
             <page-section-subtitle title></page-section-subtitle>
-            <percent-input label='Opacity' unit='%' action='SET_COATING_OPACITY' path='coating.opacity'></percent-input>
+            <percent-input label='Percent TiO2' unit='%' action='SET_COATING_PERCENT_TIO2' path='coating.percentTio2'></percent-input>
+            <coating-opacity-chart graphic></coating-opacity-chart>
         </input-graphic-layout>
     </basic-card>
 
@@ -104,7 +106,7 @@ class CoatingPage extends LitElement {
         <page-section-description>
             Based on the polymer other other solule ingredients each coating formulation
             has a different viscosity curve but most are explained the exponential function below:
-            <div class='equation'> viscosity = <i>e</i><sup>(<i>x</i> * solids)</sup> + <i>b</i></div>
+            <div class='equation'> viscosity = <i>e</i><sup>(<i>x</i> * solids)</sup> * <i>b</i></div>
             Provide the intercept and exponent that best desribes the viscosity curve. (Hint: use
             excel to fit an exponential regression curve for accurate values).
         </page-section-description>
