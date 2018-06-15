@@ -84,6 +84,8 @@ class UnitInput extends connect(store)(LitElement) {
           display: grid;
           grid-template-rows: auto 1fr;
           grid-template-columns: 1fr auto;
+          background-color: var(--background-color);
+          
         }
         #label {
           grid-row: 1 / 2;
@@ -91,19 +93,21 @@ class UnitInput extends connect(store)(LitElement) {
           padding: 0px 4px;
           color: #666666;
           font-size: 14px;
-          margin-bottom: 4px
+          padding-bottom: 4px;
+          background-color: var(--white-color);
         }
         #input, 
         #input:focus {
           grid-row: 2 / 3;
           grid-column: 1 / 2;
-          background-color: var(--white-color);
-          padding: 8px 16px;
+          background-color: var(--background-color);
+          padding: 12px 16px;
           appearance: none;
           -moz-appearance: none;
           -webkit-appearance: none;
           border-radius: 4px 0px 0px 4px;
           border: 2px solid #e0e0e0;
+          border: none;
           border-right: none;
           outline: none;
           text-align: start;
@@ -112,7 +116,7 @@ class UnitInput extends connect(store)(LitElement) {
           color: #666666;
           line-height: 28px;
           align-self: flex-end;
-          width: 100%;
+          width: calc(100% - 32px);
         }
         #input[type=number]::-webkit-inner-spin-button,
         #input[type=number]::-webkit-outer-spin-button {
@@ -132,13 +136,12 @@ class UnitInput extends connect(store)(LitElement) {
           justify-content: center;
           grid-row: 2 / 3;
           grid-column: 2 / 3;
-          min-width: 64px;
-          padding: 8px 4px 8px 12px;
-          background-color: var(--white-color);
+          padding: 0px 8px;
+          margin: 8px 0px;
+          background-color: var(--background-color);
           font-size: 14px;
           color: #666666;
-          border: 2px solid #e0e0e0;
-          border-radius: 0px 4px 4px 0px;
+          border-left: 2px solid #E0E0E0;
           cursor: pointer;
         }
         #icon {
@@ -147,7 +150,7 @@ class UnitInput extends connect(store)(LitElement) {
           justify-content: center;
           grid-row: 2 / 3;
           grid-column: 2 / 3;
-          background-color: var(--white-color);
+          background-color: var(--background-color);
           border-radius: 0px 4px 4px 0px;
           cursor: pointer;
         }

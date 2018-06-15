@@ -23,8 +23,7 @@ import '../components/texts/description-text.js';
 import '../components/texts/volume-text.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
-import '../components/graphics/pan-diameter-graphic.js';
-import '../components/graphics/pan-depth-graphic.js';
+import '../components/graphics/pan-dimensions-graphic.js';
 import '../components/charts/pan-volume-chart.js';
 
 const perforationOptions = ["", "Fully", "Partially", "Solid", "Other"];
@@ -161,7 +160,7 @@ class PanPage extends PageViewElement {
         
         <input-graphic-layout>
         
-        <page-section-subtitle title>${ rulerIcon } Pan Height</page-section-subtitle>
+        <page-section-subtitle title></page-section-subtitle>
         
           <length-input
             label='Drum Diameter'
@@ -180,17 +179,6 @@ class PanPage extends PageViewElement {
             on-click=${() => this.dimensionsLine = 'opening'}
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
-          
-          <pan-diameter-graphic line='${ dimensionsLine }' graphic></pan-diameter-graphic>
-        
-        </input-graphic-layout>
-        
-        <input-graphic-layout>
-        
-  
-  
-        
-        <page-section-subtitle title>${ rulerIcon } Pan Depth</page-section-subtitle>
         
           <length-input
             label='Brim Depth'
@@ -210,7 +198,7 @@ class PanPage extends PageViewElement {
               on-unit-changed=' ${ (e) => this.lengthUnits = e.detail.value }'>
           </length-input>
           
-          <pan-depth-graphic  line='${ dimensionsLine }' graphic></pan-depth-graphic>
+          <pan-dimensions-graphic  line='${ dimensionsLine }' graphic></pan-dimensions-graphic>
         
         </input-graphic-layout>
   

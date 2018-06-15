@@ -43,7 +43,7 @@ class NavPageLayout extends LitElement {
         }
         @media(min-width: 1200px) {
           :host {
-            grid-template-columns: 1fr auto;
+            grid-template-columns: auto auto;
           }
           #title, 
           #page {
@@ -56,7 +56,7 @@ class NavPageLayout extends LitElement {
             grid-column: 2 / 3;
             grid-row: 2 / 3;
             min-width: 200px;
-            padding-left: 32px;
+            padding-left: 8px;
           }
           
           

@@ -29,7 +29,6 @@ import '../components/inputs/density-input.js';
 import '../components/inputs/dropdown-input.js';
 import '../components/inputs/tablet-shape-selector.js';
 import '../components/graphics/tablet-dimensions-graphic.js';
-import '../components/graphics/tablet-thickness-graphic.js';
 import '../components/charts/bulk-density-chart.js';
 import '../components/charts/tablet-weight-chart.js';
 import '../components/buttons/next-page-button.js';
@@ -190,7 +189,7 @@ class TabletPage extends connect(store)(PageViewElement) {
       
       <input-graphic-layout>
       
-        <page-section-subtitle title>${ rulerIcon } Size</page-section-subtitle>
+        <page-section-subtitle title></page-section-subtitle>
         
           <length-input 
             label='Length' 
@@ -208,16 +207,6 @@ class TabletPage extends connect(store)(PageViewElement) {
             style='display: ${isRound ? 'none' : 'grid'}'
             on-click='${() => this.dimensionsLine = 'width'}'
             on-unit-changed='${(e) => this.lengthUnits = e.detail.value}'></length-input>
-          
-            <tablet-dimensions-graphic graphic line='${dimensionsLine}'></tablet-dimensions-graphic>
-          
-          </input-graphic-layout>
-          
-          
-          <input-graphic-layout>
-          
-          <page-section-subtitle title>${ rulerIcon } Thickness</page-section-subtitle>
-          
           
             <length-input 
               label='Total Thickness' 
@@ -237,7 +226,8 @@ class TabletPage extends connect(store)(PageViewElement) {
             on-unit-changed=${(e) => this.lengthUnits = e.detail.value}>
             </length-input>
             
-            <tablet-thickness-graphic graphic line='${dimensionsLine}'></tablet-thickness-graphic>
+          
+            <tablet-dimensions-graphic graphic line='${dimensionsLine}'></tablet-dimensions-graphic>
           
           </input-graphic-layout>
           

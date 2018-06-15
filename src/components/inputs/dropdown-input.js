@@ -78,14 +78,12 @@ class DropdownInput extends connect(store)(LitElement) {
           grid-column: 1 / 2;
           display: flex;
           align-items: center;
-          background-color: var(--white-color);
-          padding: 8px 16px;
+          background-color: var(--background-color);
+          padding: 12px 16px;
           appearance: none;
           -moz-appearance: none;
           -webkit-appearance: none;
-          border-radius: 4px 0px 0px 4px;
-          border: 2px solid #e0e0e0;
-          border-right: none;
+          border: none;
           text-align: start;
           text-overflow: ellipsis;
           cursor: pointer;
@@ -97,13 +95,11 @@ class DropdownInput extends connect(store)(LitElement) {
           display: flex;
           align-items: center;
           justify-content: center;
-          height: 44px;
-          width: 44px;
+          height: 52px;
+          width: 52px;
           grid-row: 2 / 3;
           grid-column: 2 / 3;
-          background-color: var(--white-color);
-          border: 2px solid #e0e0e0;
-          border-radius: 0px 4px 4px 0px;
+          background-color: var(--background-color);
           cursor: pointer;
         }
         #icon svg {
@@ -115,7 +111,7 @@ class DropdownInput extends connect(store)(LitElement) {
         iron-dropdown {
           max-height: 196px;
           overflow-y: auto;
-          background-color: var(--white-color);
+          background-color: var(--background-color);
           padding: 16px 8px;
           box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
                     0 1px 5px 0 rgba(0, 0, 0, 0.12),

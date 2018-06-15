@@ -39,11 +39,19 @@ class AppShell extends connect(store)(LitElement) {
           display: flex;
           justify-content: center;
           align-items: center;
-          margin-right: 8px;
+          margin-right: 12px;
+          cursor: pointer;
+        }
+        app-header #title {
+          font-size: 24px;
+          cursor: pointer;
+        }
+        app-header #spacer {
+          flex-grow: 1;
         }
         app-header #user-name {
-          font-size: 12px;
-          color: var(--text-light-color)
+          font-size: 14px;
+          color: var(--text-light-color);
         }
         app-header .icon {
           display: flex;
@@ -72,10 +80,11 @@ class AppShell extends connect(store)(LitElement) {
       
         <app-header slot='header' fixed effects='waterfall'>
           <app-toolbar>
-            <div id='icon'>${appIcon}</div>
-            <div main-title>Colorcon Coating Guide</div>
-            <div class='icon'>J</div>
+            <div id='icon' on-click='${() => window.location = '#overview'}'>${appIcon}</div>
+            <div id='title' on-click='${() => window.location = '#overview'}'>Colorcon Coating Guide</div>
+            <div id='spacer'></div>
             <div id='user-name'>Jason Hansell</div>
+            <div class='icon'>J</div>
           </app-toolbar>
         </app-header>
         

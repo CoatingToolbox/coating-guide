@@ -49,13 +49,13 @@ class TextInput extends connect(store)(LitElement) {
         #input, 
         #input:focus {
           width: calc(100% - 32px - 2px);
-          background-color: var(--white-color);
-          padding: 8px 16px;
+          background-color: var(--background-color);
+          padding: 12px 16px;
           appearance: none;
           -moz-appearance: none;
           -webkit-appearance: none;
           border-radius: 4px;
-          border: 2px solid #e0e0e0;
+          border: none;
           outline: none;
           text-align: start;
           text-overflow: ellipsis;

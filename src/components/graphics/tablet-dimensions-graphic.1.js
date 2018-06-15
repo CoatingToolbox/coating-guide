@@ -78,7 +78,7 @@ const computePathTopTablet = (shape, width, length) => {
 
   return path;
 };
-const computePathTopLine = (line, shape, width, length) => {
+const computePathLine = (line, shape, width, length) => {
   switch(line) {
     case 'width':
       return computePathWidthLine(length, width);
@@ -117,75 +117,15 @@ const computePathWidthLine = (length, width) => {
     " l " + -svg.cap + " 0";
 };
 
-const computePathSideTablet = (shape, length, cupRadius, bandThickness) => {
-  let scaledLength = length * svg.scale;
-  let scaledBand = bandThickness * svg.scale;
-  let scaledCup = cupRadius * svg.scale;
-
-  // TOP ARC
-  return "m " + svg.centerX + " " + (svg.centerY) +
-    " m " + (-scaledLength / 2) + " " + (-scaledBand / 2) +
-    " a " + scaledCup + " " + scaledCup + " 0 0 1 " + scaledLength + " 0" +
-    " l 0 " + scaledBand +
-    " a " + scaledCup + " " + scaledCup + " 0 0 1 " + -scaledLength + " 0" +
-    " l 0 " + -scaledBand +
-    " l " + scaledLength + " 0" +
-    " m 0 " + scaledBand +
-    " l " + -scaledLength + " 0";
-};
-const computePathSideLine = (line, totalThickness, bandThickness, length) => {
-  switch(line) {
-    case 'total':
-      return computePathThicknessLine(totalThickness, length);
-    case 'band':
-      return computePathThicknessLine(bandThickness, length);
-    default: 
-      return '';
-  }
-};
-const computePathThicknessLine = (thickness, length) => {
-  //Path is designed to fit in a 50 by 50 pixel box
-  //scale is used to shrink or grow the value as needed
-  //to draw the tablet we use radius so we scale it and divide by 2
-
-  var scaledLength = length * svg.scale;
-  var scaledThickness = thickness * svg.scale;
-
-  return "M " + (svg.centerX + scaledLength / 2 + svg.padding) + ' ' + (svg.centerY - scaledThickness / 2) +
-    " l " + svg.cap + " 0" +
-    " m " + (-svg.cap / 2) + " 0" +
-    " l 0 " + scaledThickness +
-    " m " + (svg.cap / 2) + " 0" +
-    " l " + -svg.cap + " 0";
-};
-const computePathCupThicknessLine = (cup, total, length) => {
-  //Path is designed to fit in a 50 by 50 pixel box
-  //scale is used to shrink or grow the value as needed
-  //to draw the tablet we use radius so we scale it and divide by 2
-
-  var scaledLength = length * svg.scale;
-  var scaledTotal = total * svg.scale;
-  var scaledCup = cup * svg.scale;
-
-  return "M " + (svg.centerX + scaledLength / 2 + svg.padding) + ' ' + (svg.centerY - scaledTotal / 2) +
-    " l " + svg.cap + " 0" +
-    " m " + (-svg.cap / 2) + " 0" +
-    " l 0 " + scaledCup +
-    " m " + (svg.cap / 2) + " 0" +
-    " l " + -svg.cap + " 0";
-};
-
 class TabletDimensionsGraphic extends connect(store)(LitElement) {
   
   static get properties () {
     return {
+      view: String,
       line: String,
       shape: String,
       width: Number,
-      length: Number,
-      lengthCupRadius: Number,
-      bandThickness: Number,
-      totalThickness: Number
+      length: Number
     };
   }
   
@@ -193,28 +133,25 @@ class TabletDimensionsGraphic extends connect(store)(LitElement) {
     this.shape = state.tablet.shape;
     this.length = state.tablet.length;
     this.width = state.tablet.width;
-    this.lengthCupRadius = state.tablet.lengthCupRadius;
-    this.bandThickness = state.tablet.bandThickness;
-    this.totalThickness = state.tablet.totalThickness;
   }
   
-  _render ({ line, shape, length, width, lengthCupRadius, bandThickness, totalThickness  }) {
+  _render ({ line, shape, length, width }) {
     // Template getter must return an instance of HTMLTemplateElement.
     // The html helper function makes this easy.
     return html`
       <style>
         :host {
-          display: grid;
-          grid-template-columns: 1fr 1fr;
-          grid-template-rows: auto auto;
+          display: flex;
           align-items: center;
-          justify-content: space-around;
+          justify-content: center;
+          border-radius: 16px;
+          background-color: var(--background-color);
+          border: 5px solid var(--border-color);
           --tablet-fill-color: var(--app-light-color);
           --tablet-outline-color: var(--app-primary-color);
         }
         
         .tablet-graphic {
-          align-self: end;
           height: 100%;
           max-height: 196px;
           width: 100%;
@@ -224,27 +161,12 @@ class TabletDimensionsGraphic extends connect(store)(LitElement) {
           stroke-width: 0.35px;
           stroke-linejoin: round;
         }
-        .label {
-          font-size: 16px;
-          color: var(--text-light-color);
-          align-self: start;
-          justify-self: center;
-        }
       </style>
       
         <svg class='tablet-graphic' viewbox='0 0 24 18'>
           <path d$='${ computePathTopTablet(shape, width, length) }'></path>
-          <path d$='${ computePathTopLine(line, shape, width, length) }'></path>
+          <path d$='${ computePathLine(line, shape, width, length) }'></path>
         </svg>
-      
-        <svg class='tablet-graphic' viewbox='0 0 24 18'>
-          <path d$='${ computePathSideTablet(shape, length, lengthCupRadius, bandThickness) }'></path>
-          <path d$='${ computePathSideLine(line, totalThickness, bandThickness, length) }'></path>
-        </svg>
-        
-        <div class='label'>Top View</div>
-        
-        <div class='label'>Side View</div>
     `;
   }
 }
