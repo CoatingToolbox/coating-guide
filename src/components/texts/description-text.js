@@ -22,7 +22,7 @@ class DescriptionText extends connect(store)(LitElement) {
       this.value = value;
     }
   }
-  _render ({value, label, isOpen }) {
+  _render ({value, label }) {
     return html`
       <style>
         :host {

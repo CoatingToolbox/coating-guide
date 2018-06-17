@@ -19,16 +19,9 @@ class InputGraphicLayout extends LitElement {
         ::slotted(*) {
           grid-column: 1 / 2;
         }
-        ::slotted([title]) {
-          grid-row: 1 / 2;
-          grid-column: 1 / 3;
-        }
-        ::slotted([wide]) {
-          grid-column: 1 / 3;
-        }
         ::slotted([graphic]) {
           grid-column: 2 / 3;
-          grid-row: 2 / 7;
+          grid-row: 1 / 6;
         }
       </style>
         

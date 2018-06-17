@@ -6,6 +6,9 @@
       "src/pages/tablet-page.js",
       "src/pages/pan-page.js",
       "src/pages/coating-page.js",
+      "src/pages/batch-page.js",
+      "src/pages/dispersion-page.js",
+      "src/pages/coating-amount-page.js",
       "src/pages/tablet-library-page.js",
       "src/pages/pan-library-page.js",
       "src/pages/coating-library-page.js"

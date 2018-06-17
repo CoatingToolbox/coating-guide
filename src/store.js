@@ -17,6 +17,7 @@ import tabletReducer from './reducers/tablet-reducer.js';
 import panReducer from './reducers/pan-reducer.js';
 import coatingReducer from './reducers/coating-reducer.js';
 import coatingAmountReducer from './reducers/coating-amount-reducer.js';
+import batchReducer from './reducers/batch-reducer.js';
 
 // Sets up a Chrome extension for time travel debugging.
 // See https://github.com/zalmoxisus/redux-devtools-extension for more information.
@@ -34,6 +35,7 @@ const rootReducer = (state = {}, action = {}) => {
   const pan = panReducer(state.pan, action);
   const coating = coatingReducer(state.coating, action);
   const coatingAmount = coatingAmountReducer(state.coatingAmount, action, tablet, coating);
+  const batch = batchReducer(state.batch, action, pan, tablet);
   
   return Object.assign({}, state, 
     {
@@ -41,7 +43,8 @@ const rootReducer = (state = {}, action = {}) => {
       tablet,
       pan,
       coating,
-      coatingAmount
+      coatingAmount,
+      batch
     });
 };
 

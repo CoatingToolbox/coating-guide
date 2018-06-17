@@ -29,10 +29,15 @@ class UnitInput extends connect(store)(LitElement) {
       path: String,
       isOpen: String,
       value: Number,
+      step: Number,
       _units: Array,
       _multiplier: Number,
       _unitsHTML: String
     };
+  }
+  constructor() {
+    super();
+    this.step = 0.01;
   }
   _firstRendered() {
     
@@ -58,6 +63,7 @@ class UnitInput extends connect(store)(LitElement) {
     this._unitsHTML = options;
   }
   _stateChanged(state) {
+    if(!this.path) { return; }
     let path = this.path.split('.');
     let value = state;
     path.forEach( property => {
@@ -77,7 +83,7 @@ class UnitInput extends connect(store)(LitElement) {
   _toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
-  _render ({value, label, unit, _unitsHTML, _multiplier, isOpen }) {
+  _render ({value, label, unit, _unitsHTML, _multiplier, isOpen, step }) {
     return html`
       <style>
         :host {
@@ -141,7 +147,6 @@ class UnitInput extends connect(store)(LitElement) {
           background-color: var(--background-color);
           font-size: 14px;
           color: #666666;
-          border-left: 2px solid #E0E0E0;
           cursor: pointer;
         }
         #icon {
@@ -192,9 +197,9 @@ class UnitInput extends connect(store)(LitElement) {
       <input 
         id='input' 
         type="number" 
-        step='0.01' 
+        step='${ step }' 
         min='0' 
-        value='${ (value / _multiplier).toFixed(2) }'
+        value='${ (value / _multiplier).toFixed(-Math.log10(step))}'
         on-change=${ (e) => store.dispatch(this._updateValue(e.target.value)) }
         size='1'>
       

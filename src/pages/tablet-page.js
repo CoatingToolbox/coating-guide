@@ -189,7 +189,6 @@ class TabletPage extends connect(store)(PageViewElement) {
       
       <input-graphic-layout>
       
-        <page-section-subtitle title></page-section-subtitle>
         
           <length-input 
             label='Length' 
@@ -245,9 +244,6 @@ class TabletPage extends connect(store)(PageViewElement) {
           
           <input-graphic-layout>
           
-          <page-section-subtitle title></page-section-subtitle>
-          
-          
             <mass-input
               label='Average Weight'
               unit=${massUnits}
@@ -279,9 +275,6 @@ class TabletPage extends connect(store)(PageViewElement) {
           </page-section-description>
           
           <input-graphic-layout>
-          
-          <page-section-subtitle title></page-section-subtitle>
-          
           
             <density-input
               label='Bulk Density'

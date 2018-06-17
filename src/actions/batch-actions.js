@@ -66,6 +66,15 @@ export class Batch extends Pan {
         },
         enumerable: true
       },
+      batchFillWidth: {
+        get: () => {
+          return this.wallWidth + 2 * this.batchFillHeight / this.sideWallSlope;
+        },
+        set: (value) => {
+          return;
+        },
+        enumerable: true
+      },
       batchFillLength: {
         get: () => {
           return this.calcChordLength(this.batchFillHeight);
@@ -76,72 +85,16 @@ export class Batch extends Pan {
         get: () => {
           return this.batchVolume / this.brimVolume;
         },
+        set: (value) => {
+          this.batchVolume = value * this.brimVolume;
+        },
         enumerable: true
       },
     });
   }
+  
+  calcWeight(volume, density) {
+    return volume * density;
+  }
 
 }
-
-
-// // DATA FOR GRAPHS 
-// get panRangeWeightVsFillHeight() {
-//   // initiate an empty array to store values in for loop
-//   let vals = [];
-//   let step = this.brimHeight / 50;
-//   // loop through different volumes and store the volume and height values
-//   for(var i=0; i <= this.brimHeight; i = i + step) {
-//       let fillHeight = i;
-//       let fillVolume = this.calcVolume(fillHeight);
-//       let fillWeight = this.calcWeight(fillVolume, this.bulkDensity);
-//       vals.push({weight: this.gramsToKilograms(fillWeight), height: this.metersToInches(fillHeight)});
-//   }
-//   return vals;
-// }
-// get workingFillWeightVsFillHeight() {
-//   // initiate an empty array to store values in for loop
-//   let vals = [];
-//   let step = (this.maxFillHeight - this.minFillHeight) / 50;
-
-//   // loop through different volumes and store the volume and height values
-//   for(var i = this.minFillHeight; i <= this.maxFillHeight; i = i + step) {
-//       let fillHeight = i;
-//       let fillVolume = this.calcVolume(fillHeight);
-//       let fillWeight = this.calcWeight(fillVolume, this.bulkDensity);
-//       vals.push({weight: this.gramsToKilograms(fillWeight), height: this.metersToInches(fillHeight)});
-//   }
-//   return vals;
-
-// }
-// get batchWeightVsHeight() {
-//   let vals = [];       
-//   vals.push({weight: this.gramsToKilograms(this.batchWeight), 
-//             height: this.metersToInches(this.batchFillHeight),
-//             label: "Batch Size"});
-//   return vals;
-// }
-// get referencePointsWeightVsHeight() {
-
-//   let vals = [];
-//   vals.push({weight: this.gramsToKilograms(this.minFillWeight), 
-//             height: this.metersToInches(this.minFillHeight),
-//             label:"Min Recommended"});
-
-//   vals.push({weight: this.gramsToKilograms(this.maxFillWeight), 
-//             height: this.metersToInches(this.maxFillHeight), 
-//             label:"Max Recommended"});
-
-//   vals.push({weight: this.gramsToKilograms(this.brimWeight), 
-//             height: this.metersToInches(this.brimHeight),
-//             label: "Brim Height"});
-
-//   if(this.baffleHeight > 0) {
-
-//     let vol = this.calcVolume(this.baffleHeight);
-//     let weight = this.calcWeight(vol, this.bulkDensity);
-//     vals.push({weight: this.gramsToKilograms(weight), 
-//               height: this.metersToInches(this.baffleHeight),
-//               label: "Baffle Height"});
-//   }
-//   return vals;
-// }

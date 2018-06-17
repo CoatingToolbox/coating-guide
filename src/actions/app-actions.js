@@ -53,6 +53,15 @@ const loadPage = (page) => async (dispatch) => {
     case "coating-library":
         await import('../pages/coating-library-page.js');
         break;
+    case "coating-amount":
+        await import('../pages/coating-amount-page.js');
+        break;
+    case "batch":
+        await import('../pages/batch-page.js');
+        break;
+    case "dispersion":
+        await import('../pages/dispersion-page.js');
+        break;
     default:
       page = 404;
       await import('../pages/page-404.js');

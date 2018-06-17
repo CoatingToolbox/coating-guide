@@ -3,7 +3,7 @@ import { html } from '@polymer/lit-element';
 import { PageViewElement } from './page-view-element';
 import { connect } from 'pwa-helpers/connect-mixin.js';
 import { store } from '../store.js';
-import { productIcon, densityIcon, volumeIcon } from '../components/app-icons.js';
+import { productIcon } from '../components/app-icons.js';
 
 import '../components/cards/basic-card.js';
 import '../components/layouts/nav-page-layout.js';
@@ -105,7 +105,6 @@ class CoatingPage extends connect(store)(PageViewElement) {
             excel to fit an exponential regression curve for accurate values).
         </page-section-description>
         <input-graphic-layout>
-            <page-section-subtitle title></page-section-subtitle>
             <number-input label='Intercept (b)' path='coating.viscosityIntercept' action='SET_COATING_VISCOSITY_INTERCEPT'></number-input>
             <number-input label='Exponent (x)' path='coating.viscosityExponent' action='SET_COATING_VISCOSITY_EXPONENT'></number-input>
             <coating-viscosity-chart graphic></coating-viscosity-chart>
@@ -120,14 +119,10 @@ class CoatingPage extends connect(store)(PageViewElement) {
             in different hiding power. 
         </page-section-description>
         <input-graphic-layout>
-            <page-section-subtitle title></page-section-subtitle>
             <percent-input label='Percent TiO2' unit='%' action='SET_COATING_PERCENT_TIO2' path='coating.percentTio2'></percent-input>
             <coating-opacity-chart graphic></coating-opacity-chart>
         </input-graphic-layout>
     </basic-card>
-
-
-
 
     <basic-card>
         <page-section-title>Density</page-section-title>
@@ -144,7 +139,7 @@ class CoatingPage extends connect(store)(PageViewElement) {
     </basic-card>
     <page-button-layout>
         <last-page-button page='#pan'>Coating Equipment</last-page-button>
-        <next-page-button page='#batch'>Batch Size</next-page-button>
+        <next-page-button page='#coating-amount'>Coating Amount</next-page-button>
     </page-button-layout>
 
 

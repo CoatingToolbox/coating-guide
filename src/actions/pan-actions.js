@@ -33,6 +33,9 @@ export class Pan {
         get: () => {
           return this.mainDiameter / 2;
         },
+        set: (value) => {
+          this.mainDiameter = value * 2;
+        },
         enumerable: true
       },
       brimHeight: {

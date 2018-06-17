@@ -160,8 +160,6 @@ class PanPage extends PageViewElement {
         
         <input-graphic-layout>
         
-        <page-section-subtitle title></page-section-subtitle>
-        
           <length-input
             label='Drum Diameter'
             path='pan.mainDiameter'
@@ -219,9 +217,6 @@ class PanPage extends PageViewElement {
       
         <page-section-subtitle title>${ airIcon } Airflow</page-section-subtitle>
       
-            
-            
-      
           <text-input 
             label='Airflow Direction' 
             path='pan.airflowType'
@@ -248,8 +243,6 @@ class PanPage extends PageViewElement {
     <two-column-input-layout>
     
       <page-section-subtitle title>${ mixIcon } Baffles</page-section-subtitle>
-      
-      
             
             <dropdown-input 
               label='Baffle Type' 

@@ -14,6 +14,16 @@ export default function coatingAmountReducer(state = new CoatingAmount(), action
     newState = updateAmount(newState, 'tabletArea', tablet.totalArea);
 
     switch(action.type) {
+        case "SET_COATING_AMOUNT_COATING_WEIGHT": 
+            return updateAmount(state, 'coatingWeight', action.value);
+        case "SET_COATING_AMOUNT_WEIGHT_GAIN":
+            return updateAmount(state, 'weightGain', action.value);
+        case "SET_COATING_AMOUNT_COATING_COVERAGE":
+            return updateAmount(state, 'coatingCoverage', action.value);
+        case "SET_COATING_AMOUNT_FILM_THICKNESS":
+            return updateAmount(state, 'filmThickness', action.value);
+        case "SET_COATING_AMOUNT_FILM_OPACITY":
+            return updateAmount(state, 'filmOpacity', action.value);
         default:
             return newState;
     }

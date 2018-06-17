@@ -99,6 +99,10 @@ class AppShell extends connect(store)(LitElement) {
         <coating-page  class='page' active?='${ _page === 'coating'}'></coating-page>
         <coating-library-page  class='page' active?='${ _page === 'coating-library'}'></coating-library-page>
         
+        <batch-page  class='page' active?='${ _page === 'batch'}'></batch-page>
+        <dispersion-page  class='page' active?='${ _page === 'dispersion'}'></dispersion-page>
+        <coating-amount-page class='page' active?='${ _page === 'coating-amount'}'></coating-amount-page>
+        
         <page-404 class='page' active?='${ _page === '404'}'></page-404>
         
       </app-header-layout>

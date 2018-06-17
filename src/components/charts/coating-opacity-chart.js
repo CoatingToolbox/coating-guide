@@ -67,8 +67,8 @@ class CoatingOpacityChart extends connect(store)(LitElement) {
                 :host {
                     display: block;
                     height: 100%;
-                    min-height: 196px;
-                    max-height: 300px;
+                    height: 196px;
+                    max-heigt: 200px;
                   }
                   #chart {
                     font-family: inherit;

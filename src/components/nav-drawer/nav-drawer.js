@@ -35,9 +35,9 @@ class NavDrawer extends LitElement{
       <nav-item link='/#coating' label='Coating Formula' sub-item></nav-item>
         
       <nav-section label='Trial Setup'></nav-section>
-      <nav-item link='/' label='Coating Amount' sub-item></nav-item>
-      <nav-item link='/' label='Dispersion' sub-item></nav-item>
-      <nav-item link='/' label='Batch Size' sub-item></nav-item>
+      <nav-item link='/#coating-amount' label='Coating Amount' sub-item></nav-item>
+      <nav-item link='/batch' label='Dispersion' sub-item></nav-item>
+      <nav-item link='/dispersion' label='Batch Size' sub-item></nav-item>
       
       <nav-item link='#/' label='Process Parameters'></nav-item>
       

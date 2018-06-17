@@ -56,7 +56,7 @@ export class CoatingAmount {
                     // x = tio2 mg/cm2
                     // y = 17.406ln(x) + 81.454
                     let x = Math.exp((value * 100 - 81.454) / 17.406) ;
-                    this.weightGain = x / (this.tabletWeight * 1000) / this.tio2 * (this.tabletArea * 10000);
+                    this.weightGain = x / (this.tabletWeight * 1000) / this.percentTio2 * (this.tabletArea * 10000);
                 },
                 enumerable: true
             }
