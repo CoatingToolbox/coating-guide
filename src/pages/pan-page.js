@@ -21,6 +21,7 @@ import '../components/inputs/dropdown-input.js';
 import '../components/texts/length-text.js';
 import '../components/texts/description-text.js';
 import '../components/texts/volume-text.js';
+import '../components/buttons/large-button.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 import '../components/graphics/pan-dimensions-graphic.js';

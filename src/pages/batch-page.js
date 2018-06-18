@@ -10,6 +10,7 @@ import '../components/layouts/nav-page-layout.js';
 import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/title-detail-layout.js';
 import '../components/layouts/page-button-layout.js';
+import '../components/buttons/large-button.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 import '../components/texts/page-main-title.js';
@@ -25,6 +26,7 @@ import '../components/inputs/tens-input.js';
 import '../components/inputs/mass-input.js';
 import '../components/inputs/volume-input.js';
 import '../components/inputs/percent-input.js';
+import '../components/charts/pan-volume-chart.js';
 
 
 class BatchPage extends connect(store)(PageViewElement) {
@@ -42,12 +44,26 @@ class BatchPage extends connect(store)(PageViewElement) {
         display: block;
     }
 
+        ul {
+          max-width: 600px;
+          margin: 16px auto 0px auto;
+        }
     basic-card + basic-card {
         margin-top: 48px;
     }
         
     title-detail-layout + title-detail-layout {
       border-top: 2px solid var(--border-color);
+    }
+    #volumes-layout {
+      display: flex;
+      justify-content: space-around;
+    }
+    .volume-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 </style>
 
@@ -83,10 +99,44 @@ class BatchPage extends connect(store)(PageViewElement) {
             <volume-text label='Brim Volume' path='pan.brimVolume' unit='l'></volume-text>
           </title-detail-layout>
           
+          </basic-card> 
+          
+          <basic-card>
+          
+          <page-section-title>Recommend Batch Size</page-section-title>
+          
+          <page-section-description>
+            Coating pans are often desribed by the pan diameter but the pan 
+            volume provides a better understanding of the pans capacity. The following
+            volumes are predecited from the dimensions provided.Array
+            <ul>
+            <li><b>Drum Diameter - </b> The main diameter of the coating pan drum.</li>
+            <li><b>Opening Diameter - </b> The diameter of the coating pan's opening.</li>
+            <li><b>Brim Depth - </b> The length from the pan opening (ie brim) to the back wall.</li>
+            <li><b>Wall Depth - </b> The length from front to back of the perforated pan wall.</li>
+          </ul>
+          </page-section-description>
+          
+          <div id='volumes-layout'>
+            <div class='volume-layout'>
+              <pan-volume-chart label='Brim' path='brimVolume'></pan-volume-chart>
+              <large-button on-click='${() => store.dispatch({type: "SET_BATCH_VOLUME_TO_BRIM"})}'>Calculate Brim</large-button>
+            </div>
+            <div class='volume-layout'>
+            <pan-volume-chart highlight label='Max' path='maxFillVolume'></pan-volume-chart>
+              <large-button on-click='${() => store.dispatch({type: "SET_BATCH_VOLUME_TO_MAX"})}'>Calculate Max</large-button>
+            </div>
+            <div class='volume-layout'>
+            <pan-volume-chart label='Min' path='minFillVolume'></pan-volume-chart>
+              <large-button on-click='${() => store.dispatch({type: "SET_BATCH_VOLUME_TO_MIN"})}'>Calculate Min</large-button>
+            </div>
+            
+          </div>
+          
           </basic-card>
           
     <basic-card>
-        <page-section-title>Batch Size</page-section-title>
+        <page-section-title>Tablet Count</page-section-title>
         <page-section-description>
             The ingredients used in the coating effect the density of the dispersion and film.
             Therefore using large amounts of dense ingredients like talc and titanium dioxide 
@@ -94,12 +144,32 @@ class BatchPage extends connect(store)(PageViewElement) {
         </page-section-description>
         <input-graphic-layout>
         
+        <mass-input
+          label='Weight'
+          path='batch.batchWeight'
+          action='SET_BATCH_WEIGHT'
+          unit='kg'></mass-input>
+          
         <tens-input
           label='Count'
           path='batch.tabletCount'
           step='1'
           action='SET_BATCH_TABLET_COUNT'></tens-input>
+        
+        </input-graphic-layout>
+       
+    </basic-card>
+    
           
+    <basic-card>
+        <page-section-title>Batch Volume</page-section-title>
+        <page-section-description>
+            The ingredients used in the coating effect the density of the dispersion and film.
+            Therefore using large amounts of dense ingredients like talc and titanium dioxide 
+            change the optimal coating amount and the dispersion preperation.
+        </page-section-description>
+        <input-graphic-layout>
+        
         <mass-input
           label='Weight'
           path='batch.batchWeight'

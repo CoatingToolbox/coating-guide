@@ -112,7 +112,7 @@ class CoatingPage extends connect(store)(PageViewElement) {
     </basic-card>
 
     <basic-card style='display: ${ isClear ? 'none !important' : 'block !important'}'>
-        <page-section-title>Opacity</page-section-title>
+        <page-section-title>Opacifier</page-section-title>
         <page-section-description>
             Many film coating formulations include opacifiers like titanium dioxide or
             calcium carbonate. The base formula and the level of opacifier used results 

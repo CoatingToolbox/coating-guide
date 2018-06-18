@@ -22,6 +22,12 @@ export default function coatingReducer(state = new Batch(), action, pan, tablet)
             return updateBatch(state, 'batchWeight', action.value);
         case "SET_BATCH_VOLUME_PERCENT":
             return updateBatch(newState, 'batchFillVolumePercent', action.value);
+        case "SET_BATCH_VOLUME_TO_BRIM":
+            return updateBatch(newState, 'batchVolume', pan.brimVolume);
+        case "SET_BATCH_VOLUME_TO_MAX":
+            return updateBatch(newState, 'batchVolume', pan.maxFillVolume);
+        case "SET_BATCH_VOLUME_TO_MIN":
+            return updateBatch(newState, 'batchVolume', pan.minFillVolume);
         default:
             return newState;
     }
