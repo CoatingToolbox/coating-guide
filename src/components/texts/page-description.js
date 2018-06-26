@@ -13,7 +13,8 @@ class PageDescription extends LitElement {
           font-size: 16px;
           color: var(--white-color);
           max-width: 700px;
-          margin-rigth: auto;
+          margin-right: auto;
+          padding: 16px 0px;
         }
       </style>
       

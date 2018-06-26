@@ -44,6 +44,13 @@ class NavPageLayout extends LitElement {
         @media(min-width: 1200px) {
           :host {
             grid-template-columns: auto auto;
+          background: 
+            linear-gradient(
+            to bottom, 
+            var(--app-primary-color) 0%,
+            var(--app-primary-color) 714px, 
+            var(--background-color) 0%,
+            var(--background-color) 100%);
           }
           #title, 
           #page {

@@ -64,6 +64,10 @@ class PanPage extends PageViewElement {
         .page-description {
           color: var(--white-color);
         }
+        a {
+          color: var(--text-light-color);
+          text-decoration: none;
+        }
         ul {
           max-width: 600px;
           margin: 16px auto 0px auto;
@@ -80,7 +84,15 @@ class PanPage extends PageViewElement {
       <nav-page-layout>
       
         <page-main-title slot='title'>Coating Equipment</page-main-title>
-        
+        <page-description slot='title'>
+          The coating pan is deisgned to provide three key functions, mixing of tablets, 
+          distributing of coating and evaporation of solvent. The size and shape are key compoents
+          to determine how much each pan can handle. Edit the details below to customize
+          the coating pan setup or select a pan from the library for a quick setup.
+        </page-description>
+        <a href='#pan-library' slot='title'>
+          <large-button>Pan Library</large-button>
+        </a>
         <basic-card>
         
         <page-section-title>General Information</page-section-title>

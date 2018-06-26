@@ -57,7 +57,7 @@ const loadPan = (pan) => {
     type: "LOAD_PAN_FROM_LIBRARY",
     value: pan,
   });
-  window.location = '#overview';
+  window.history.back();
 };
 
 

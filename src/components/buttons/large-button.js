@@ -10,7 +10,6 @@ class LargeButton extends LitElement {
     return html`
       <style>
         :host {
-          display: block;
           padding: 6px 24px;
           border-radius: 24px;
           border: var(--border-line);

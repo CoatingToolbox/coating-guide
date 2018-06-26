@@ -77,7 +77,7 @@ const loadTablet = (tablet) => {
     type: "LOAD_TABLET_FROM_LIBRARY",
     value: tablet,
   });
-  window.location = '#overview';
+  window.history.back();
 };
 
 class TabletLibraryPage extends PageViewElement {

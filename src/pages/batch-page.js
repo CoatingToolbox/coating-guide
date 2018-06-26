@@ -110,10 +110,12 @@ class BatchPage extends connect(store)(PageViewElement) {
             volume provides a better understanding of the pans capacity. The following
             volumes are predecited from the dimensions provided.Array
             <ul>
-            <li><b>Drum Diameter - </b> The main diameter of the coating pan drum.</li>
-            <li><b>Opening Diameter - </b> The diameter of the coating pan's opening.</li>
-            <li><b>Brim Depth - </b> The length from the pan opening (ie brim) to the back wall.</li>
-            <li><b>Wall Depth - </b> The length from front to back of the perforated pan wall.</li>
+            <li><b>Brim - </b> The pan volume upto the brim and before tablets would fall out.</li>
+            <li><b>Max - </b> To leave room for when the pans are tumbling the max working
+            volume is calcualted as one inch from the brim.</li>
+            <li><b>Min - </b> Low pan loads are known to have negative effect of tablet mixing,
+            so the minimum working volume is calculated based on the baffle height. If baffle height
+            info is not available this is based on a 70% of the brim height.</li>
           </ul>
           </page-section-description>
           

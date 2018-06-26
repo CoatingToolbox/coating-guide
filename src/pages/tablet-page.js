@@ -31,6 +31,7 @@ import '../components/inputs/tablet-shape-selector.js';
 import '../components/graphics/tablet-dimensions-graphic.js';
 import '../components/charts/bulk-density-chart.js';
 import '../components/charts/tablet-weight-chart.js';
+import '../components/buttons/large-button.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 
@@ -66,6 +67,10 @@ class TabletPage extends connect(store)(PageViewElement) {
         :host {
           display: block;
         }
+        a {
+          color: var(--text-light-color);
+          text-decoration: none;
+        }
         basic-card + basic-card {
           margin-top: 48px;
         }
@@ -82,6 +87,15 @@ class TabletPage extends connect(store)(PageViewElement) {
       <nav-page-layout>
       
         <page-main-title slot='title'>Tablet Core</page-main-title>
+        <page-description slot='title'>
+          The tablet and it's properties is the starting point for the coating process. 
+          By understanding these properties we can make recommendations and optimize the coating process.
+          Below you can customize the details of your tablet or check out the Tablet Library
+          to quickly load common products.
+        </page-description>
+        <a href='#tablet-library' slot='title'>
+          <large-button>Tablet Library</large-button>
+        </a>
         <basic-card>
         <page-section-title>General Information</page-section-title>
         

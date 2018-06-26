@@ -47,7 +47,7 @@ const loadCoating = (coating) => {
     type: "LOAD_COATING_FROM_LIBRARY",
     value: coating,
   });
-  window.location = '#overview';
+  window.history.back();
 };
 
 

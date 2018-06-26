@@ -11,6 +11,7 @@ import '../components/layouts/title-detail-layout.js';
 import '../components/layouts/input-graphic-layout.js';
 import '../components/layouts/two-column-input-layout.js';
 import '../components/layouts/page-button-layout.js';
+import '../components/buttons/large-button.js';
 import '../components/buttons/next-page-button.js';
 import '../components/buttons/last-page-button.js';
 import '../components/texts/page-main-title.js';
@@ -56,6 +57,10 @@ class CoatingPage extends connect(store)(PageViewElement) {
     basic-card+basic-card {
         margin-top: 48px;
     }
+        a {
+          color: var(--text-light-color);
+          text-decoration: none;
+        }
     ul {
       max-width: 600px;
       margin: 16px auto 0px auto;
@@ -73,7 +78,14 @@ class CoatingPage extends connect(store)(PageViewElement) {
 <nav-page-layout>
 
     <page-main-title slot='title'>Coating Formulation</page-main-title>
-
+  <page-description slot='title'>
+          The coating formula is choosen for various functionality like, aesthetis, 
+          gloss, enteric and extended release. Provide details on the coating formula below to 
+          determine the optimal levels. Or choose a product from the coating library to get started.
+        </page-description>
+        <a href='#coating-library' slot='title'>
+          <large-button>Coating Library</large-button>
+        </a>
     <basic-card>
         <page-section-title>General Information</page-section-title>
         <page-section-description>
